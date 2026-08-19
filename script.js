@@ -8,19 +8,49 @@ const defaultSettings = {
 
 const defaultProducts = [
   {
-    id: 'elixir-glow',
-    name: 'Elixir Nutritivo e Iluminador Facial',
+    id: 'oleo-sublime',
+    name: 'Óleo Reparador Sublime Iluminador',
     category: 'skincare',
     badge: 'Mais Vendido',
-    price: 189.00,
-    installments: '3x de R$ 63,00',
-    rating: 4.9,
-    reviewsCount: 86,
+    price: 139.00,
+    installments: '3x de R$ 46,33',
+    rating: 5.0,
+    reviewsCount: 112,
     image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Regeneração celular, luminosidade instantânea e toque aveludado.',
-    fullDesc: 'Criado a partir da vivência prática em cabine do estúdio em Montes Claros, este elixir combina Ácido Hialurônico multimolecular e Óleo de Rosa Mosqueta puro para hidratar e restaurar o viço natural da pele sem pesar.',
-    usage: 'Aplique 3 a 4 gotas no rosto limpo pela manhã e à noite antes do seu hidratante.'
+    shortDesc: 'Nutrição intensa, proteção térmica e brilho espelhado para pontas e mechas.',
+    fullDesc: 'Fórmula exclusiva do estúdio com Óleo de Argan e Rosa Mosqueta nobre. Sela pontas duplas, controla o frizz e devolve luminosidade imediata a cabelos loiros e morenas iluminadas.',
+    usage: 'Aplique 2 a 3 gotas na palma das mãos e distribua no comprimento e pontas com os fios úmidos ou secos.'
+  },
+  {
+    id: 'kit-cronograma',
+    name: 'Kit Cronograma Capilar de Cabine',
+    category: 'kits',
+    badge: 'Tratamento Completo',
+    price: 349.00,
+    installments: '6x de R$ 58,16',
+    rating: 4.9,
+    reviewsCount: 94,
+    image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
+    shortDesc: 'Trio de Reconstrução, Nutrição e Hidratação para cabelos pós-química.',
+    fullDesc: 'O mesmo protocolo utilizado na cadeira da Carla Barbosa para manter o cabelo com toque aveludado e estrutura reforçada em casa.',
+    usage: 'Alterne as etapas de hidratação, nutrição e reconstrução conforme o cronograma semanal indicado.'
+  },
+  {
+    id: 'mascara-matizadora',
+    name: 'Máscara Iluminadora Loiros Perolados',
+    category: 'skincare',
+    badge: 'Loiros Saudáveis',
+    price: 159.00,
+    installments: '3x de R$ 53,00',
+    rating: 4.9,
+    reviewsCount: 78,
+    image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
+    shortDesc: 'Neutralização de tons amarelados com hidratação ultra reconstrutora.',
+    fullDesc: 'Pigmentos violeta perolados de microprecisão combinados a aminoácidos para neutralizar tons indesejados sem ressecar a fibra capilar.',
+    usage: 'Aplique nos cabelos limpos e úmidos, massageando mecha a mecha. Deixe agir de 3 a 5 minutos e enxágue.'
   },
   {
     id: 'brow-booster',
@@ -33,7 +63,7 @@ const defaultProducts = [
     reviewsCount: 64,
     image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Nutrição, alinhamento e fortalecimento dos fios.',
+    shortDesc: 'Nutrição, alinhamento e fortalecimento dos fios de sobrancelhas e cílios.',
     fullDesc: 'Complexo bioativo enriquecido com Peptídeos e Biotina botânica para fortalecer a raiz, reduzir quedas e proporcionar alinhamento elegante dos fios.',
     usage: 'Passe o aplicador suavemente na raiz das sobrancelhas e cílios toda noite.'
   },
@@ -51,21 +81,6 @@ const defaultProducts = [
     shortDesc: 'Notas de figo branco, âmbar e cedro para o seu santuário de paz.',
     fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância acolhedora do Carla Barbosa Estúdio para enriquecer seus momentos de descanso.',
     usage: 'Acenda durante o seu banho ou momento de autocuidado noturno por até 3 horas.'
-  },
-  {
-    id: 'studio-box',
-    name: 'Caixa Exclusiva Assinatura do Estúdio',
-    category: 'kits',
-    badge: 'Edição Especial',
-    price: 390.00,
-    installments: '6x de R$ 65,00',
-    rating: 5.0,
-    reviewsCount: 98,
-    image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Curadoria completa: Elixir + Fortalecedor + Vela + Massageador Facial.',
-    fullDesc: 'O presente supremo de autocuidado. Acompanha caixa rígida colecionável, laço de linho e cartão de presente personalizado.',
-    usage: 'O ritual completo para transformar a sua rotina diária em uma experiência relaxante.'
   }
 ];
 
