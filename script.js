@@ -90,7 +90,7 @@ const defaultPosts = [
     title: '5 Cuidados Essenciais para Manter o Cabelo Loiro Saudável',
     category: 'Dicas de Cabelo',
     date: '19 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Descubra como proteger os fios descoloridos contra o ressecamento e manter o brilho de salão em casa.',
     content: 'Manter o cabelo loiro radiante exige uma rotina equilibrada de hidratação, nutrição e reconstrução. Aqui no estúdio em Montes Claros, sempre recomendamos o uso de óleos nobres para proteção térmica e o cronograma capilar com fórmulas ricas em aminoácidos. Lembre-se: água morna ou fria na lavagem faz toda a diferença para selar as cutículas!'
   },
@@ -99,7 +99,7 @@ const defaultPosts = [
     title: 'O Poder da Nutrição para Sobrancelhas Naturais e Marcantes',
     category: 'Sobrancelhas',
     date: '15 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Como estimular o crescimento e a densidade dos fios de forma saudável e com acabamento elegante.',
     content: 'As sobrancelhas são a moldura do olhar. O segredo para deixá-las encorpadas e alinhadas não é sobrecarregar com maquiagem pesada, mas sim nutrir a raiz com biotina e ativos botânicos. Aplicar o sérum nutritivo todas as noites antes de dormir estimula a regeneração folicular e previne falhas.'
   },
@@ -108,7 +108,7 @@ const defaultPosts = [
     title: 'Novidades no Carla Barbosa Estúdio em Montes Claros',
     category: 'Novidades do Estúdio',
     date: '10 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Nosso espaço foi renovado para oferecer uma experiência ainda mais acolhedora e exclusiva para você.',
     content: 'Preparamos um ambiente pensado nos mínimos detalhes: aromas relaxantes, iluminação acolhedora e tratamentos personalizados para cabelos, estética e autocuidado. Venha nos visitar e vivenciar um momento só seu!'
   }
@@ -234,10 +234,16 @@ function renderPosts() {
   const grid = document.getElementById('postsGrid');
   if (!grid) return;
 
-  grid.innerHTML = posts.map(post => `
-    <article class="rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all group">
-      <div class="aspect-[16/10] overflow-hidden bg-nude/40 relative cursor-pointer" onclick="openPostModal('${post.id}')">
-        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+  grid.innerHTML = posts.map(post => {
+    const isVideo = post.image && (post.image.endsWith('.mp4') || post.image.endsWith('.webm') || post.image.startsWith('data:video'));
+    return `
+    <article class="rounded-3xl bg-linen border border-gold/30 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group">
+      <div class="aspect-[16/10] overflow-hidden bg-nude/30 relative cursor-pointer" onclick="openPostModal('${post.id}')">
+        ${isVideo 
+          ? `<video src="${post.image}" class="w-full h-full object-cover" muted></video>
+             <div class="absolute inset-0 bg-espresso/30 flex items-center justify-center text-white"><i data-lucide="play-circle" class="w-10 h-10 text-gold"></i></div>` 
+          : `<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
+        }
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-terracotta backdrop-blur-sm">
           ${post.category}
         </span>
@@ -259,7 +265,7 @@ function renderPosts() {
         </div>
       </div>
     </article>
-  `).join('');
+  `}).join('');
 
   lucide.createIcons();
 }
@@ -269,12 +275,16 @@ function openPostModal(postId) {
   const post = posts.find(p => p.id === postId);
   if (!post) return;
 
+  const isVideo = post.image && (post.image.endsWith('.mp4') || post.image.endsWith('.webm') || post.image.startsWith('data:video'));
   const modal = document.getElementById('postModal');
   const container = document.getElementById('postModalContent');
 
   container.innerHTML = `
     <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-4 bg-nude/30 border border-gold/20">
-      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" />
+      ${isVideo 
+        ? `<video src="${post.image}" controls autoplay class="w-full h-full object-cover"></video>` 
+        : `<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" />`
+      }
     </div>
     <div class="space-y-3">
       <div class="flex items-center gap-3">
@@ -745,6 +755,101 @@ function switchAdminTab(tab) {
   }
 }
 
+// ===== CONVERSOR DE LINKS DE NUVEM & DRIVE (GOOGLE DRIVE, DROPBOX, ONEDRIVE, WEB) =====
+function convertCloudLink(url) {
+  if (!url) return '';
+  let cleanUrl = url.trim();
+
+  // Google Drive: https://drive.google.com/file/d/FILE_ID/view... -> https://lh3.googleusercontent.com/d/FILE_ID
+  const gDriveMatch = cleanUrl.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/) || cleanUrl.match(/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/);
+  if (gDriveMatch && gDriveMatch[1]) {
+    return `https://lh3.googleusercontent.com/d/${gDriveMatch[1]}`;
+  }
+
+  // Dropbox: dl=0 -> raw=1
+  if (cleanUrl.includes('dropbox.com')) {
+    return cleanUrl.replace('?dl=0', '?raw=1').replace('&dl=0', '&raw=1');
+  }
+
+  return cleanUrl;
+}
+
+// ===== UPLOAD DIRETO DO DISPOSITIVO (FOTOS E VÍDEOS) =====
+function handleMediaUpload(event, targetInputId) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const isVideo = file.type.startsWith('video/');
+  const reader = new FileReader();
+
+  const previewBox = document.getElementById('mediaPreviewBox');
+  const previewImg = document.getElementById('mediaPreviewImg');
+  const previewVideo = document.getElementById('mediaPreviewVideo');
+  const previewStatus = document.getElementById('mediaPreviewStatus');
+  const previewInfo = document.getElementById('mediaPreviewInfo');
+
+  if (previewBox) previewBox.classList.remove('hidden');
+
+  reader.onload = function(e) {
+    const mediaData = e.target.result;
+    const input = document.getElementById(targetInputId);
+    if (input) input.value = mediaData;
+
+    if (isVideo) {
+      if (previewVideo) {
+        previewVideo.src = mediaData;
+        previewVideo.classList.remove('hidden');
+      }
+      if (previewImg) previewImg.classList.add('hidden');
+      if (previewStatus) previewStatus.textContent = `🎬 Vídeo carregado do dispositivo (${file.name})`;
+      if (previewInfo) previewInfo.textContent = `Tamanho: ${(file.size / (1024*1024)).toFixed(2)} MB • Pronto para publicação.`;
+    } else {
+      if (previewImg) {
+        previewImg.src = mediaData;
+        previewImg.classList.remove('hidden');
+      }
+      if (previewVideo) previewVideo.classList.add('hidden');
+      if (previewStatus) previewStatus.textContent = `📸 Foto carregada do dispositivo (${file.name})`;
+      if (previewInfo) previewInfo.textContent = `Resolução original preservada em alta definição.`;
+    }
+    showToast('✓ Mídia do dispositivo carregada com sucesso!');
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function handleCloudUrlInput(url, targetPreviewId) {
+  const converted = convertCloudLink(url);
+  const input = document.getElementById('postImage');
+  if (input && converted !== url) input.value = converted;
+
+  const previewBox = document.getElementById('mediaPreviewBox');
+  const previewImg = document.getElementById('mediaPreviewImg');
+  const previewVideo = document.getElementById('mediaPreviewVideo');
+
+  if (!converted) {
+    if (previewBox) previewBox.classList.add('hidden');
+    return;
+  }
+
+  if (previewBox) previewBox.classList.remove('hidden');
+  const isVideo = converted.endsWith('.mp4') || converted.endsWith('.webm') || converted.startsWith('data:video');
+
+  if (isVideo) {
+    if (previewVideo) {
+      previewVideo.src = converted;
+      previewVideo.classList.remove('hidden');
+    }
+    if (previewImg) previewImg.classList.add('hidden');
+  } else {
+    if (previewImg) {
+      previewImg.src = converted;
+      previewImg.classList.remove('hidden');
+    }
+    if (previewVideo) previewVideo.classList.add('hidden');
+  }
+}
+
 // ===== IA GERADORA DE IMAGENS & CONTEÚDO =====
 let currentGeneratedImageUrl = '';
 
@@ -757,18 +862,20 @@ function generateAiImage() {
   const input = document.getElementById('aiImagePrompt');
   const userPrompt = input.value.trim() || 'Cabelo loiro impecável com ondas de estúdio de luxo';
   
-  const previewBox = document.getElementById('aiImagePreviewBox');
-  const previewImg = document.getElementById('aiPreviewImg');
+  const previewBox = document.getElementById('mediaPreviewBox');
+  const previewImg = document.getElementById('mediaPreviewImg');
+  const previewVideo = document.getElementById('mediaPreviewVideo');
   const spinner = document.getElementById('aiLoadingSpinner');
   const btn = document.getElementById('btnGenerateAi');
   const btnText = document.getElementById('btnGenerateAiText');
 
-  previewBox.classList.remove('hidden');
-  spinner.classList.remove('hidden');
-  btn.disabled = true;
-  btnText.textContent = 'Criando IA...';
+  if (previewBox) previewBox.classList.remove('hidden');
+  if (spinner) spinner.classList.remove('hidden');
+  if (previewVideo) previewVideo.classList.add('hidden');
+  if (btn) btn.disabled = true;
+  if (btnText) btnText.textContent = 'Criando IA...';
 
-  // Prompts com estética de salão de alta beleza
+  // Prompts com estética de salão de alta beleza em 8K / HD
   const fullPrompt = `${userPrompt}, professional hair salon portrait photography, soft studio aesthetic lighting, high-end editorial beauty magazine, 8k hyperrealistic, clean background`;
   const seed = Math.floor(Math.random() * 999999);
   const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1200&height=750&nologo=true&seed=${seed}`;
@@ -776,20 +883,31 @@ function generateAiImage() {
   const imgLoader = new Image();
   imgLoader.onload = () => {
     currentGeneratedImageUrl = imageUrl;
-    previewImg.src = imageUrl;
-    spinner.classList.add('hidden');
-    btn.disabled = false;
-    btnText.textContent = 'Gerar Nova';
+    const postImgInput = document.getElementById('postImage');
+    if (postImgInput) postImgInput.value = imageUrl;
+
+    if (previewImg) {
+      previewImg.src = imageUrl;
+      previewImg.classList.remove('hidden');
+    }
+    if (spinner) spinner.classList.add('hidden');
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.textContent = 'Gerar Nova';
     showToast('✨ Imagem gerada com sucesso pela IA!');
   };
   imgLoader.onerror = () => {
-    // Fallback de alta qualidade
-    const fallbackUrl = `https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80`;
+    const fallbackUrl = `https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85`;
     currentGeneratedImageUrl = fallbackUrl;
-    previewImg.src = fallbackUrl;
-    spinner.classList.add('hidden');
-    btn.disabled = false;
-    btnText.textContent = 'Gerar Imagem';
+    const postImgInput = document.getElementById('postImage');
+    if (postImgInput) postImgInput.value = fallbackUrl;
+
+    if (previewImg) {
+      previewImg.src = fallbackUrl;
+      previewImg.classList.remove('hidden');
+    }
+    if (spinner) spinner.classList.add('hidden');
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.textContent = 'Gerar Imagem';
     showToast('Imagem pronta!');
   };
 
