@@ -1,10 +1,10 @@
-// ===== MOCK PRODUCTS DATA =====
+// ===== DADOS DOS PRODUTOS EM PORTUGUÊS =====
 const products = [
   {
     id: 'elixir-glow',
-    name: 'Elixir Nutri-Glow Facial',
+    name: 'Elixir Nutritivo e Iluminador Facial',
     category: 'skincare',
-    badge: 'Best-Seller',
+    badge: 'Mais Vendido',
     price: 189.00,
     installments: '3x de R$ 63,00',
     rating: 4.9,
@@ -12,29 +12,29 @@ const products = [
     image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Regeneração celular, luminosidade instantânea e toque aveludado.',
-    fullDesc: 'Criado a partir da vivência prática em cabine do estúdio, este elixir combina Ácido Hialurônico multimolecular e Óleo de Rosa Mosqueta puro para hidratar e restaurar o viço sem pesar.',
+    fullDesc: 'Criado a partir da vivência prática em cabine do estúdio, este elixir combina Ácido Hialurônico multimolecular e Óleo de Rosa Mosqueta puro para hidratar e restaurar o viço natural da pele sem pesar.',
     usage: 'Aplique 3 a 4 gotas no rosto limpo pela manhã e à noite antes do seu hidratante.'
   },
   {
     id: 'brow-booster',
-    name: 'Brow & Lash Density Booster',
+    name: 'Fortalecedor de Sobrancelhas e Cílios',
     category: 'olhar',
-    badge: 'Exclusivo Estúdio',
+    badge: 'Exclusivo do Estúdio',
     price: 149.00,
     installments: '3x de R$ 49,66',
     rating: 5.0,
     reviewsCount: 64,
     image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Nutrição, alinhamento e fortalecimento de sobrancelhas e cílios.',
-    fullDesc: 'Complexo bioativo com Peptídeos e Biotina botânica para fortalecer a raiz, reduzir quedas e proporcionar alinhamento elegante dos fios.',
+    shortDesc: 'Nutrição, alinhamento e fortalecimento dos fios.',
+    fullDesc: 'Complexo bioativo enriquecido com Peptídeos e Biotina botânica para fortalecer a raiz, reduzir quedas e proporcionar alinhamento elegante dos fios.',
     usage: 'Passe o aplicador suavemente na raiz das sobrancelhas e cílios toda noite.'
   },
   {
     id: 'vela-silence',
-    name: 'Vela Aromática Rituel de Silence',
+    name: 'Vela Aromática Ritual do Silêncio',
     category: 'aromaterapia',
-    badge: 'Home Spa',
+    badge: 'Spa em Casa',
     price: 129.00,
     installments: '2x de R$ 64,50',
     rating: 4.8,
@@ -42,12 +42,12 @@ const products = [
     image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Notas de figo branco, âmbar e cedro para o seu santuário de paz.',
-    fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância icônica do Carla Barbosa Estúdio para acolher seus momentos de descanso.',
+    fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância acolhedora do Carla Barbosa Estúdio para enriquecer seus momentos de descanso.',
     usage: 'Acenda durante o seu banho ou momento de autocuidado noturno por até 3 horas.'
   },
   {
     id: 'studio-box',
-    name: 'The Signature Studio Box',
+    name: 'Caixa Exclusiva Assinatura do Estúdio',
     category: 'kits',
     badge: 'Edição Especial',
     price: 390.00,
@@ -56,13 +56,13 @@ const products = [
     reviewsCount: 98,
     image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Curadoria completa: Elixir + Brow Booster + Vela + Gua Sha de Quartzo.',
-    fullDesc: 'O presente supremo de autocuidado. Acompanha caixa rígida colecionável, laço de linho e cartão personalizado.',
-    usage: 'O ritual completo para transformar a sua rotina diária em experiência de luxo.'
+    shortDesc: 'Curadoria completa: Elixir + Fortalecedor + Vela + Massageador Facial.',
+    fullDesc: 'O presente supremo de autocuidado. Acompanha caixa rígida colecionável, laço de linho e cartão de presente personalizado.',
+    usage: 'O ritual completo para transformar a sua rotina diária em uma experiência relaxante.'
   },
   {
     id: 'serum-bakuchiol',
-    name: 'Sérum Noturno Renovador Bakuchiol',
+    name: 'Sérum Noturno Renovador com Bakuchiol',
     category: 'skincare',
     badge: 'Alta Performance',
     price: 210.00,
@@ -71,15 +71,15 @@ const products = [
     reviewsCount: 51,
     image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Alternativa botânica ao retinol para firmeza e uniformidade.',
+    shortDesc: 'Alternativa botânica para firmeza, renovação e uniformidade.',
     fullDesc: 'Estimula o colágeno sem causar irritação nem sensibilidade ao sol. Textura aveludada de rápida absorção.',
     usage: 'Aplique 3 gotas à noite após a higienização facial.'
   },
   {
     id: 'nevoa-botanica',
-    name: 'Névoa Hidratante Rosas & Camomila',
+    name: 'Névoa Hidratante de Rosas e Camomila',
     category: 'skincare',
-    badge: 'Sensorial',
+    badge: 'Sensorial & Leve',
     price: 115.00,
     installments: '2x de R$ 57,50',
     rating: 4.8,
@@ -92,17 +92,17 @@ const products = [
   }
 ];
 
-// ===== STATE =====
+// ===== ESTADO DA APLICAÇÃO =====
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 let activeCategory = 'todos';
 
-// ===== INITIALIZE =====
+// ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   updateCartUI();
   lucide.createIcons();
 
-  // Mobile menu toggle
+  // Menu Mobile
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
   if (mobileMenuBtn && mobileDrawer) {
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cart Drawer Events
+  // Eventos da Sacola Lateral
   const cartBtn = document.getElementById('cartBtn');
   const closeCartBtn = document.getElementById('closeCartBtn');
   const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== RENDER PRODUCTS =====
+// ===== RENDERIZAÇÃO DOS PRODUTOS =====
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -144,7 +144,7 @@ function renderProducts() {
           ${p.badge}
         </span>
 
-        <button onclick="event.stopPropagation(); openQuickModal('${p.id}')" class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white text-espresso shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onclick="event.stopPropagation(); openQuickModal('${p.id}')" class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white text-espresso shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Visualização Rápida">
           <i data-lucide="eye" class="w-4 h-4"></i>
         </button>
       </div>
@@ -153,7 +153,7 @@ function renderProducts() {
         <div>
           <div class="flex items-center gap-1 text-gold text-xs mb-1">
             <span>★★★★★</span>
-            <span class="text-muted text-[11px]">(${p.reviewsCount})</span>
+            <span class="text-muted text-[11px]">(${p.reviewsCount} avaliações)</span>
           </div>
           <h3 class="font-serif text-lg font-bold text-espresso cursor-pointer hover:text-terracotta transition" onclick="openQuickModal('${p.id}')">
             ${p.name}
@@ -177,7 +177,7 @@ function renderProducts() {
   lucide.createIcons();
 }
 
-// ===== FILTER CATEGORY =====
+// ===== FILTRAGEM POR CATEGORIA =====
 function filterCategory(cat, btn) {
   activeCategory = cat;
   document.querySelectorAll('.filter-pill').forEach(b => {
@@ -189,7 +189,7 @@ function filterCategory(cat, btn) {
   renderProducts();
 }
 
-// ===== CART MANAGEMENT =====
+// ===== GERENCIAMENTO DA SACOLA =====
 function addToCart(productId, qty = 1) {
   const prod = products.find(p => p.id === productId);
   if (!prod) return;
@@ -238,7 +238,7 @@ function updateCartUI() {
   if (countBadge) countBadge.textContent = totalItems;
   if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 
-  // Free shipping calculation (Target: R$ 249)
+  // Cálculo de Frete Grátis (Meta: R$ 249)
   const target = 249;
   const progress = Math.min(100, Math.round((subtotal / target) * 100));
   if (shippingBar) shippingBar.style.width = `${progress}%`;
@@ -271,12 +271,12 @@ function updateCartUI() {
             <h4 class="font-serif font-semibold text-sm text-espresso truncate">${item.name}</h4>
             <span class="text-xs text-muted">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
             <div class="flex items-center gap-2 mt-1">
-              <button onclick="updateQty('${item.id}', -1)" class="w-5 h-5 rounded bg-nude flex items-center justify-center text-xs font-bold">-</button>
+              <button onclick="updateQty('${item.id}', -1)" class="w-5 h-5 rounded bg-nude flex items-center justify-center text-xs font-bold" aria-label="Diminuir">-</button>
               <span class="text-xs font-semibold">${item.qty}</span>
-              <button onclick="updateQty('${item.id}', 1)" class="w-5 h-5 rounded bg-nude flex items-center justify-center text-xs font-bold">+</button>
+              <button onclick="updateQty('${item.id}', 1)" class="w-5 h-5 rounded bg-nude flex items-center justify-center text-xs font-bold" aria-label="Aumentar">+</button>
             </div>
           </div>
-          <button onclick="updateQty('${item.id}', -${item.qty})" class="text-muted hover:text-red-500 p-1">
+          <button onclick="updateQty('${item.id}', -${item.qty})" class="text-muted hover:text-red-500 p-1" aria-label="Remover">
             <i data-lucide="trash-2" class="w-4 h-4"></i>
           </button>
         </div>
@@ -296,7 +296,7 @@ function closeCart() {
   if (drawer) drawer.classList.add('hidden');
 }
 
-// ===== QUICK VIEW MODAL =====
+// ===== MODAL DE VISUALIZAÇÃO RÁPIDA =====
 function openQuickModal(productId) {
   const p = products.find(prod => prod.id === productId);
   if (!p) return;
@@ -315,7 +315,7 @@ function openQuickModal(productId) {
       <p class="text-xs text-muted leading-relaxed">${p.fullDesc}</p>
       
       <div class="p-3 rounded-xl bg-nude/40 border border-gold/20 text-xs text-espresso">
-        <strong>Como Usar:</strong> ${p.usage}
+        <strong>Modo de Uso:</strong> ${p.usage}
       </div>
 
       <button onclick="addToCart('${p.id}'); closeQuickModal();" class="w-full py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
@@ -333,7 +333,7 @@ function closeQuickModal() {
   if (modal) modal.classList.add('hidden');
 }
 
-// ===== THE STUDIO ROUTINE QUIZ =====
+// ===== DIAGNÓSTICO INTERATIVO DE BELEZA =====
 function selectQuiz(step, option, btn) {
   document.querySelectorAll('.quiz-btn').forEach(b => b.classList.remove('border-terracotta', 'bg-gold/20'));
   btn.classList.add('border-terracotta', 'bg-gold/20');
@@ -344,23 +344,23 @@ function selectQuiz(step, option, btn) {
   const addBtn = document.getElementById('quizAddBtn');
 
   if (option === 'glow') {
-    title.textContent = 'Ritual Haute Glow Facial';
-    desc.textContent = 'Elixir Nutri-Glow + Névoa Hidratante de Rosas para revitalizar a textura e devolver luminosidade radiante.';
+    title.textContent = 'Ritual de Luminosidade Facial';
+    desc.textContent = 'Elixir Nutritivo Facial + Névoa Hidratante de Rosas para revitalizar a textura e devolver luminosidade radiante.';
     addBtn.onclick = () => { addToCart('elixir-glow'); addToCart('nevoa-botanica'); };
   } else if (option === 'olhar') {
-    title.textContent = 'Ritual Couture Eyes & Brows';
-    desc.textContent = 'Brow & Lash Density Booster para densidade de sobrancelhas e cílios impecáveis com acabamento sedoso.';
+    title.textContent = 'Ritual Completo para Olhar e Sobrancelhas';
+    desc.textContent = 'Fortalecedor de Sobrancelhas e Cílios para densidade impecável e acabamento sedoso.';
     addBtn.onclick = () => { addToCart('brow-booster'); };
   } else {
-    title.textContent = 'Ritual Sanctuary Home Spa';
-    desc.textContent = 'The Signature Studio Box com Vela Aromática e óleos botânicos para o seu momento de paz.';
+    title.textContent = 'Ritual de Bem-Estar e Spa em Casa';
+    desc.textContent = 'Caixa Exclusiva com Vela Aromática e óleos botânicos para o seu momento de paz.';
     addBtn.onclick = () => { addToCart('studio-box'); };
   }
 
   resultBox.classList.remove('hidden');
 }
 
-// ===== CHECKOUT VIA WHATSAPP =====
+// ===== FINALIZAÇÃO DO PEDIDO VIA WHATSAPP =====
 function checkoutWhatsApp() {
   if (cart.length === 0) {
     alert('Sua sacola está vazia!');
@@ -374,7 +374,7 @@ function checkoutWhatsApp() {
   window.open(`https://wa.me/5500000000000?text=${text}`, '_blank');
 }
 
-// ===== TOAST =====
+// ===== NOTIFICAÇÃO FLUTUANTE (TOAST) =====
 function showToast(msg) {
   const toast = document.getElementById('toast');
   const toastMsg = document.getElementById('toastMsg');
