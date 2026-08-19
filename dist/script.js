@@ -126,26 +126,79 @@ function escapeHTML(str) {
 }
 
 function sanitizeUrl(url) {
-  if (!url) return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70';
+  if (!url) return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';
   let trimmed = String(url).trim();
-  if (trimmed.includes('images.unsplash.com')) {
-    trimmed = trimmed.replace(/[?&]w=\d+/g, '').replace(/[?&]q=\d+/g, '').replace(/[?&]auto=\w+/g, '');
-    const sep = trimmed.includes('?') ? '&' : '?';
-    return `${trimmed}${sep}auto=format&fit=crop&w=480&q=70`;
-  }
-  if (trimmed.startsWith('https://') || trimmed.startsWith('data:image/')) {
+  if (trimmed.startsWith('/') || trimmed.startsWith('./') || trimmed.endsWith('.jpg') || trimmed.endsWith('.png') || trimmed.endsWith('.svg') || trimmed.endsWith('.webp')) {
     return trimmed;
   }
-  return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70';
+  if (trimmed.includes('images.unsplash.com')) {
+    const baseUrl = trimmed.split('?')[0];
+    return `${baseUrl}?auto=format&fit=crop&w=800&q=75`;
+  }
+  if (trimmed.startsWith('https://') || trimmed.startsWith('http://') || trimmed.startsWith('data:image/')) {
+    return trimmed;
+  }
+  return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';
 }
 
 // Controle de Segurança Anti-Brute-Force
 let failedLoginAttempts = parseInt(sessionStorage.getItem('cb_failed_logins') || '0', 10);
 let lockoutUntil = parseInt(sessionStorage.getItem('cb_lockout_until') || '0', 10);
 
-// ===== ESTADO PERSISTENTE =====
-let products = JSON.parse(localStorage.getItem('cb_products')) || defaultProducts;
-let posts = JSON.parse(localStorage.getItem('cb_posts')) || defaultPosts;
+// ===== ESTADO PERSISTENTE COM AUTO-RECUPERAÇÃO =====
+function getValidStoredProducts() {
+  try {
+    const raw = localStorage.getItem('cb_products');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((p, idx) => {
+          let img = p.image || (defaultProducts[idx] ? defaultProducts[idx].image : defaultProducts[0].image);
+          if (img.includes('&fit=crop') && !img.includes('?')) {
+            img = img.split('&')[0] + '?auto=format&fit=crop&w=800&q=75';
+          }
+          return {
+            ...p,
+            image: sanitizeUrl(img),
+            hoverImage: sanitizeUrl(p.hoverImage || img)
+          };
+        });
+      }
+    }
+  } catch (e) {
+    console.warn('Recuperando cosméticos padrão...');
+  }
+  localStorage.setItem('cb_products', JSON.stringify(defaultProducts));
+  return [...defaultProducts];
+}
+
+function getValidStoredPosts() {
+  try {
+    const raw = localStorage.getItem('cb_posts');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((p, idx) => {
+          let img = p.image || (defaultPosts[idx] ? defaultPosts[idx].image : defaultPosts[0].image);
+          if (img.includes('&fit=crop') && !img.includes('?')) {
+            img = img.split('&')[0] + '?auto=format&fit=crop&w=800&q=75';
+          }
+          return {
+            ...p,
+            image: sanitizeUrl(img)
+          };
+        });
+      }
+    }
+  } catch (e) {
+    console.warn('Recuperando artigos padrão...');
+  }
+  localStorage.setItem('cb_posts', JSON.stringify(defaultPosts));
+  return [...defaultPosts];
+}
+
+let products = getValidStoredProducts();
+let posts = getValidStoredPosts();
 let settings = JSON.parse(localStorage.getItem('cb_settings')) || defaultSettings;
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 let activeCategory = 'todos';
@@ -157,7 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPosts();
   applySettings();
   updateCartUI();
-  lucide.createIcons();
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    lucide.createIcons();
+  }
 
   // Menu Mobile
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -194,8 +249,8 @@ function renderProducts() {
   grid.innerHTML = filtered.map(p => `
     <div class="product-card rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between group">
       <div class="relative overflow-hidden aspect-[4/4.5] bg-nude/30 cursor-pointer" onclick="openQuickModal('${p.id}')">
-        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-        <img src="${sanitizeUrl(p.hoverImage || p.image)}" alt="${p.name}" loading="lazy" decoding="async" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
+        <img src="${sanitizeUrl(p.hoverImage || p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] uppercase font-bold tracking-wider text-terracotta backdrop-blur-sm">
           ${p.badge || 'Exclusivo'}
@@ -249,7 +304,7 @@ function renderPosts() {
         ${isVideo 
           ? `<video src="${post.image}" class="w-full h-full object-cover" muted></video>
              <div class="absolute inset-0 bg-espresso/30 flex items-center justify-center text-white"><i data-lucide="play-circle" class="w-10 h-10 text-gold"></i></div>` 
-          : `<img src="${sanitizeUrl(post.image)}" alt="${post.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
+          : `<img src="${sanitizeUrl(post.image)}" alt="${post.title}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
         }
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-terracotta backdrop-blur-sm">
           ${post.category}
@@ -857,16 +912,16 @@ function handleCloudUrlInput(url, targetPreviewId) {
   }
 }
 
-// ===== IA GERADORA DE IMAGENS & CONTEÚDO =====
+// ===== IA GERADORA DE IMAGENS & CONTEÚDO COM FLUX 8K =====
 let currentGeneratedImageUrl = '';
 
 const beautyPhotoPool = [
-  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75',
-  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=75',
-  'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=75',
-  'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75',
-  'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75',
-  'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=75'
+  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=1200&q=80'
 ];
 
 function getRandomBeautyPhoto() {
@@ -879,9 +934,13 @@ function setAiPrompt(text) {
   generateAiImage();
 }
 
+function buildFluxBeautyPrompt(promptText) {
+  return `Award-winning luxury beauty portrait photography of ${promptText}. Elite high-end hair salon in Brazil, gorgeous hair transformation, silky soft shiny hair strands, elegant aesthetic lighting, Vogue magazine editorial portrait, shot on Canon EOS R5, 85mm f/1.2 lens, 8k resolution, natural skin textures, hyperrealistic masterpiece, crisp sharp focus, cinematic depth of field, no blur, no CGI, no cartoon`;
+}
+
 function generateAiImage() {
   const input = document.getElementById('aiImagePrompt');
-  const userPrompt = (input && input.value ? input.value.trim() : '') || 'Cabelo loiro impecável com ondas de estúdio de luxo';
+  const userPrompt = (input && input.value ? input.value.trim() : '') || 'Cabelo loiro impecável com ondas de estúdio de luxo e brilho gloss';
   
   const previewBox = document.getElementById('mediaPreviewBox');
   const previewImg = document.getElementById('mediaPreviewImg');
@@ -894,14 +953,15 @@ function generateAiImage() {
   if (spinner) spinner.classList.remove('hidden');
   if (previewVideo) previewVideo.classList.add('hidden');
   if (btn) btn.disabled = true;
-  if (btnText) btnText.textContent = 'Criando IA...';
+  if (btnText) btnText.textContent = 'Renderizando Flux...';
 
-  const fullPrompt = `${userPrompt}, professional hair salon portrait photography, soft studio aesthetic lighting, high-end editorial beauty magazine, 8k hyperrealistic, clean background`;
+  const fullPrompt = buildFluxBeautyPrompt(userPrompt);
   const seed = Math.floor(Math.random() * 999999);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=800&height=500&nologo=true&seed=${seed}`;
+  // Flux SOTA Model Engine
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1000&height=625&model=flux&nologo=true&seed=${seed}`;
 
   let isHandled = false;
-  const finishGeneration = (url, isAi = true) => {
+  const finishGeneration = (url, isFlux = true) => {
     if (isHandled) return;
     isHandled = true;
     currentGeneratedImageUrl = url;
@@ -915,12 +975,12 @@ function generateAiImage() {
     if (spinner) spinner.classList.add('hidden');
     if (btn) btn.disabled = false;
     if (btnText) btnText.textContent = 'Gerar Nova';
-    showToast(isAi ? '✨ Imagem 8K gerada com sucesso pela IA!' : '✨ Imagem em alta resolução pronta!');
+    showToast(isFlux ? '✨ Imagem 8K renderizada com motor Flux IA!' : '✨ Fotografia de estúdio em alta definição pronta!');
   };
 
   const timeoutId = setTimeout(() => {
     finishGeneration(getRandomBeautyPhoto(), false);
-  }, 3500);
+  }, 5000);
 
   const imgLoader = new Image();
   imgLoader.onload = () => {
