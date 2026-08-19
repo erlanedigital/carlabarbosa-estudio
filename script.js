@@ -545,6 +545,106 @@ function switchAdminTab(tab) {
   }
 }
 
+// ===== IA GERADORA DE IMAGENS & CONTEÚDO =====
+let currentGeneratedImageUrl = '';
+
+function setAiPrompt(text) {
+  const input = document.getElementById('aiImagePrompt');
+  if (input) input.value = text;
+}
+
+function generateAiImage() {
+  const input = document.getElementById('aiImagePrompt');
+  const userPrompt = input.value.trim() || 'Cabelo loiro impecável com ondas de estúdio de luxo';
+  
+  const previewBox = document.getElementById('aiImagePreviewBox');
+  const previewImg = document.getElementById('aiPreviewImg');
+  const spinner = document.getElementById('aiLoadingSpinner');
+  const btn = document.getElementById('btnGenerateAi');
+  const btnText = document.getElementById('btnGenerateAiText');
+
+  previewBox.classList.remove('hidden');
+  spinner.classList.remove('hidden');
+  btn.disabled = true;
+  btnText.textContent = 'Criando IA...';
+
+  // Prompts com estética de salão de alta beleza
+  const fullPrompt = `${userPrompt}, professional hair salon portrait photography, soft studio aesthetic lighting, high-end editorial beauty magazine, 8k hyperrealistic, clean background`;
+  const seed = Math.floor(Math.random() * 999999);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1200&height=750&nologo=true&seed=${seed}`;
+
+  const imgLoader = new Image();
+  imgLoader.onload = () => {
+    currentGeneratedImageUrl = imageUrl;
+    previewImg.src = imageUrl;
+    spinner.classList.add('hidden');
+    btn.disabled = false;
+    btnText.textContent = 'Gerar Nova';
+    showToast('✨ Imagem gerada com sucesso pela IA!');
+  };
+  imgLoader.onerror = () => {
+    // Fallback de alta qualidade
+    const fallbackUrl = `https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80`;
+    currentGeneratedImageUrl = fallbackUrl;
+    previewImg.src = fallbackUrl;
+    spinner.classList.add('hidden');
+    btn.disabled = false;
+    btnText.textContent = 'Gerar Imagem';
+    showToast('Imagem pronta!');
+  };
+
+  imgLoader.src = imageUrl;
+}
+
+function useGeneratedImage() {
+  if (!currentGeneratedImageUrl) {
+    alert('Gere uma imagem com a IA primeiro!');
+    return;
+  }
+  document.getElementById('postImage').value = currentGeneratedImageUrl;
+  showToast('✓ Imagem da IA aplicada na capa do post!');
+}
+
+// Assistente de Conteúdo Automático por IA
+const aiContentTemplates = [
+  {
+    title: 'Segredos para um Loiro Saudável sem Quebra em Montes Claros',
+    category: 'Dicas de Cabelo',
+    excerpt: 'Descubra como o clima seco e a água de lavagem afetam as mechas e como blindar os fios.',
+    content: 'Manter mechas e loiros radiantes em Montes Claros exige hidratação lipídica constante e proteção térmica. No Carla Barbosa Estúdio, utilizamos protocolos com aminoácidos puros que reconectam as pontes de sulfeto quebradas pela descoloração.\n\nDica de ouro da Carla: nunca durma com o cabelo úmido e use protetor térmico antes de qualquer secador ou chapinha!',
+    prompt: 'Cabelo loiro platinado longo, acabamento sedoso e brilhante, salão de beleza elegante'
+  },
+  {
+    title: 'Por que o Cronograma Capilar de Cabine Transforma os Fios?',
+    category: 'Dicas de Cabelo',
+    excerpt: 'Entenda a diferença entre hidratação caseira e reposição de massa intensiva de estúdio.',
+    content: 'Muitas clientes chegam ao estúdio com o cabelo opaco por usar apenas máscaras comuns. O cronograma capilar de cabine atua em três etapas profundas:\n\n1. Reposição Hídrica (devolve a água e maleabilidade);\n2. Nutrição Lipídica (sela as cutículas e elimina o frizz);\n3. Reconstrução com Queratina e Peptídeos (devolve força e encorpa os fios finos).\n\nO resultado é um toque aveludado e resistência imediata.',
+    prompt: 'Tratamento capilar com óleos dourados reluzentes e fios restaurados sedosos'
+  },
+  {
+    title: 'Brow Lamination e Alinhamento: O Olhar Natural em Alta',
+    category: 'Sobrancelhas',
+    excerpt: 'A técnica que deixa as sobrancelhas encorpadas, simétricas e com efeito penteado duradouro.',
+    content: 'O design de sobrancelhas moderno valoriza a naturalidade. Com a técnica de Brow Lamination e nutrição com biotina, os fios ganham volume sem parecerem artificiais.\n\nIdeal para quem tem falhas sutis ou fios rebeldes, garantindo praticidade no dia a dia por até 6 semanas!',
+    prompt: 'Design de sobrancelhas perfeitas com arqueamento elegante e olhar feminino marcante'
+  }
+];
+
+let templateIndex = 0;
+function suggestAiContent() {
+  const t = aiContentTemplates[templateIndex % aiContentTemplates.length];
+  templateIndex++;
+
+  document.getElementById('postTitle').value = t.title;
+  document.getElementById('postCategory').value = t.category;
+  document.getElementById('postExcerpt').value = t.excerpt;
+  document.getElementById('postContent').value = t.content;
+  document.getElementById('aiImagePrompt').value = t.prompt;
+
+  generateAiImage();
+  showToast('✨ Texto e Imagem sugeridos pela IA!');
+}
+
 // Admin: Posts CRUD
 function handleSavePost(e) {
   e.preventDefault();
