@@ -1,0 +1,8 @@
+{
+  "name": "estudiocarlabarbosa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.mkdirSync('dist'); ['index.html','styles.css','script.js','favicon.svg','_headers','_redirects'].forEach(f => { if(fs.existsSync(f)) fs.copyFileSync(f, 'dist/' + f); }); console.log('Build & Security Headers Synchronized successfully!');\""
+  }
+}
