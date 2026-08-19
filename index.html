@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carla Barbosa Estúdio | Haute Beauté & Rituais de Autocuidado</title>
+  <meta name="description" content="Carla Barbosa Estúdio — Cosméticos de alta performance, tratamentos de cabine e rituais de beleza inspirados nos maiores estúdios do mundo." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            linen: '#FBF9F6',
+            'linen-dark': '#F4EFEA',
+            nude: '#EFE9E1',
+            espresso: '#201B17',
+            'espresso-light': '#3A332E',
+            gold: '#C89D7C',
+            'gold-light': '#E8D5C4',
+            terracotta: '#A35843',
+            'terracotta-hover': '#8C4733',
+            muted: '#7D7571',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex items-center justify-center gap-3">
+    <span>✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | RITUAIS EXCLUSIVOS DE ESTÚDIO</span>
+  </div>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header id="header" class="sticky top-0 z-40 bg-linen/90 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-espresso hover:text-terracotta" aria-label="Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Navigation Links (Desktop Left) -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-espresso/80">
+        <a href="#catalogo" class="hover:text-terracotta transition-colors">Coleção</a>
+        <a href="#quiz" class="hover:text-terracotta transition-colors">Diagnóstico</a>
+        <a href="#sobre" class="hover:text-terracotta transition-colors">O Estúdio</a>
+        <a href="#experiencia" class="hover:text-terracotta transition-colors">Diferenciais</a>
+      </nav>
+
+      <!-- Brand Logo Central -->
+      <a href="#" class="text-center group">
+        <span class="block font-serif text-2xl sm:text-3xl tracking-widest font-semibold uppercase text-espresso group-hover:text-terracotta transition-colors">
+          CARLA BARBOSA
+        </span>
+        <span class="block text-[10px] tracking-[0.3em] uppercase text-gold font-medium -mt-1">
+          Estúdio • Haute Beauté
+        </span>
+      </a>
+
+      <!-- Action Icons (Right) -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <!-- Search Trigger -->
+        <button id="searchTrigger" class="text-espresso hover:text-terracotta transition-colors" title="Buscar produtos">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Cart Button with Counter -->
+        <button id="cartBtn" class="relative p-2 text-espresso hover:text-terracotta transition-colors" title="Ver Sacola">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartCount" class="absolute top-0 right-0 w-4 h-4 bg-terracotta text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- CTA Agendamento Presencial -->
+        <a href="#contato" class="hidden sm:inline-flex items-center gap-2 bg-espresso text-white text-xs font-semibold uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-terracotta transition-colors">
+          <span>Agendamento</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-4">
+      <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Coleção & Produtos</a>
+      <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
+      <a href="#sobre" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Sobre o Estúdio</a>
+      <a href="#experiencia" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diferenciais</a>
+      <a href="#contato" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2">Atendimento & WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION (EDITORIAL HAUTE BEAUTÉ) ===== -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-linen-dark to-linen pt-12 pb-20 lg:py-28 border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Text Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nude/80 border border-gold/30 text-xs font-medium tracking-widest uppercase text-terracotta">
+            <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+            Édition 2026 • Haute Beauté
+          </div>
+          
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-espresso font-normal">
+            O cuidado que a sua beleza merece, <em class="italic font-light text-terracotta">todos os dias.</em>
+          </h1>
+          
+          <p class="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Fórmulas inteligentes, ativos botânicos de alta performance e rituais criados para realçar o que há de mais autêntico e refinado em você.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-terracotta/20 transition-all text-center">
+              Explorar Coleção
+            </a>
+            <a href="#quiz" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-espresso/30 hover:border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-widest transition-all text-center">
+              Fazer Diagnóstico de Beleza →
+            </a>
+          </div>
+
+          <!-- Trust Proof Badges -->
+          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">100%</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Cruelty-free & Vegano</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">Estúdio</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Fórmula de Cabine</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">4.9★</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Avaliação Média</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md rounded-2xl bg-nude/60 p-6 border border-gold/30 shadow-2xl backdrop-blur-sm">
+            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-espresso/5 relative flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80" alt="Cosméticos Carla Barbosa Estúdio" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent"></div>
+              
+              <!-- Floating Badge -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-linen/95 backdrop-blur-md border border-gold/30 flex items-center justify-between">
+                <div>
+                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Best-Seller</span>
+                  <span class="font-serif text-base font-semibold text-espresso">Elixir Nutri-Glow Facial</span>
+                </div>
+                <span class="font-serif text-lg font-bold text-espresso">R$ 189</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE STUDIO ROUTINE FINDER (QUIZ INTERATIVO) ===== -->
+  <section id="quiz" class="py-16 bg-nude/40 border-b border-gold/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="rounded-3xl bg-linen border border-gold/30 p-8 sm:p-12 shadow-xl relative overflow-hidden">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-8">
+          <span class="text-xs font-semibold uppercase tracking-[0.25em] text-terracotta">Personalized Haute Care</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">
+            Descubra o seu <em class="italic font-light">Ritual Perfeito</em>
+          </h2>
+          <p class="text-sm text-muted">
+            Responda em 30 segundos e nossa inteligência estética prescreverá a combinação exata de ativos para a sua rotina.
+          </p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quizBox" class="space-y-6">
+          <div class="space-y-3">
+            <label class="block text-xs font-bold uppercase tracking-wider text-espresso">1. Qual é o seu objetivo principal hoje?</label>
+            <div class="grid sm:grid-cols-3 gap-3">
+              <button onclick="selectQuiz(1, 'glow', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Glow & Viço</span>
+                <span class="text-xs text-muted">Hidratação e luminosidade imediata</span>
+              </button>
+              <button onclick="selectQuiz(1, 'olhar', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Sobrancelhas & Fios</span>
+                <span class="text-xs text-muted">Nutrição, densidade e alinhamento</span>
+              </button>
+              <button onclick="selectQuiz(1, 'zen', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Relax & Home Spa</span>
+                <span class="text-xs text-muted">Aromaterapia e bem-estar sensorial</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Result Area (Appears upon selection) -->
+          <div id="quizResult" class="hidden pt-6 border-t border-gold/20 text-center space-y-4">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-gold/20 text-espresso text-xs font-bold uppercase tracking-wider">
+              Recomendação Exclusiva do Estúdio
+            </div>
+            <h3 id="quizResultTitle" class="font-serif text-2xl text-espresso font-semibold"></h3>
+            <p id="quizResultDesc" class="text-sm text-muted max-w-lg mx-auto"></p>
+            <button id="quizAddBtn" class="px-8 py-3.5 bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:bg-terracotta-hover transition-colors">
+              Adicionar Kit Recomendado à Sacola
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOG SECTION (PRODUTOS & FILTROS) ===== -->
+  <section id="catalogo" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="space-y-2">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Curadoria de Estúdio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
+          Coleção <em class="italic font-light">Haute Beauté</em>
+        </h2>
+        <p class="text-sm text-muted max-w-lg">
+          Produtos desenvolvidos em cabine, testados dermatologicamente e formulados para elevar o seu dia a dia.
+        </p>
+      </div>
+
+      <!-- Filter Buttons (Pills) -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <button onclick="filterCategory('todos', this)" class="filter-pill active-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 transition-all">
+          Todos
+        </button>
+        <button onclick="filterCategory('skincare', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Skincare
+        </button>
+        <button onclick="filterCategory('olhar', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Olhar & Fios
+        </button>
+        <button onclick="filterCategory('aromaterapia', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Home Spa
+        </button>
+        <button onclick="filterCategory('kits', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Kits & Presentes
+        </button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Injected dynamically via JS -->
+    </div>
+
+  </section>
+
+  <!-- ===== STORYTELLING (SOBRE O ESTÚDIO) ===== -->
+  <section id="sobre" class="py-20 bg-nude/50 border-y border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 relative">
+          <div class="rounded-2xl overflow-hidden border border-gold/30 shadow-2xl aspect-[4/5] bg-espresso/10">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Carla Barbosa fundadora" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 p-6 rounded-2xl bg-linen border border-gold/30 shadow-xl hidden sm:block">
+            <span class="font-serif text-3xl font-bold text-terracotta">10+ Anos</span>
+            <span class="block text-xs uppercase tracking-wider text-muted">De dedicação à beleza autêntica</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-6 lg:pl-8">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Manifesto da Marca</span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
+            A beleza não precisa de excessos. <em class="italic font-light">Ela precisa de intenção.</em>
+          </h2>
+          <p class="text-base text-muted font-light leading-relaxed">
+            O <strong>Carla Barbosa Estúdio</strong> nasceu no coração do atendimento personalizado. Ao longo de anos de consultoria estética, percebemos que as pessoas não buscavam transformações artificiais, mas sim rituais que respeitassem sua singularidade.
+          </p>
+          <p class="text-base text-muted font-light leading-relaxed">
+            Nossa linha de produtos foi concebida para transpor a experiência de excelência da nossa cabine diretamente para a sua bancada de beleza.
+          </p>
+
+          <div class="pt-4 grid grid-cols-2 gap-6">
+            <div class="p-4 rounded-xl bg-linen border border-gold/20">
+              <h4 class="font-serif font-bold text-lg text-espresso mb-1">Fórmulas Limpas</h4>
+              <p class="text-xs text-muted">Livre de parabenos, sulfatos e crueldade animal.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-linen border border-gold/20">
+              <h4 class="font-serif font-bold text-lg text-espresso mb-1">Toque de Estúdio</h4>
+              <p class="text-xs text-muted">Texturas sensoriais desenvolvidas por especialistas.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIFERENCIAIS & EXPERIÊNCIA ===== -->
+  <section id="experiencia" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Padrão de Excelência</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Por que escolher o nosso Estúdio?</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Ativos de Precisão</h3>
+        <p class="text-xs text-muted">Matérias-primas botânicas puras e alta concentração de ativos.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="package" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Unboxing Sensorial</h3>
+        <p class="text-xs text-muted">Embalagem rígida, aroma exclusivo e fita de linho personalizada.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Consultoria VIP</h3>
+        <p class="text-xs text-muted">Apoio direto via WhatsApp para orientar a sua aplicação diária.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Compra 100% Segura</h3>
+        <p class="text-xs text-muted">Garantia de satisfação e troca facilitada em até 7 dias.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROVA SOCIAL & INSTAGRAM FEED ===== -->
+  <section class="py-16 bg-espresso text-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-12">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-gold">@carlabarbosa.estudio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal">Comunidade & Rituais Reais</h2>
+        <p class="text-xs text-muted text-gold-light/70">Acompanhe os bastidores diários e transformações no Instagram.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" alt="Instagram 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=500&q=80" alt="Instagram 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=500&q=80" alt="Instagram 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=500&q=80" alt="Instagram 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="https://instagram.com" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-espresso transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Seguir @CARLABARBOSA.ESTUDIO
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ & CONTATO ===== -->
+  <section id="contato" class="py-20 max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center space-y-3 mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento & Dúvidas</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Como podemos ajudar?</h2>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="space-y-4 mb-16">
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Como funciona a entrega dos cosméticos?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Enviamos para todo o Brasil via Correios e transportadoras expressas. Os pedidos são postados em até 24 horas úteis em embalagem presenteável protegida.
+        </p>
+      </details>
+
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Os produtos são indicados para pele sensível?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Sim! Nossas formulações priorizam ativos biocompatíveis, sem fragrâncias sintéticas agressivas ou parabenos, sendo adequadas para todos os tipos de pele.
+        </p>
+      </details>
+
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Como agendar procedimentos presenciais no estúdio?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Os atendimentos em cabine são realizados com hora marcada. Você pode solicitar um horário diretamente com nossa concierge através do WhatsApp VIP.
+        </p>
+      </details>
+    </div>
+
+    <!-- WhatsApp VIP Banner -->
+    <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4">
+      <h3 class="font-serif text-2xl sm:text-3xl">Deseja um atendimento personalizado?</h3>
+      <p class="text-sm text-gold-light/80 max-w-md mx-auto">
+        Fale diretamente com nossa consultora estética para tirar dúvidas sobre produtos e agendamentos.
+      </p>
+      <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+        <i data-lucide="message-circle" class="w-4 h-4"></i> Iniciar Conversa no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-espresso-light text-gold-light py-12 border-t border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gold/20 text-center md:text-left">
+        <div>
+          <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-white block">CARLA BARBOSA</span>
+          <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza & Cosméticos</span>
+        </div>
+        <div class="flex gap-6 text-xs uppercase tracking-wider">
+          <a href="#catalogo" class="hover:text-white transition">Coleção</a>
+          <a href="#sobre" class="hover:text-white transition">O Estúdio</a>
+          <a href="#contato" class="hover:text-white transition">Contato</a>
+          <a href="#" class="hover:text-white transition">Privacidade</a>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gold-light/60 gap-4">
+        <p>© 2026 Carla Barbosa Estúdio. Todos os direitos reservados.</p>
+        <p>Desenvolvido com excelência • Alta Performance & Estética</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SLIDE-OVER CART DRAWER ===== -->
+  <div id="cartDrawerBackdrop" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden transition-opacity">
+    <div id="cartDrawer" class="absolute top-0 right-0 h-full w-full max-w-md bg-linen shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-gold/20">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-terracotta"></i>
+            <h3 class="font-serif text-xl font-bold text-espresso">Sua Sacola de Rituais</h3>
+          </div>
+          <button id="closeCartBtn" class="p-2 text-muted hover:text-espresso">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Free Shipping Progress -->
+        <div class="py-4 border-b border-gold/20">
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span id="shippingText">Faltam R$ 60 para Frete Grátis</span>
+            <span id="shippingPercent">75%</span>
+          </div>
+          <div class="w-full h-1.5 bg-nude rounded-full overflow-hidden">
+            <div id="shippingBar" class="h-full bg-terracotta rounded-full transition-all duration-500" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsList" class="py-4 space-y-4">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Drawer Footer (Totals & Checkout) -->
+      <div class="pt-4 border-t border-gold/20 space-y-4">
+        <div class="flex justify-between text-sm">
+          <span class="text-muted">Subtotal:</span>
+          <span id="cartSubtotal" class="font-serif font-bold text-espresso text-lg">R$ 0,00</span>
+        </div>
+        <p class="text-[11px] text-muted text-center">Parcelamento em até 3x sem juros no cartão ou via PIX.</p>
+        <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg transition-colors flex items-center justify-center gap-2">
+          <i data-lucide="check" class="w-4 h-4"></i> Finalizar Pedido
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== QUICK VIEW MODAL ===== -->
+  <div id="quickModal" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-gold/30 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button onclick="closeQuickModal()" class="absolute top-4 right-4 p-2 text-muted hover:text-espresso">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="modalContent" class="grid sm:grid-cols-2 gap-6 items-center">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-espresso text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-gold/30 text-xs font-semibold">
+    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+    <span id="toastMsg">Item adicionado à sacola!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
