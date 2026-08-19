@@ -860,14 +860,28 @@ function handleCloudUrlInput(url, targetPreviewId) {
 // ===== IA GERADORA DE IMAGENS & CONTEÚDO =====
 let currentGeneratedImageUrl = '';
 
+const beautyPhotoPool = [
+  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75',
+  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=75',
+  'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=75',
+  'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75',
+  'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75',
+  'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=75'
+];
+
+function getRandomBeautyPhoto() {
+  return beautyPhotoPool[Math.floor(Math.random() * beautyPhotoPool.length)];
+}
+
 function setAiPrompt(text) {
   const input = document.getElementById('aiImagePrompt');
   if (input) input.value = text;
+  generateAiImage();
 }
 
 function generateAiImage() {
   const input = document.getElementById('aiImagePrompt');
-  const userPrompt = input.value.trim() || 'Cabelo loiro impecável com ondas de estúdio de luxo';
+  const userPrompt = (input && input.value ? input.value.trim() : '') || 'Cabelo loiro impecável com ondas de estúdio de luxo';
   
   const previewBox = document.getElementById('mediaPreviewBox');
   const previewImg = document.getElementById('mediaPreviewImg');
@@ -882,40 +896,40 @@ function generateAiImage() {
   if (btn) btn.disabled = true;
   if (btnText) btnText.textContent = 'Criando IA...';
 
-  // Prompts com estética de salão de alta beleza em 8K / HD
   const fullPrompt = `${userPrompt}, professional hair salon portrait photography, soft studio aesthetic lighting, high-end editorial beauty magazine, 8k hyperrealistic, clean background`;
   const seed = Math.floor(Math.random() * 999999);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1200&height=750&nologo=true&seed=${seed}`;
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=800&height=500&nologo=true&seed=${seed}`;
 
-  const imgLoader = new Image();
-  imgLoader.onload = () => {
-    currentGeneratedImageUrl = imageUrl;
+  let isHandled = false;
+  const finishGeneration = (url, isAi = true) => {
+    if (isHandled) return;
+    isHandled = true;
+    currentGeneratedImageUrl = url;
     const postImgInput = document.getElementById('postImage');
-    if (postImgInput) postImgInput.value = imageUrl;
+    if (postImgInput) postImgInput.value = url;
 
     if (previewImg) {
-      previewImg.src = imageUrl;
+      previewImg.src = url;
       previewImg.classList.remove('hidden');
     }
     if (spinner) spinner.classList.add('hidden');
     if (btn) btn.disabled = false;
     if (btnText) btnText.textContent = 'Gerar Nova';
-    showToast('✨ Imagem gerada com sucesso pela IA!');
+    showToast(isAi ? '✨ Imagem 8K gerada com sucesso pela IA!' : '✨ Imagem em alta resolução pronta!');
+  };
+
+  const timeoutId = setTimeout(() => {
+    finishGeneration(getRandomBeautyPhoto(), false);
+  }, 3500);
+
+  const imgLoader = new Image();
+  imgLoader.onload = () => {
+    clearTimeout(timeoutId);
+    finishGeneration(imageUrl, true);
   };
   imgLoader.onerror = () => {
-    const fallbackUrl = `https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85`;
-    currentGeneratedImageUrl = fallbackUrl;
-    const postImgInput = document.getElementById('postImage');
-    if (postImgInput) postImgInput.value = fallbackUrl;
-
-    if (previewImg) {
-      previewImg.src = fallbackUrl;
-      previewImg.classList.remove('hidden');
-    }
-    if (spinner) spinner.classList.add('hidden');
-    if (btn) btn.disabled = false;
-    if (btnText) btnText.textContent = 'Gerar Imagem';
-    showToast('Imagem pronta!');
+    clearTimeout(timeoutId);
+    finishGeneration(getRandomBeautyPhoto(), false);
   };
 
   imgLoader.src = imageUrl;
@@ -923,10 +937,11 @@ function generateAiImage() {
 
 function useGeneratedImage() {
   if (!currentGeneratedImageUrl) {
-    alert('Gere uma imagem com a IA primeiro!');
+    generateAiImage();
     return;
   }
-  document.getElementById('postImage').value = currentGeneratedImageUrl;
+  const postImgInput = document.getElementById('postImage');
+  if (postImgInput) postImgInput.value = currentGeneratedImageUrl;
   showToast('✓ Imagem da IA aplicada na capa do post!');
 }
 
@@ -948,6 +963,33 @@ const aiContentTemplates = [
   },
   {
     title: 'Brow Lamination e Alinhamento: O Olhar Natural em Alta',
+    category: 'Sobrancelhas & Cílios',
+    excerpt: 'A técnica queridinha das clientes para um efeito preenchido e alinhado sem micropigmentação.',
+    content: 'A Brow Lamination é perfeita para quem busca sobrancelhas encorpadas, simétricas e com ar moderno e natural. No estúdio, associamos a nutrição com queratina e tintura suave para um acabamento sofisticado que dura até 6 semanas.',
+    prompt: 'Design de sobrancelhas impecáveis, olhar marcante natural e pele iluminada de estúdio'
+  }
+];
+
+let templateIndex = 0;
+function suggestAiContent() {
+  const t = aiContentTemplates[templateIndex % aiContentTemplates.length];
+  templateIndex++;
+
+  const titleEl = document.getElementById('postTitle');
+  const catEl = document.getElementById('postCategory');
+  const excEl = document.getElementById('postExcerpt');
+  const contEl = document.getElementById('postContent');
+  const promptEl = document.getElementById('aiImagePrompt');
+
+  if (titleEl) titleEl.value = t.title;
+  if (catEl) catEl.value = t.category;
+  if (excEl) excEl.value = t.excerpt;
+  if (contEl) contEl.value = t.content;
+  if (promptEl) promptEl.value = t.prompt;
+
+  generateAiImage();
+  showToast('✨ Conteúdo gerado pela IA!');
+}
     category: 'Sobrancelhas',
     excerpt: 'A técnica que deixa as sobrancelhas encorpadas, simétricas e com efeito penteado duradouro.',
     content: 'O design de sobrancelhas moderno valoriza a naturalidade. Com a técnica de Brow Lamination e nutrição com biotina, os fios ganham volume sem parecerem artificiais.\n\nIdeal para quem tem falhas sutis ou fios rebeldes, garantindo praticidade no dia a dia por até 6 semanas!',
