@@ -126,12 +126,17 @@ function escapeHTML(str) {
 }
 
 function sanitizeUrl(url) {
-  if (!url) return 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80';
-  const trimmed = String(url).trim();
+  if (!url) return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70';
+  let trimmed = String(url).trim();
+  if (trimmed.includes('images.unsplash.com')) {
+    trimmed = trimmed.replace(/[?&]w=\d+/g, '').replace(/[?&]q=\d+/g, '').replace(/[?&]auto=\w+/g, '');
+    const sep = trimmed.includes('?') ? '&' : '?';
+    return `${trimmed}${sep}auto=format&fit=crop&w=480&q=70`;
+  }
   if (trimmed.startsWith('https://') || trimmed.startsWith('data:image/')) {
     return trimmed;
   }
-  return 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80';
+  return 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70';
 }
 
 // Controle de Segurança Anti-Brute-Force
@@ -189,16 +194,12 @@ function renderProducts() {
   grid.innerHTML = filtered.map(p => `
     <div class="product-card rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between group">
       <div class="relative overflow-hidden aspect-[4/4.5] bg-nude/30 cursor-pointer" onclick="openQuickModal('${p.id}')">
-        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-        <img src="${p.hoverImage || p.image}" alt="${p.name}" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
+        <img src="${sanitizeUrl(p.hoverImage || p.image)}" alt="${p.name}" loading="lazy" decoding="async" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] uppercase font-bold tracking-wider text-terracotta backdrop-blur-sm">
           ${p.badge || 'Exclusivo'}
         </span>
-
-        <button onclick="event.stopPropagation(); openQuickModal('${p.id}')" class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white text-espresso shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Visualização Rápida">
-          <i data-lucide="eye" class="w-4 h-4"></i>
-        </button>
       </div>
 
       <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
@@ -218,9 +219,15 @@ function renderProducts() {
             <span class="block font-serif text-lg font-bold text-espresso">R$ ${Number(p.price).toFixed(2).replace('.', ',')}</span>
             <span class="block text-[10px] text-muted">${p.installments || 'ou em até 3x'}</span>
           </div>
-          <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-full bg-espresso hover:bg-terracotta text-white text-[11px] font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm">
-            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Sacola
-          </button>
+
+          <div class="flex items-center gap-2">
+            <button onclick="openQuickModal('${p.id}')" class="p-2.5 rounded-full border border-gold/40 text-espresso hover:bg-nude hover:text-terracotta transition" title="Ver Detalhes">
+              <i data-lucide="info" class="w-4 h-4"></i>
+            </button>
+            <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-full bg-espresso text-white text-xs font-semibold uppercase tracking-wider hover:bg-terracotta transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span>Sacola</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -242,7 +249,7 @@ function renderPosts() {
         ${isVideo 
           ? `<video src="${post.image}" class="w-full h-full object-cover" muted></video>
              <div class="absolute inset-0 bg-espresso/30 flex items-center justify-center text-white"><i data-lucide="play-circle" class="w-10 h-10 text-gold"></i></div>` 
-          : `<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
+          : `<img src="${sanitizeUrl(post.image)}" alt="${post.title}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
         }
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-terracotta backdrop-blur-sm">
           ${post.category}
