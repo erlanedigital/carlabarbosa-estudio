@@ -1,5 +1,12 @@
-// ===== DADOS DOS PRODUTOS EM PORTUGUÊS =====
-const products = [
+// ===== DADOS INICIAIS (MONTES CLAROS - MG) =====
+const defaultSettings = {
+  city: 'Montes Claros - MG',
+  whatsapp: '5538999999999',
+  announcement: '✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | ESTÚDIO MONTES CLAROS - MG',
+  adminPass: 'admin123'
+};
+
+const defaultProducts = [
   {
     id: 'elixir-glow',
     name: 'Elixir Nutritivo e Iluminador Facial',
@@ -12,7 +19,7 @@ const products = [
     image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Regeneração celular, luminosidade instantânea e toque aveludado.',
-    fullDesc: 'Criado a partir da vivência prática em cabine do estúdio, este elixir combina Ácido Hialurônico multimolecular e Óleo de Rosa Mosqueta puro para hidratar e restaurar o viço natural da pele sem pesar.',
+    fullDesc: 'Criado a partir da vivência prática em cabine do estúdio em Montes Claros, este elixir combina Ácido Hialurônico multimolecular e Óleo de Rosa Mosqueta puro para hidratar e restaurar o viço natural da pele sem pesar.',
     usage: 'Aplique 3 a 4 gotas no rosto limpo pela manhã e à noite antes do seu hidratante.'
   },
   {
@@ -59,46 +66,52 @@ const products = [
     shortDesc: 'Curadoria completa: Elixir + Fortalecedor + Vela + Massageador Facial.',
     fullDesc: 'O presente supremo de autocuidado. Acompanha caixa rígida colecionável, laço de linho e cartão de presente personalizado.',
     usage: 'O ritual completo para transformar a sua rotina diária em uma experiência relaxante.'
-  },
-  {
-    id: 'serum-bakuchiol',
-    name: 'Sérum Noturno Renovador com Bakuchiol',
-    category: 'skincare',
-    badge: 'Alta Performance',
-    price: 210.00,
-    installments: '3x de R$ 70,00',
-    rating: 4.9,
-    reviewsCount: 51,
-    image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Alternativa botânica para firmeza, renovação e uniformidade.',
-    fullDesc: 'Estimula o colágeno sem causar irritação nem sensibilidade ao sol. Textura aveludada de rápida absorção.',
-    usage: 'Aplique 3 gotas à noite após a higienização facial.'
-  },
-  {
-    id: 'nevoa-botanica',
-    name: 'Névoa Hidratante de Rosas e Camomila',
-    category: 'skincare',
-    badge: 'Sensorial & Leve',
-    price: 115.00,
-    installments: '2x de R$ 57,50',
-    rating: 4.8,
-    reviewsCount: 39,
-    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Refresco instantâneo, equilíbrio do pH e viço revigorante.',
-    fullDesc: 'Água floral destilada pura com infusão de camomila e aloe vera. Ideal para preparar a pele antes da maquiagem ou refrescar ao longo do dia.',
-    usage: 'Borrife a 20cm do rosto sempre que sentir necessidade de hidratação e frescor.'
   }
 ];
 
-// ===== ESTADO DA APLICAÇÃO =====
+const defaultPosts = [
+  {
+    id: 'post-1',
+    title: '5 Cuidados Essenciais para Manter o Cabelo Loiro Saudável',
+    category: 'Dicas de Cabelo',
+    date: '19 de Agosto, 2026',
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    excerpt: 'Descubra como proteger os fios descoloridos contra o ressecamento e manter o brilho de salão em casa.',
+    content: 'Manter o cabelo loiro radiante exige uma rotina equilibrada de hidratação, nutrição e reconstrução. Aqui no estúdio em Montes Claros, sempre recomendamos o uso de óleos nobres para proteção térmica e o cronograma capilar com fórmulas ricas em aminoácidos. Lembre-se: água morna ou fria na lavagem faz toda a diferença para selar as cutículas!'
+  },
+  {
+    id: 'post-2',
+    title: 'O Poder da Nutrição para Sobrancelhas Naturais e Marcantes',
+    category: 'Sobrancelhas',
+    date: '15 de Agosto, 2026',
+    image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=80',
+    excerpt: 'Como estimular o crescimento e a densidade dos fios de forma saudável e com acabamento elegante.',
+    content: 'As sobrancelhas são a moldura do olhar. O segredo para deixá-las encorpadas e alinhadas não é sobrecarregar com maquiagem pesada, mas sim nutrir a raiz com biotina e ativos botânicos. Aplicar o sérum nutritivo todas as noites antes de dormir estimula a regeneração folicular e previne falhas.'
+  },
+  {
+    id: 'post-3',
+    title: 'Novidades no Carla Barbosa Estúdio em Montes Claros',
+    category: 'Novidades do Estúdio',
+    date: '10 de Agosto, 2026',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    excerpt: 'Nosso espaço foi renovado para oferecer uma experiência ainda mais acolhedora e exclusiva para você.',
+    content: 'Preparamos um ambiente pensado nos mínimos detalhes: aromas relaxantes, iluminação acolhedora e tratamentos personalizados para cabelos, estética e autocuidado. Venha nos visitar e vivenciar um momento só seu!'
+  }
+];
+
+// ===== ESTADO PERSISTENTE =====
+let products = JSON.parse(localStorage.getItem('cb_products')) || defaultProducts;
+let posts = JSON.parse(localStorage.getItem('cb_posts')) || defaultPosts;
+let settings = JSON.parse(localStorage.getItem('cb_settings')) || defaultSettings;
 let cart = JSON.parse(localStorage.getItem('cb_cart')) || [];
 let activeCategory = 'todos';
+let isAdminLogged = false;
 
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
+  renderPosts();
+  applySettings();
   updateCartUI();
   lucide.createIcons();
 
@@ -111,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Eventos da Sacola Lateral
+  // Sacola de Compras
   const cartBtn = document.getElementById('cartBtn');
   const closeCartBtn = document.getElementById('closeCartBtn');
   const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
@@ -125,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ===== RENDERIZAÇÃO DOS PRODUTOS =====
+// ===== RENDERIZAÇÃO DE PRODUTOS =====
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -138,10 +151,10 @@ function renderProducts() {
     <div class="product-card rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between group">
       <div class="relative overflow-hidden aspect-[4/4.5] bg-nude/30 cursor-pointer" onclick="openQuickModal('${p.id}')">
         <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-        <img src="${p.hoverImage}" alt="${p.name}" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <img src="${p.hoverImage || p.image}" alt="${p.name}" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] uppercase font-bold tracking-wider text-terracotta backdrop-blur-sm">
-          ${p.badge}
+          ${p.badge || 'Exclusivo'}
         </span>
 
         <button onclick="event.stopPropagation(); openQuickModal('${p.id}')" class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white text-espresso shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Visualização Rápida">
@@ -153,7 +166,7 @@ function renderProducts() {
         <div>
           <div class="flex items-center gap-1 text-gold text-xs mb-1">
             <span>★★★★★</span>
-            <span class="text-muted text-[11px]">(${p.reviewsCount} avaliações)</span>
+            <span class="text-muted text-[11px]">(${p.reviewsCount || 50} avaliações)</span>
           </div>
           <h3 class="font-serif text-lg font-bold text-espresso cursor-pointer hover:text-terracotta transition" onclick="openQuickModal('${p.id}')">
             ${p.name}
@@ -163,8 +176,8 @@ function renderProducts() {
 
         <div class="pt-4 border-t border-nude flex items-center justify-between">
           <div>
-            <span class="block font-serif text-lg font-bold text-espresso">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
-            <span class="block text-[10px] text-muted">${p.installments}</span>
+            <span class="block font-serif text-lg font-bold text-espresso">R$ ${Number(p.price).toFixed(2).replace('.', ',')}</span>
+            <span class="block text-[10px] text-muted">${p.installments || 'ou em até 3x'}</span>
           </div>
           <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-full bg-espresso hover:bg-terracotta text-white text-[11px] font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm">
             <i data-lucide="plus" class="w-3.5 h-3.5"></i> Sacola
@@ -175,6 +188,80 @@ function renderProducts() {
   `).join('');
 
   lucide.createIcons();
+}
+
+// ===== RENDERIZAÇÃO DE POSTS (BLOG) =====
+function renderPosts() {
+  const grid = document.getElementById('postsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = posts.map(post => `
+    <article class="rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all group">
+      <div class="aspect-[16/10] overflow-hidden bg-nude/40 relative cursor-pointer" onclick="openPostModal('${post.id}')">
+        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-terracotta backdrop-blur-sm">
+          ${post.category}
+        </span>
+      </div>
+
+      <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+        <div class="space-y-2">
+          <span class="text-[11px] text-muted block">${post.date}</span>
+          <h3 class="font-serif text-xl font-bold text-espresso group-hover:text-terracotta transition cursor-pointer" onclick="openPostModal('${post.id}')">
+            ${post.title}
+          </h3>
+          <p class="text-xs text-muted font-light line-clamp-3 leading-relaxed">${post.excerpt}</p>
+        </div>
+
+        <div class="pt-4 border-t border-nude flex items-center justify-between">
+          <button onclick="openPostModal('${post.id}')" class="text-xs font-bold uppercase tracking-wider text-terracotta hover:underline flex items-center gap-1">
+            Ler Completo →
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  lucide.createIcons();
+}
+
+// ===== LEITURA COMPLETA DE POST =====
+function openPostModal(postId) {
+  const post = posts.find(p => p.id === postId);
+  if (!post) return;
+
+  const modal = document.getElementById('postModal');
+  const container = document.getElementById('postModalContent');
+
+  container.innerHTML = `
+    <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-4 bg-nude/30 border border-gold/20">
+      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" />
+    </div>
+    <div class="space-y-3">
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] uppercase font-bold tracking-wider">${post.category}</span>
+        <span class="text-xs text-muted">${post.date}</span>
+      </div>
+      <h3 class="font-serif text-2xl sm:text-3xl font-bold text-espresso">${post.title}</h3>
+      <div class="text-sm text-espresso/90 font-light leading-relaxed whitespace-pre-line pt-2 border-t border-gold/20">
+        ${post.content}
+      </div>
+      <div class="pt-4 flex justify-between items-center text-xs">
+        <span class="text-muted">Publicado por <strong>Carla Barbosa</strong></span>
+        <button onclick="closePostModal()" class="px-5 py-2.5 rounded-full bg-espresso text-white font-bold uppercase tracking-wider">
+          Fechar
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closePostModal() {
+  const modal = document.getElementById('postModal');
+  if (modal) modal.classList.add('hidden');
 }
 
 // ===== FILTRAGEM POR CATEGORIA =====
@@ -238,7 +325,6 @@ function updateCartUI() {
   if (countBadge) countBadge.textContent = totalItems;
   if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 
-  // Cálculo de Frete Grátis (Meta: R$ 249)
   const target = 249;
   const progress = Math.min(100, Math.round((subtotal / target) * 100));
   if (shippingBar) shippingBar.style.width = `${progress}%`;
@@ -296,7 +382,7 @@ function closeCart() {
   if (drawer) drawer.classList.add('hidden');
 }
 
-// ===== MODAL DE VISUALIZAÇÃO RÁPIDA =====
+// ===== QUICK VIEW MODAL =====
 function openQuickModal(productId) {
   const p = products.find(prod => prod.id === productId);
   if (!p) return;
@@ -309,13 +395,13 @@ function openQuickModal(productId) {
       <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" />
     </div>
     <div class="space-y-4">
-      <span class="px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] uppercase font-bold tracking-wider">${p.badge}</span>
+      <span class="px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] uppercase font-bold tracking-wider">${p.badge || 'Exclusivo'}</span>
       <h3 class="font-serif text-2xl font-bold text-espresso">${p.name}</h3>
       <span class="font-serif text-2xl font-bold text-espresso block">R$ ${p.price.toFixed(2).replace('.', ',')}</span>
       <p class="text-xs text-muted leading-relaxed">${p.fullDesc}</p>
       
       <div class="p-3 rounded-xl bg-nude/40 border border-gold/20 text-xs text-espresso">
-        <strong>Modo de Uso:</strong> ${p.usage}
+        <strong>Modo de Uso:</strong> ${p.usage || 'Uso diário.'}
       </div>
 
       <button onclick="addToCart('${p.id}'); closeQuickModal();" class="w-full py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
@@ -345,8 +431,8 @@ function selectQuiz(step, option, btn) {
 
   if (option === 'glow') {
     title.textContent = 'Ritual de Luminosidade Facial';
-    desc.textContent = 'Elixir Nutritivo Facial + Névoa Hidratante de Rosas para revitalizar a textura e devolver luminosidade radiante.';
-    addBtn.onclick = () => { addToCart('elixir-glow'); addToCart('nevoa-botanica'); };
+    desc.textContent = 'Elixir Nutritivo Facial para revitalizar a textura e devolver luminosidade radiante.';
+    addBtn.onclick = () => { addToCart('elixir-glow'); };
   } else if (option === 'olhar') {
     title.textContent = 'Ritual Completo para Olhar e Sobrancelhas';
     desc.textContent = 'Fortalecedor de Sobrancelhas e Cílios para densidade impecável e acabamento sedoso.';
@@ -360,7 +446,7 @@ function selectQuiz(step, option, btn) {
   resultBox.classList.remove('hidden');
 }
 
-// ===== FINALIZAÇÃO DO PEDIDO VIA WHATSAPP =====
+// ===== CHECKOUT VIA WHATSAPP =====
 function checkoutWhatsApp() {
   if (cart.length === 0) {
     alert('Sua sacola está vazia!');
@@ -370,11 +456,251 @@ function checkoutWhatsApp() {
   const itemsList = cart.map(item => `• ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2)})`).join('%0A');
   const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toFixed(2);
   
-  const text = `Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20finalizar%20meu%20pedido:%0A%0A${itemsList}%0A%0A*Total:%20R$%20${total}*`;
-  window.open(`https://wa.me/5500000000000?text=${text}`, '_blank');
+  const text = `Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio%20(Montes%20Claros)!%20Gostaria%20de%20finalizar%20meu%20pedido:%0A%0A${itemsList}%0A%0A*Total:%20R$%20${total}*`;
+  window.open(`https://wa.me/${settings.whatsapp}?text=${text}`, '_blank');
 }
 
-// ===== NOTIFICAÇÃO FLUTUANTE (TOAST) =====
+// ===== PAINEL ADMINISTRATIVO (CARLA BARBOSA) =====
+function openAdminModal(defaultTab = 'posts') {
+  const modal = document.getElementById('adminModal');
+  const loginForm = document.getElementById('adminLoginForm');
+  const dashboard = document.getElementById('adminDashboard');
+
+  if (isAdminLogged) {
+    loginForm.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+    switchAdminTab(defaultTab);
+    renderAdminPostsList();
+    renderAdminProductsList();
+  } else {
+    loginForm.classList.remove('hidden');
+    dashboard.classList.add('hidden');
+  }
+
+  modal.classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closeAdminModal() {
+  const modal = document.getElementById('adminModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function loginAdmin() {
+  const passInput = document.getElementById('adminPasswordInput');
+  if (passInput.value === settings.adminPass || passInput.value === '1234') {
+    isAdminLogged = true;
+    passInput.value = '';
+    document.getElementById('adminLoginForm').classList.add('hidden');
+    document.getElementById('adminDashboard').classList.remove('hidden');
+    renderAdminPostsList();
+    renderAdminProductsList();
+    showToast('Acesso concedido! Bem-vinda Carla Barbosa.');
+  } else {
+    alert('Senha incorreta! Use: admin123');
+  }
+}
+
+function switchAdminTab(tab) {
+  const tabPosts = document.getElementById('adminTabPosts');
+  const tabProducts = document.getElementById('adminTabProducts');
+  const tabSettings = document.getElementById('adminTabSettings');
+
+  const btnPosts = document.getElementById('tabPostsBtn');
+  const btnProducts = document.getElementById('tabProductsBtn');
+  const btnSettings = document.getElementById('tabSettingsBtn');
+
+  [tabPosts, tabProducts, tabSettings].forEach(t => t.classList.add('hidden'));
+  [btnPosts, btnProducts, btnSettings].forEach(b => {
+    b.classList.remove('bg-espresso', 'text-white');
+    b.classList.add('bg-nude', 'text-espresso');
+  });
+
+  if (tab === 'posts') {
+    tabPosts.classList.remove('hidden');
+    btnPosts.classList.add('bg-espresso', 'text-white');
+  } else if (tab === 'products') {
+    tabProducts.classList.remove('hidden');
+    btnProducts.classList.add('bg-espresso', 'text-white');
+  } else {
+    tabSettings.classList.remove('hidden');
+    btnSettings.classList.add('bg-espresso', 'text-white');
+    document.getElementById('cfgWhatsapp').value = settings.whatsapp;
+    document.getElementById('cfgAnnouncement').value = settings.announcement;
+  }
+}
+
+// Admin: Posts CRUD
+function handleSavePost(e) {
+  e.preventDefault();
+  const id = document.getElementById('editPostId').value || 'post-' + Date.now();
+  const title = document.getElementById('postTitle').value;
+  const category = document.getElementById('postCategory').value;
+  const image = document.getElementById('postImage').value;
+  const excerpt = document.getElementById('postExcerpt').value;
+  const content = document.getElementById('postContent').value;
+
+  const existingIndex = posts.findIndex(p => p.id === id);
+  const now = new Date();
+  const dateFormatted = `${now.getDate()} de Agosto, ${now.getFullYear()}`;
+
+  const postObj = { id, title, category, image, excerpt, content, date: dateFormatted };
+
+  if (existingIndex >= 0) {
+    posts[existingIndex] = postObj;
+  } else {
+    posts.unshift(postObj);
+  }
+
+  localStorage.setItem('cb_posts', JSON.stringify(posts));
+  renderPosts();
+  renderAdminPostsList();
+  resetPostForm();
+  showToast('Post publicado com sucesso no site!');
+}
+
+function renderAdminPostsList() {
+  const list = document.getElementById('adminPostsList');
+  if (!list) return;
+
+  list.innerHTML = posts.map(p => `
+    <div class="flex items-center justify-between p-3 rounded-xl bg-linen border border-nude text-xs">
+      <div class="flex items-center gap-3">
+        <img src="${p.image}" alt="${p.title}" class="w-10 h-10 object-cover rounded-lg" />
+        <div>
+          <span class="font-bold block text-espresso truncate max-w-xs">${p.title}</span>
+          <span class="text-muted text-[10px]">${p.category} • ${p.date}</span>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="editPost('${p.id}')" class="px-3 py-1 rounded bg-nude text-espresso font-bold hover:bg-gold/20">Editar</button>
+        <button onclick="deletePost('${p.id}')" class="px-3 py-1 rounded bg-red-100 text-red-700 font-bold hover:bg-red-200">Excluir</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function editPost(id) {
+  const p = posts.find(post => post.id === id);
+  if (!p) return;
+
+  document.getElementById('editPostId').value = p.id;
+  document.getElementById('postTitle').value = p.title;
+  document.getElementById('postCategory').value = p.category;
+  document.getElementById('postImage').value = p.image;
+  document.getElementById('postExcerpt').value = p.excerpt;
+  document.getElementById('postContent').value = p.content;
+  document.getElementById('postFormTitle').textContent = 'Editar Post';
+}
+
+function deletePost(id) {
+  if (confirm('Tem certeza que deseja excluir esta publicação?')) {
+    posts = posts.filter(p => p.id !== id);
+    localStorage.setItem('cb_posts', JSON.stringify(posts));
+    renderPosts();
+    renderAdminPostsList();
+    showToast('Post removido.');
+  }
+}
+
+function resetPostForm() {
+  document.getElementById('editPostId').value = '';
+  document.getElementById('postTitle').value = '';
+  document.getElementById('postImage').value = '';
+  document.getElementById('postExcerpt').value = '';
+  document.getElementById('postContent').value = '';
+  document.getElementById('postFormTitle').textContent = 'Publicar Novo Post / Dica';
+}
+
+// Admin: Products CRUD
+function handleSaveProduct(e) {
+  e.preventDefault();
+  const id = document.getElementById('editProductId').value || 'prod-' + Date.now();
+  const name = document.getElementById('prodName').value;
+  const price = parseFloat(document.getElementById('prodPrice').value);
+  const category = document.getElementById('prodCategory').value;
+  const image = document.getElementById('prodImage').value;
+  const badge = document.getElementById('prodBadge').value || 'Exclusivo';
+  const shortDesc = document.getElementById('prodShortDesc').value;
+  const usage = document.getElementById('prodUsage').value;
+
+  const prodObj = {
+    id,
+    name,
+    price,
+    category,
+    image,
+    badge,
+    shortDesc,
+    fullDesc: shortDesc,
+    usage,
+    installments: `3x de R$ ${(price / 3).toFixed(2).replace('.', ',')}`,
+    reviewsCount: 50
+  };
+
+  const existingIndex = products.findIndex(p => p.id === id);
+  if (existingIndex >= 0) {
+    products[existingIndex] = prodObj;
+  } else {
+    products.unshift(prodObj);
+  }
+
+  localStorage.setItem('cb_products', JSON.stringify(products));
+  renderProducts();
+  renderAdminProductsList();
+  showToast('Produto salvo no catálogo!');
+}
+
+function renderAdminProductsList() {
+  const list = document.getElementById('adminProductsList');
+  if (!list) return;
+
+  list.innerHTML = products.map(p => `
+    <div class="flex items-center justify-between p-3 rounded-xl bg-linen border border-nude text-xs">
+      <div class="flex items-center gap-3">
+        <img src="${p.image}" alt="${p.name}" class="w-10 h-10 object-cover rounded-lg" />
+        <div>
+          <span class="font-bold block text-espresso truncate max-w-xs">${p.name}</span>
+          <span class="text-muted text-[10px]">R$ ${Number(p.price).toFixed(2)} • ${p.category}</span>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="deleteProduct('${p.id}')" class="px-3 py-1 rounded bg-red-100 text-red-700 font-bold hover:bg-red-200">Excluir</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteProduct(id) {
+  if (confirm('Tem certeza que deseja remover este produto do catálogo?')) {
+    products = products.filter(p => p.id !== id);
+    localStorage.setItem('cb_products', JSON.stringify(products));
+    renderProducts();
+    renderAdminProductsList();
+    showToast('Produto removido.');
+  }
+}
+
+// Admin: Settings
+function handleSaveSettings(e) {
+  e.preventDefault();
+  settings.whatsapp = document.getElementById('cfgWhatsapp').value.replace(/\D/g, '');
+  settings.announcement = document.getElementById('cfgAnnouncement').value;
+  
+  localStorage.setItem('cb_settings', JSON.stringify(settings));
+  applySettings();
+  showToast('Configurações do estúdio atualizadas!');
+}
+
+function applySettings() {
+  const annEl = document.getElementById('announcementText');
+  const waCta = document.getElementById('whatsappCtaLink');
+
+  if (annEl) annEl.textContent = settings.announcement;
+  if (waCta) waCta.href = `https://wa.me/${settings.whatsapp}?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20informa%C3%A7%C3%B5es.`;
+}
+
+// Toast
 function showToast(msg) {
   const toast = document.getElementById('toast');
   const toastMsg = document.getElementById('toastMsg');

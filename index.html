@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carla Barbosa Estúdio | Alta Cosmética & Rituais de Autocuidado</title>
-  <meta name="description" content="Carla Barbosa Estúdio — Cosméticos de alta performance, tratamentos de cabine e rituais de beleza inspirados nos maiores estúdios do mundo." />
+  <title>Carla Barbosa Estúdio | Alta Cosmética & Rituais de Autocuidado — Montes Claros MG</title>
+  <meta name="description" content="Carla Barbosa Estúdio em Montes Claros - MG. Cosméticos de alta performance, tratamentos capilares, mechas e rituais de beleza." />
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -51,8 +51,8 @@
 <body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
 
   <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
-  <div class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex items-center justify-center gap-3">
-    <span>✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | RITUAIS EXCLUSIVOS DE ESTÚDIO</span>
+  <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex items-center justify-center gap-3">
+    <span id="announcementText">✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | ESTÚDIO MONTES CLAROS - MG</span>
   </div>
 
   <!-- ===== CABEÇALHO / MENU DE NAVEGAÇÃO ===== -->
@@ -68,6 +68,7 @@
       <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-espresso/80">
         <a href="#catalogo" class="hover:text-terracotta transition-colors">Catálogo</a>
         <a href="#quiz" class="hover:text-terracotta transition-colors">Diagnóstico</a>
+        <a href="#posts" class="hover:text-terracotta transition-colors">Dicas & Blog</a>
         <a href="#sobre" class="hover:text-terracotta transition-colors">O Estúdio</a>
         <a href="#experiencia" class="hover:text-terracotta transition-colors">Diferenciais</a>
       </nav>
@@ -78,15 +79,16 @@
           CARLA BARBOSA
         </span>
         <span class="block text-[10px] tracking-[0.3em] uppercase text-gold font-medium -mt-1">
-          Estúdio • Alta Cosmética
+          Estúdio • Montes Claros MG
         </span>
       </a>
 
       <!-- Ações da Direita -->
       <div class="flex items-center gap-4 sm:gap-6">
-        <!-- Gatilho de Busca -->
-        <button id="searchTrigger" class="text-espresso hover:text-terracotta transition-colors" title="Buscar produtos">
-          <i data-lucide="search" class="w-5 h-5"></i>
+        <!-- Botão Admin no Topo -->
+        <button onclick="openAdminModal()" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/40 text-[11px] font-semibold text-espresso hover:bg-gold/20 transition-all" title="Painel de Controle da Carla Barbosa">
+          <i data-lucide="lock" class="w-3.5 h-3.5 text-terracotta"></i>
+          <span>Admin</span>
         </button>
 
         <!-- Botão da Sacola com Contador -->
@@ -107,9 +109,12 @@
     <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-4">
       <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Catálogo de Produtos</a>
       <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
+      <a href="#posts" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Dicas & Novidades</a>
       <a href="#sobre" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Sobre o Estúdio</a>
-      <a href="#experiencia" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diferenciais</a>
-      <a href="#contato" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2">Atendimento & WhatsApp</a>
+      <a href="#contato" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Atendimento & WhatsApp</a>
+      <button onclick="openAdminModal()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-terracotta py-2 flex items-center gap-2">
+        <i data-lucide="lock" class="w-4 h-4"></i> Acessar Painel Admin (Postar)
+      </button>
     </div>
   </header>
 
@@ -122,7 +127,7 @@
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nude/80 border border-gold/30 text-xs font-medium tracking-widest uppercase text-terracotta">
             <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
-            Edição 2026 • Alta Cosmética
+            Montes Claros - MG • Alta Cosmética
           </div>
           
           <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-espresso font-normal">
@@ -276,8 +281,35 @@
 
   </section>
 
+  <!-- ===== BLOG / NOVIDADES & POSTS DA CARLA BARBOSA ===== -->
+  <section id="posts" class="py-20 bg-nude/30 border-y border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Publicações Diretas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">
+            Dicas & Novidades da <em class="italic font-light">Carla Barbosa</em>
+          </h2>
+          <p class="text-sm text-muted">Acompanhe tendências de beleza, segredos de cuidados capilares e novidades em Montes Claros - MG.</p>
+        </div>
+
+        <button onclick="openAdminModal('posts')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso hover:bg-terracotta text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm self-start sm:self-auto">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-gold"></i>
+          <span>Novo Post</span>
+        </button>
+      </div>
+
+      <!-- Grade de Posts -->
+      <div id="postsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Preenchido via script.js -->
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===== HISTÓRIA & SOBRE O ESTÚDIO ===== -->
-  <section id="sobre" class="py-20 bg-nude/50 border-y border-gold/20">
+  <section id="sobre" class="py-20 bg-linen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 items-center">
         
@@ -297,18 +329,18 @@
             A beleza não precisa de excessos. <em class="italic font-light">Ela precisa de intenção.</em>
           </h2>
           <p class="text-base text-muted font-light leading-relaxed">
-            O <strong>Carla Barbosa Estúdio</strong> nasceu no coração do atendimento personalizado. Ao longo de anos de consultoria estética, percebemos que as pessoas não buscavam transformações artificiais, mas sim rituais que respeitassem sua singularidade.
+            O <strong>Carla Barbosa Estúdio</strong> em <strong>Montes Claros - MG</strong> nasceu no coração do atendimento personalizado. Ao longo de anos de consultoria estética, percebemos que as pessoas não buscavam transformações artificiais, mas sim rituais que respeitassem sua singularidade.
           </p>
           <p class="text-base text-muted font-light leading-relaxed">
-            Nossa linha de produtos foi concebida para transpor a experiência de excelência da nossa cabine diretamente para a sua bancada de beleza.
+            Nossa linha de produtos e tratamentos foi concebida para transpor a experiência de excelência da nossa cabine diretamente para a sua rotina diária.
           </p>
 
           <div class="pt-4 grid grid-cols-2 gap-6">
-            <div class="p-4 rounded-xl bg-linen border border-gold/20">
+            <div class="p-4 rounded-xl bg-nude/40 border border-gold/20">
               <h4 class="font-serif font-bold text-lg text-espresso mb-1">Fórmulas Limpas</h4>
               <p class="text-xs text-muted">Livre de parabenos, sulfatos e sem crueldade animal.</p>
             </div>
-            <div class="p-4 rounded-xl bg-linen border border-gold/20">
+            <div class="p-4 rounded-xl bg-nude/40 border border-gold/20">
               <h4 class="font-serif font-bold text-lg text-espresso mb-1">Toque de Estúdio</h4>
               <p class="text-xs text-muted">Texturas sensoriais desenvolvidas por especialistas.</p>
             </div>
@@ -386,7 +418,7 @@
       </div>
 
       <div class="text-center mt-10">
-        <a href="https://instagram.com" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-espresso transition-colors">
+        <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-espresso transition-colors">
           <i data-lucide="instagram" class="w-4 h-4"></i> Seguir @CARLABARBOSA.ESTUDIO
         </a>
       </div>
@@ -398,37 +430,38 @@
     <div class="text-center space-y-3 mb-12">
       <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento & Dúvidas</span>
       <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Como podemos ajudar você?</h2>
+      <p class="text-sm text-muted">Atendimento presencial em Montes Claros - MG e envios para todo o Brasil.</p>
     </div>
 
     <!-- Acordeão de Perguntas Frequentes -->
     <div class="space-y-4 mb-16">
       <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
         <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Onde fica o estúdio presencial em Montes Claros - MG?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Nosso estúdio físico está localizado na <strong>Rua Deputado Antônio Pimenta, 72 — Bairro Jardim São Luiz, Montes Claros - MG</strong> (CEP 39401-057), em um ambiente climatizado, acolhedor e exclusivo para o seu atendimento.
+        </p>
+      </details>
+
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
           <span>Como funciona a entrega dos cosméticos?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
         </summary>
         <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Enviamos para todo o Brasil via Correios e transportadoras expressas. Os pedidos são postados em até 24 horas úteis em embalagem presenteável protegida.
+          Para Montes Claros temos entrega expressa via motoboy. Para as demais cidades do Brasil enviamos via Correios e transportadoras com rastreamento seguro.
         </p>
       </details>
 
       <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
         <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
-          <span>Os produtos são indicados para pele sensível?</span>
+          <span>Como agendar procedimentos presenciais com a Carla Barbosa?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
         </summary>
         <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Sim! Nossas formulações priorizam ativos biocompatíveis, sem fragrâncias sintéticas agressivas ou parabenos, sendo adequadas para todos os tipos de pele.
-        </p>
-      </details>
-
-      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
-        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
-          <span>Como agendar procedimentos presenciais no estúdio?</span>
-          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
-        </summary>
-        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Os atendimentos em cabine são realizados com hora marcada. Você pode solicitar um horário diretamente com nossa consultora através do WhatsApp.
+          Os atendimentos em cabine são realizados com hora marcada. Você pode solicitar um horário diretamente com nossa consultora através do WhatsApp oficial.
         </p>
       </details>
     </div>
@@ -437,9 +470,9 @@
     <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4">
       <h3 class="font-serif text-2xl sm:text-3xl">Deseja um atendimento personalizado?</h3>
       <p class="text-sm text-gold-light/80 max-w-md mx-auto">
-        Fale diretamente com nossa consultora estética para tirar dúvidas sobre produtos e agendamentos.
+        Fale diretamente no nosso WhatsApp para tirar dúvidas sobre produtos, dicas de tratamentos ou agendamentos.
       </p>
-      <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+      <a id="whatsappCtaLink" href="https://wa.me/5538999999999" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
         <i data-lucide="message-circle" class="w-4 h-4"></i> Iniciar Conversa no WhatsApp
       </a>
     </div>
@@ -451,17 +484,20 @@
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gold/20 text-center md:text-left">
         <div>
           <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-white block">CARLA BARBOSA</span>
-          <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza & Cosméticos</span>
+          <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza • Montes Claros - MG</span>
         </div>
-        <div class="flex gap-6 text-xs uppercase tracking-wider">
+        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider">
           <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
+          <a href="#posts" class="hover:text-white transition">Blog & Dicas</a>
           <a href="#sobre" class="hover:text-white transition">O Estúdio</a>
           <a href="#contato" class="hover:text-white transition">Contato</a>
-          <a href="#" class="hover:text-white transition">Privacidade</a>
+          <button onclick="openAdminModal()" class="text-gold hover:text-white transition font-bold flex items-center gap-1">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i> Área da Carla
+          </button>
         </div>
       </div>
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gold-light/60 gap-4">
-        <p>© 2026 Carla Barbosa Estúdio. Todos os direitos reservados.</p>
+        <p>© 2026 Carla Barbosa Estúdio — Montes Claros MG. Todos os direitos reservados.</p>
         <p>Desenvolvido com excelência • Alta Performance & Estética</p>
       </div>
     </div>
@@ -515,7 +551,7 @@
     </div>
   </div>
 
-  <!-- ===== MODAL DE VISUALIZAÇÃO RÁPIDA ===== -->
+  <!-- ===== MODAL DE VISUALIZAÇÃO RÁPIDA DE PRODUTO ===== -->
   <div id="quickModal" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-linen rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-gold/30 shadow-2xl max-h-[90vh] overflow-y-auto">
       <button onclick="closeQuickModal()" class="absolute top-4 right-4 p-2 text-muted hover:text-espresso" aria-label="Fechar Janela">
@@ -527,10 +563,227 @@
     </div>
   </div>
 
+  <!-- ===== MODAL DE LEITURA COMPLETA DE POST ===== -->
+  <div id="postModal" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-gold/30 shadow-2xl max-h-[90vh] overflow-y-auto space-y-4">
+      <button onclick="closePostModal()" class="absolute top-4 right-4 p-2 text-muted hover:text-espresso" aria-label="Fechar Janela">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="postModalContent">
+        <!-- Injetado via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAINEL ADMINISTRATIVO (ADMIN CARLA BARBOSA) ===== -->
+  <div id="adminModal" class="fixed inset-0 bg-espresso/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-4xl w-full p-6 sm:p-8 relative border border-gold/40 shadow-2xl max-h-[92vh] overflow-y-auto flex flex-col">
+      
+      <!-- Cabeçalho do Admin -->
+      <div class="flex items-center justify-between pb-4 border-b border-gold/30 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold/20 text-terracotta flex items-center justify-center">
+            <i data-lucide="shield" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Painel de Gerenciamento</h3>
+            <p class="text-xs text-muted">Área exclusiva da Carla Barbosa para publicar posts e produtos.</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="p-2 text-muted hover:text-espresso">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Login do Admin (caso não esteja logada) -->
+      <div id="adminLoginForm" class="py-8 max-w-sm mx-auto text-center space-y-4">
+        <i data-lucide="lock" class="w-12 h-12 text-gold mx-auto"></i>
+        <h4 class="font-serif text-xl font-bold">Digite sua Senha de Acesso</h4>
+        <p class="text-xs text-muted">Senha padrão: <code class="bg-nude px-2 py-0.5 rounded font-mono font-bold">admin123</code></p>
+        <input type="password" id="adminPasswordInput" placeholder="Senha do painel" class="w-full px-4 py-3 rounded-xl border border-gold/40 bg-white text-sm outline-none focus:border-terracotta text-center font-bold" />
+        <button onclick="loginAdmin()" class="w-full py-3 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all">
+          Acessar Painel
+        </button>
+      </div>
+
+      <!-- Conteúdo do Painel Logado -->
+      <div id="adminDashboard" class="hidden space-y-6">
+        
+        <!-- Abas do Admin -->
+        <div class="flex gap-2 border-b border-gold/20 pb-3 overflow-x-auto">
+          <button onclick="switchAdminTab('posts')" id="tabPostsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-espresso text-white transition-all">
+            📝 Gerenciar Posts & Dicas
+          </button>
+          <button onclick="switchAdminTab('products')" id="tabProductsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-nude text-espresso hover:bg-gold/20 transition-all">
+            🛍️ Gerenciar Produtos
+          </button>
+          <button onclick="switchAdminTab('settings')" id="tabSettingsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-nude text-espresso hover:bg-gold/20 transition-all">
+            ⚙️ Contatos & Informações
+          </button>
+        </div>
+
+        <!-- ABA 1: GERENCIAR POSTS -->
+        <div id="adminTabPosts" class="space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-4">
+            <h4 class="font-serif text-lg font-bold text-espresso flex items-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-terracotta"></i>
+              <span id="postFormTitle">Publicar Novo Post / Dica</span>
+            </h4>
+            <form onsubmit="handleSavePost(event)" class="space-y-4 text-xs">
+              <input type="hidden" id="editPostId" value="" />
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Título do Post *</label>
+                  <input type="text" id="postTitle" required placeholder="Ex: 5 Dicas para Cuidar do Cabelo Loiro" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Categoria *</label>
+                  <select id="postCategory" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none">
+                    <option value="Dicas de Cabelo">Dicas de Cabelo & Mechas</option>
+                    <option value="Cuidados com a Pele">Cuidados com a Pele</option>
+                    <option value="Sobrancelhas">Sobrancelhas & Olhar</option>
+                    <option value="Novidades do Estúdio">Novidades do Estúdio</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Link da Imagem / Foto *</label>
+                <input type="url" id="postImage" required placeholder="https://exemplo.com/foto.jpg" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Resumo Curto (Aparece no card) *</label>
+                <input type="text" id="postExcerpt" required placeholder="Resumo de 1 ou 2 linhas..." class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Texto Completo do Post *</label>
+                <textarea id="postContent" required rows="5" placeholder="Escreva o conteúdo completo aqui..." class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none"></textarea>
+              </div>
+
+              <div class="flex gap-3">
+                <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition">
+                  Publicar Post
+                </button>
+                <button type="button" onclick="resetPostForm()" class="px-6 py-3 rounded-full bg-nude text-espresso font-bold uppercase tracking-wider hover:bg-gold/20 transition">
+                  Limpar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Lista de Posts Cadastrados -->
+          <div class="space-y-3">
+            <h4 class="font-serif text-lg font-bold text-espresso">Posts Cadastrados no Site</h4>
+            <div id="adminPostsList" class="space-y-2">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA 2: GERENCIAR PRODUTOS -->
+        <div id="adminTabProducts" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-4">
+            <h4 class="font-serif text-lg font-bold text-espresso flex items-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-terracotta"></i>
+              <span>Adicionar / Editar Produto</span>
+            </h4>
+            <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
+              <input type="hidden" id="editProductId" value="" />
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Nome do Produto *</label>
+                  <input type="text" id="prodName" required placeholder="Ex: Óleo Nutritivo Capilar" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Preço (R$) *</label>
+                  <input type="number" step="0.01" id="prodPrice" required placeholder="149.00" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Categoria *</label>
+                  <select id="prodCategory" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none">
+                    <option value="skincare">Cuidados com a Pele</option>
+                    <option value="olhar">Olhar & Fios</option>
+                    <option value="aromaterapia">Spa em Casa</option>
+                    <option value="kits">Kits & Presentes</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Link da Imagem Principal *</label>
+                  <input type="url" id="prodImage" required placeholder="https://exemplo.com/foto.jpg" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Selo / Destaque</label>
+                  <input type="text" id="prodBadge" placeholder="Ex: Mais Vendido, Exclusivo" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Descrição Curta *</label>
+                <input type="text" id="prodShortDesc" required placeholder="Descrição em 1 linha" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Modo de Uso</label>
+                <input type="text" id="prodUsage" placeholder="Como a cliente deve aplicar" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition">
+                Salvar Produto
+              </button>
+            </form>
+          </div>
+
+          <!-- Lista de Produtos Cadastrados -->
+          <div class="space-y-3">
+            <h4 class="font-serif text-lg font-bold text-espresso">Produtos Ativos no Catálogo</h4>
+            <div id="adminProductsList" class="space-y-2">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA 3: CONFIGURAÇÕES & CONTATO -->
+        <div id="adminTabSettings" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-4">
+            <h4 class="font-serif text-lg font-bold text-espresso">Dados do Estúdio (Montes Claros - MG)</h4>
+            <form onsubmit="handleSaveSettings(event)" class="space-y-4 text-xs">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Número do WhatsApp (com DDD) *</label>
+                  <input type="text" id="cfgWhatsapp" required placeholder="5538999999999" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Cidade / Localização *</label>
+                  <input type="text" id="cfgCity" required value="Montes Claros - MG" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Texto da Barra de Avisos Superior</label>
+                <input type="text" id="cfgAnnouncement" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition">
+                Salvar Informações
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
   <!-- Notificação Flutuante (Toast) -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-espresso text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-gold/30 text-xs font-semibold">
     <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
-    <span id="toastMsg">Item adicionado à sacola!</span>
+    <span id="toastMsg">Alterações salvas!</span>
   </div>
 
   <script src="script.js"></script>
