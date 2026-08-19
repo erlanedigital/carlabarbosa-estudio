@@ -338,7 +338,38 @@ function updateCartUI() {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
   if (countBadge) countBadge.textContent = totalItems;
-  if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+  
+  // Cálculo de desconto e finalização
+  const isPix = selectedPaymentMethod === 'pix';
+  const discount = (isPix && subtotal > 0) ? subtotal * 0.05 : 0;
+  const finalTotal = subtotal - discount;
+
+  if (subtotalEl) {
+    if (isPix && subtotal > 0) {
+      subtotalEl.innerHTML = `<span class="line-through text-xs text-muted font-normal mr-2">R$ ${subtotal.toFixed(2).replace('.', ',')}</span> R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+    } else {
+      subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    }
+  }
+
+  const pixBox = document.getElementById('pixDiscountBox');
+  const pixVal = document.getElementById('pixDiscountValue');
+  const checkoutBtnText = document.getElementById('checkoutBtnText');
+
+  if (pixBox) {
+    if (isPix && subtotal > 0) {
+      pixBox.classList.remove('hidden');
+      if (pixVal) pixVal.textContent = `- R$ ${discount.toFixed(2).replace('.', ',')}`;
+    } else {
+      pixBox.classList.add('hidden');
+    }
+  }
+
+  if (checkoutBtnText) {
+    checkoutBtnText.textContent = subtotal > 0 
+      ? `Pagar R$ ${finalTotal.toFixed(2).replace('.', ',')} com Segurança` 
+      : 'Finalizar Pagamento Seguro';
+  }
 
   const target = 249;
   const progress = Math.min(100, Math.round((subtotal / target) * 100));
@@ -461,18 +492,46 @@ function selectQuiz(step, option, btn) {
   resultBox.classList.remove('hidden');
 }
 
-// ===== CHECKOUT VIA WHATSAPP =====
+// ===== CHECKOUT SEGURO & MÉTODOS DE PAGAMENTO =====
+let selectedPaymentMethod = 'pix';
+
+function updatePaymentMethod() {
+  const methodRadio = document.querySelector('input[name="paymentMethod"]:checked');
+  if (methodRadio) {
+    selectedPaymentMethod = methodRadio.value;
+  }
+  updateCartUI();
+}
+
 function checkoutWhatsApp() {
   if (cart.length === 0) {
-    alert('Sua sacola está vazia!');
+    alert('Sua sacola de rituais está vazia!');
     return;
   }
 
-  const itemsList = cart.map(item => `• ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2)})`).join('%0A');
-  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toFixed(2);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const isPix = selectedPaymentMethod === 'pix';
+  const discount = isPix ? subtotal * 0.05 : 0;
+  const finalTotal = subtotal - discount;
+  const orderId = 'CB' + Math.floor(100000 + Math.random() * 900000);
+
+  const itemsList = cart.map(item => `  • ${item.qty}x ${item.name} - R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}`).join('%0A');
   
-  const text = `Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio%20(Montes%20Claros)!%20Gostaria%20de%20finalizar%20meu%20pedido:%0A%0A${itemsList}%0A%0A*Total:%20R$%20${total}*`;
-  window.open(`https://wa.me/${settings.whatsapp}?text=${text}`, '_blank');
+  const paymentText = isPix 
+    ? `⚡ *PIX Instantâneo (5% de Desconto)*%0A🎁 Desconto Aplicado: - R$ ${discount.toFixed(2).replace('.', ',')}` 
+    : `💳 *Cartão de Crédito (em até 6x)*%0A🔒 Link de Pagamento Oficial Criptografado`;
+
+  const message = `🛍️ *NOVO PEDIDO SEGURO - CARLA BARBOSA ESTÚDIO*%0A` +
+    `🔖 *Código do Pedido:* #${orderId}%0A` +
+    `📍 *Origem:* Montes Claros - MG%0A%0A` +
+    `📦 *Itens Selecionados:*%0A${itemsList}%0A%0A` +
+    `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}%0A` +
+    `${paymentText}%0A` +
+    `💎 *TOTAL FINAL:* R$ ${finalTotal.toFixed(2).replace('.', ',')}%0A%0A` +
+    `🔒 *Garantia:* Compra 100% Segura & Criptografada SSL 256 bits.%0A` +
+    `Por favor, me envie as instruções de entrega e a confirmação do pagamento! ✨`;
+
+  window.open(`https://wa.me/${settings.whatsapp}?text=${message}`, '_blank');
 }
 
 // ===== PAINEL ADMINISTRATIVO (CARLA BARBOSA) =====
