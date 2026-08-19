@@ -46,3 +46,44 @@
 details summary::-webkit-details-marker {
   display: none;
 }
+
+/* ===== BLINDAGEM ABSOLUTA DE MODAIS E OVERLAYS ===== */
+#quickModal.hidden,
+#postModal.hidden,
+#adminModal.hidden,
+#cartDrawer.hidden,
+#mobileDrawer.hidden,
+div[id$="Modal"].hidden,
+div[id$="Drawer"].hidden,
+.modal-backdrop.hidden {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  z-index: -9999 !important;
+  opacity: 0 !important;
+}
+
+#quickModal:not(.hidden),
+#postModal:not(.hidden),
+#adminModal:not(.hidden) {
+  display: flex !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 50 !important;
+}
+
+#cartDrawer:not(.hidden) {
+  display: flex !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 50 !important;
+}
+
+/* Header Sticky Safety */
+header#header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+}
