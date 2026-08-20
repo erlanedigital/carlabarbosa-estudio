@@ -345,7 +345,7 @@ function openPostModal(postId) {
     <div class="aspect-[16/9] rounded-2xl overflow-hidden mb-4 bg-nude/30 border border-gold/20">
       ${isVideo 
         ? `<video src="${post.image}" controls autoplay class="w-full h-full object-cover"></video>` 
-        : `<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" />`
+        : `<img src="${sanitizeUrl(post.image)}" alt="${post.title}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />`
       }
     </div>
     <div class="space-y-3">
@@ -494,7 +494,7 @@ function updateCartUI() {
     } else {
       itemsContainer.innerHTML = cart.map(item => `
         <div class="flex items-center gap-4 p-3 rounded-xl bg-white border border-gold/20">
-          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg bg-nude/40" />
+          <img src="${sanitizeUrl(item.image)}" alt="${item.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=400&q=75';" class="w-14 h-14 object-cover rounded-lg bg-nude/40" />
           <div class="flex-1 min-w-0">
             <h4 class="font-serif font-semibold text-sm text-espresso truncate">${item.name}</h4>
             <span class="text-xs text-muted">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
@@ -534,7 +534,7 @@ function openQuickModal(productId) {
 
   content.innerHTML = `
     <div class="aspect-square rounded-2xl overflow-hidden bg-nude/30 border border-gold/20">
-      <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" />
+      <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />
     </div>
     <div class="space-y-4">
       <span class="px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] uppercase font-bold tracking-wider">${p.badge || 'Exclusivo'}</span>
@@ -1074,23 +1074,6 @@ function generateArticleByCustomTopic() {
   showToast('✨ Post completo e foto 8K gerados com sucesso pela IA!');
 }
 
-  const timeoutId = setTimeout(() => {
-    finishGeneration(getRandomBeautyPhoto(), false);
-  }, 5000);
-
-  const imgLoader = new Image();
-  imgLoader.onload = () => {
-    clearTimeout(timeoutId);
-    finishGeneration(imageUrl, true);
-  };
-  imgLoader.onerror = () => {
-    clearTimeout(timeoutId);
-    finishGeneration(getRandomBeautyPhoto(), false);
-  };
-
-  imgLoader.src = imageUrl;
-}
-
 function useGeneratedImage() {
   if (!currentGeneratedImageUrl) {
     generateAiImage();
@@ -1143,28 +1126,7 @@ function suggestAiContent() {
   if (contEl) contEl.value = t.content;
   if (promptEl) promptEl.value = t.prompt;
 
-  generateAiImage();
-  showToast('✨ Conteúdo gerado pela IA!');
-}
-    category: 'Sobrancelhas',
-    excerpt: 'A técnica que deixa as sobrancelhas encorpadas, simétricas e com efeito penteado duradouro.',
-    content: 'O design de sobrancelhas moderno valoriza a naturalidade. Com a técnica de Brow Lamination e nutrição com biotina, os fios ganham volume sem parecerem artificiais.\n\nIdeal para quem tem falhas sutis ou fios rebeldes, garantindo praticidade no dia a dia por até 6 semanas!',
-    prompt: 'Design de sobrancelhas perfeitas com arqueamento elegante e olhar feminino marcante'
-  }
-];
-
-let templateIndex = 0;
-function suggestAiContent() {
-  const t = aiContentTemplates[templateIndex % aiContentTemplates.length];
-  templateIndex++;
-
-  document.getElementById('postTitle').value = t.title;
-  document.getElementById('postCategory').value = t.category;
-  document.getElementById('postExcerpt').value = t.excerpt;
-  document.getElementById('postContent').value = t.content;
-  document.getElementById('aiImagePrompt').value = t.prompt;
-
-  generateAiImage();
+  generateAiImage(true);
   showToast('✨ Texto e Imagem sugeridos pela IA!');
 }
 
@@ -1204,7 +1166,7 @@ function renderAdminPostsList() {
   list.innerHTML = posts.map(p => `
     <div class="flex items-center justify-between p-3 rounded-xl bg-linen border border-nude text-xs">
       <div class="flex items-center gap-3">
-        <img src="${p.image}" alt="${p.title}" class="w-10 h-10 object-cover rounded-lg" />
+        <img src="${sanitizeUrl(p.image)}" alt="${p.title}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=75';" class="w-10 h-10 object-cover rounded-lg" />
         <div>
           <span class="font-bold block text-espresso truncate max-w-xs">${p.title}</span>
           <span class="text-muted text-[10px]">${p.category} • ${p.date}</span>
@@ -1296,7 +1258,7 @@ function renderAdminProductsList() {
   list.innerHTML = products.map(p => `
     <div class="flex items-center justify-between p-3 rounded-xl bg-linen border border-nude text-xs">
       <div class="flex items-center gap-3">
-        <img src="${p.image}" alt="${p.name}" class="w-10 h-10 object-cover rounded-lg" />
+        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=400&q=75';" class="w-10 h-10 object-cover rounded-lg" />
         <div>
           <span class="font-bold block text-espresso truncate max-w-xs">${p.name}</span>
           <span class="text-muted text-[10px]">R$ ${Number(p.price).toFixed(2)} • ${p.category}</span>
