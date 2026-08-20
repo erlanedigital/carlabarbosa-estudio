@@ -938,7 +938,7 @@ function buildFluxBeautyPrompt(promptText) {
   return `Award-winning luxury beauty portrait photography of ${promptText}. Elite high-end hair salon in Brazil, gorgeous hair transformation, silky soft shiny hair strands, elegant aesthetic lighting, Vogue magazine editorial portrait, shot on Canon EOS R5, 85mm f/1.2 lens, 8k resolution, natural skin textures, hyperrealistic masterpiece, crisp sharp focus, cinematic depth of field, no blur, no CGI, no cartoon`;
 }
 
-function generateAiImage() {
+function generateAiImage(forceNew = false) {
   const input = document.getElementById('aiImagePrompt');
   const userPrompt = (input && input.value ? input.value.trim() : '') || 'Cabelo loiro impecável com ondas de estúdio de luxo e brilho gloss';
   
@@ -953,10 +953,10 @@ function generateAiImage() {
   if (spinner) spinner.classList.remove('hidden');
   if (previewVideo) previewVideo.classList.add('hidden');
   if (btn) btn.disabled = true;
-  if (btnText) btnText.textContent = 'Renderizando Flux...';
+  if (btnText) btnText.textContent = forceNew ? 'Gerando Nova Opção...' : 'Renderizando Flux...';
 
   const fullPrompt = buildFluxBeautyPrompt(userPrompt);
-  const seed = Math.floor(Math.random() * 999999);
+  const seed = Math.floor(Math.random() * 9999999) + (forceNew ? Date.now() : 0);
   // Flux SOTA Model Engine
   const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1000&height=625&model=flux&nologo=true&seed=${seed}`;
 
@@ -975,8 +975,71 @@ function generateAiImage() {
     if (spinner) spinner.classList.add('hidden');
     if (btn) btn.disabled = false;
     if (btnText) btnText.textContent = 'Gerar Nova';
-    showToast(isFlux ? '✨ Imagem 8K renderizada com motor Flux IA!' : '✨ Fotografia de estúdio em alta definição pronta!');
+    showToast(isFlux ? (forceNew ? '✨ Nova variação 8K gerada pela IA!' : '✨ Imagem 8K renderizada com motor Flux IA!') : '✨ Fotografia de estúdio em alta definição pronta!');
   };
+
+  const timeoutId = setTimeout(() => {
+    finishGeneration(getRandomBeautyPhoto(), false);
+  }, 5000);
+
+  const imgLoader = new Image();
+  imgLoader.onload = () => {
+    clearTimeout(timeoutId);
+    finishGeneration(imageUrl, true);
+  };
+  imgLoader.onerror = () => {
+    clearTimeout(timeoutId);
+    finishGeneration(getRandomBeautyPhoto(), false);
+  };
+  imgLoader.src = imageUrl;
+}
+
+function generateArticleByCustomTopic() {
+  const topicInput = document.getElementById('aiCustomTopicInput');
+  const rawTopic = (topicInput && topicInput.value ? topicInput.value.trim() : '') || 'Segredos para Manter a Cor e o Brilho dos Cabelos Iluminados';
+
+  // Gerador Semântico de Beleza
+  const topicLower = rawTopic.toLowerCase();
+  let category = 'Dicas & Cuidados';
+  if (topicLower.includes('loiro') || topicLower.includes('mecha') || topicLower.includes('morena') || topicLower.includes('cor') || topicLower.includes('tonaliz')) {
+    category = 'Colorimetria & Loiros';
+  } else if (topicLower.includes('sobrancelha') || topicLower.includes('lash') || topicLower.includes('olhar') || topicLower.includes('cilios') || topicLower.includes('brow')) {
+    category = 'Design & Sobrancelhas';
+  } else if (topicLower.includes('unha') || topicLower.includes('gel') || topicLower.includes('nail') || topicLower.includes('esmalte')) {
+    category = 'Nails & Tendências';
+  } else if (topicLower.includes('terapia') || topicLower.includes('hidrata') || topicLower.includes('cronograma') || topicLower.includes('oleo') || topicLower.includes('reconstru')) {
+    category = 'Terapia Capilar';
+  }
+
+  const formattedTitle = rawTopic.length > 5 && rawTopic[0] === rawTopic[0].toUpperCase() 
+    ? rawTopic 
+    : rawTopic.charAt(0).toUpperCase() + rawTopic.slice(1);
+
+  const title = formattedTitle.includes(':') || formattedTitle.length > 35
+    ? formattedTitle
+    : `${formattedTitle}: Guia Completo e Cuidados de Estúdio`;
+
+  const excerpt = `Descubra as principais técnicas e recomendações de salão sobre ${rawTopic}, com dicas práticas para manter seus fios radiantes todos os dias.`;
+
+  const content = `Cuidar de ${rawTopic} exige uma rotina estruturada e o uso de produtos com formulações nobres que preservem a integridade da fibra e a saúde capilar.\n\n1. Diagnóstico e Personalização:\nCada cabelo e traço possui necessidades particulares. Antes de qualquer protocolo, avaliar o nível de porosidade e a elasticidade garante resultados muito mais duradouros e sofisticados.\n\n2. Manutenção Home Care de Alta Performance:\nPara prolongar o efeito de salão em casa, invista em protetores térmicos com filtro UV, óleos nutritivos e respeite o intervalo ideal de hidratações.\n\nNo Estúdio Carla Barbosa, cada atendimento é conduzido de forma exclusiva para realçar sua beleza autêntica com elegância e bem-estar.`;
+
+  const prompt = `Foto luxuosa de beleza de ${rawTopic}, mulher elegante com cabelo impecável em salão boutique de alto padrão`;
+
+  const titleEl = document.getElementById('postTitle');
+  const catEl = document.getElementById('postCategory');
+  const excEl = document.getElementById('postExcerpt');
+  const contEl = document.getElementById('postContent');
+  const promptEl = document.getElementById('aiImagePrompt');
+
+  if (titleEl) titleEl.value = title;
+  if (catEl) catEl.value = category;
+  if (excEl) excEl.value = excerpt;
+  if (contEl) contEl.value = content;
+  if (promptEl) promptEl.value = prompt;
+
+  generateAiImage(true);
+  showToast('✨ Post completo e foto 8K gerados com sucesso pela IA!');
+}
 
   const timeoutId = setTimeout(() => {
     finishGeneration(getRandomBeautyPhoto(), false);

@@ -878,8 +878,26 @@
               </h4>
               <button type="button" onclick="suggestAiContent()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gold/20 hover:bg-gold/30 text-espresso text-[11px] font-bold transition">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta"></i>
-                <span>Gerar Texto com IA</span>
+                <span>Sugestão de Pacote Pronto</span>
               </button>
+            </div>
+
+            <!-- GERADOR INTELIGENTE POR QUALQUER ASSUNTO LIVRE -->
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-terracotta/10 via-gold/15 to-transparent border border-gold/40 space-y-2.5 shadow-sm">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span class="text-xs font-bold text-espresso uppercase flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-terracotta"></i>
+                  <span>Criar Post com IA por Qualquer Tema Livre:</span>
+                </span>
+                <span class="text-[10px] text-muted font-medium">Escreva qualquer assunto que a IA redige o texto completo e gera a foto 8K</span>
+              </div>
+              <div class="flex gap-2">
+                <input type="text" id="aiCustomTopicInput" placeholder="Ex: Cuidados Pós-Mechas, Cronograma para Cabelos Secos, Brow Lamination..." class="flex-1 px-3 py-2.5 rounded-xl border border-gold/40 bg-white text-xs outline-none focus:border-terracotta shadow-inner" />
+                <button type="button" onclick="generateArticleByCustomTopic()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold text-xs uppercase tracking-wider transition flex items-center gap-1.5 shadow-md shadow-terracotta/20">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-gold-light"></i>
+                  <span>Gerar Post & Foto</span>
+                </button>
+              </div>
             </div>
 
             <!-- COMPONENTE UNIVERSAL DE MÍDIA (DISPOSITIVO, DRIVE, NUVEM E IA) -->
@@ -919,7 +937,7 @@
                     <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta"></i> Gerar Foto com IA
                   </span>
                   <div class="flex gap-1">
-                    <input type="text" id="aiImagePrompt" placeholder="Tema de beleza HD..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
+                    <input type="text" id="aiImagePrompt" placeholder="Tema livre ou descrição..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
                     <button type="button" onclick="generateAiImage()" id="btnGenerateAi" class="px-3 py-1.5 rounded-lg bg-espresso hover:bg-terracotta text-white font-bold text-[10px] uppercase tracking-wider transition">
                       <span id="btnGenerateAiText">Gerar</span>
                     </button>
@@ -936,7 +954,7 @@
                 <button type="button" onclick="setAiPrompt('Unhas elegantes com esmaltação em gel nude brilhante e detalhes dourados sofisticados')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">💅 Nails em Gel</button>
               </div>
 
-              <!-- Preview da Mídia Selecionada (Imagem ou Vídeo) -->
+              <!-- Preview da Mídia Selecionada (Imagem ou Vídeo) + Botão de Regeneração -->
               <div id="mediaPreviewBox" class="hidden pt-3 border-t border-gold/20 flex flex-col sm:flex-row items-center gap-4">
                 <div class="relative w-48 aspect-[16/10] rounded-xl overflow-hidden bg-white border border-gold/30 flex-shrink-0 flex items-center justify-center">
                   <img id="mediaPreviewImg" src="" alt="Prévia da Mídia" class="w-full h-full object-cover hidden" />
@@ -945,9 +963,15 @@
                     <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-gold"></i>
                   </div>
                 </div>
-                <div class="flex-1 space-y-1 text-left">
+                <div class="flex-1 space-y-2 text-left">
                   <span id="mediaPreviewStatus" class="text-xs font-bold text-espresso block">Mídia Pronta para Publicação!</span>
                   <p id="mediaPreviewInfo" class="text-[10px] text-muted">A imagem/vídeo será exibida em alta resolução no post.</p>
+                  <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="generateAiImage(true)" class="px-3 py-1.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold text-[11px] uppercase tracking-wider transition flex items-center gap-1 shadow-sm">
+                      <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                      <span>Não gostou? Gerar Outra Opção</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
