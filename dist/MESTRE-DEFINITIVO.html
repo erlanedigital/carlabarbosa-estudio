@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador & Central do Prompt Mestre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0B4F6C',
+            'brand-dark': '#073346',
+            'brand-surface': '#E8F1F5',
+            gold: '#D4AF37',
+            accent: '#06B6D4'
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-heading { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen py-10 px-4 sm:px-6">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-emerald-600 text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 font-bold text-sm border border-emerald-400/30">
+      <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-200"></i>
+      <span id="toastMsg">Copiado com sucesso!</span>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- Cabeçalho -->
+    <header class="text-center space-y-3 pb-6 border-b border-slate-800">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/30 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+        <i data-lucide="shield-check" class="w-4 h-4"></i> Padrão Ouro de Criação de Sites
+      </div>
+      <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Central do Prompt Mestre
+      </h1>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto">
+        Gere e copie com 1 clique o prompt completo para criar sites blindados, com segurança bancária, sem repetição de fotos e com zero alucinações.
+      </p>
+      
+      <!-- Selo de Proteção Cumulativa Permanente -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold max-w-2xl mx-auto mt-2">
+        <i data-lucide="lock" class="w-4 h-4 text-amber-400 flex-shrink-0"></i>
+        <span><strong>Documento Blindado:</strong> Regra permanente de persistência cumulativa ativa — nenhuma regra anterior pode ser apagada ou alterada, somente novas regras podem ser somadas.</span>
+      </div>
+    </header>
+
+    <!-- Formulário Rápido de Preenchimento -->
+    <section class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-2xl space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="sparkles" class="w-5 h-5 text-cyan-400"></i>
+          <h2 class="font-heading text-lg font-bold text-white uppercase">Dados do Novo Projeto</h2>
+        </div>
+        <span class="text-xs text-slate-400 font-medium">Preenchimento Opcional</span>
+      </div>
+
+      <!-- SELEÇÃO RÁPIDA DE NICHO -->
+      <div class="space-y-2">
+        <label class="block font-bold text-slate-300 uppercase text-[11px]">Selecione o Nicho de Referência:</label>
+        <div class="grid sm:grid-cols-2 gap-2.5">
+          <button type="button" onclick="loadNiche('estudio')" id="btnNicheEstudio" class="p-3 rounded-2xl bg-slate-900 border border-slate-700 hover:border-amber-500/50 flex items-center gap-3 text-left transition group">
+            <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+              <i data-lucide="scissors" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="font-bold text-white text-xs block">Nicho: Salão, Estúdio & Luxo</span>
+              <span class="text-[10px] text-slate-400">Design de luxo, Quiz de beleza, Sacola e Catálogo</span>
+            </div>
+          </button>
+
+          <button type="button" onclick="loadNiche('laboratorio')" id="btnNicheLab" class="p-3 rounded-2xl bg-slate-900 border border-slate-700 hover:border-cyan-500/50 flex items-center gap-3 text-left transition group">
+            <div class="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+              <i data-lucide="microscope" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="font-bold text-white text-xs block">Nicho: Laboratório & Diagnóstico</span>
+              <span class="text-[10px] text-slate-400">Azul Petróleo, Check-ups, Preparos e SBPC/ML</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5 uppercase">Nome do Estabelecimento / Empresa *</label>
+          <input type="text" id="clientName" placeholder="Ex: Studio Bella / Clínica Saúde Plena" oninput="updatePromptPreview()" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none text-white transition placeholder-slate-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5 uppercase">Instagram Oficial (@)</label>
+          <input type="text" id="clientInstagram" placeholder="Ex: @studiobellamoc" oninput="updatePromptPreview()" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none text-white transition placeholder-slate-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5 uppercase">Cidade e Estado (Opcional)</label>
+          <input type="text" id="clientCity" placeholder="Ex: São Paulo - SP (ou deixe a IA buscar)" oninput="updatePromptPreview()" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none text-white transition placeholder-slate-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5 uppercase">WhatsApp Oficial (Opcional)</label>
+          <input type="text" id="clientPhone" placeholder="Ex: (11) 99999-9999 (ou deixe a IA buscar)" oninput="updatePromptPreview()" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none text-white transition placeholder-slate-500" />
+        </div>
+      </div>
+
+      <!-- BOTÕES PRINCIPAIS DE CÓPIA -->
+      <div class="pt-4 flex flex-col sm:flex-row gap-3">
+        <button onclick="copyFilledPrompt()" class="flex-1 px-6 py-4 rounded-2xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold uppercase tracking-wider text-xs shadow-lg shadow-cyan-600/30 flex items-center justify-center gap-2 transition-all transform active:scale-98">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copiar Prompt Mestre Preenchido</span>
+        </button>
+        <button onclick="copyTemplatePrompt()" class="px-6 py-4 rounded-2xl bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 transition-all">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Copiar Modelo em Branco</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Visualizador do Prompt -->
+    <section class="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase">
+          <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+          <span>Texto Completo do Prompt (Pronto para Colar)</span>
+        </div>
+        <button onclick="copyFilledPrompt()" class="text-xs text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Texto
+        </button>
+      </div>
+
+      <pre id="promptDisplay" class="text-xs text-slate-300 whitespace-pre-wrap font-mono leading-relaxed bg-slate-900/90 p-5 rounded-2xl border border-slate-800 overflow-x-auto max-h-96"></pre>
+    </section>
+
+    <!-- Botões de Cópia dos Snippets Técnicos -->
+    <section class="grid sm:grid-cols-2 gap-4">
+      <!-- Snippet _headers -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 flex flex-col justify-between space-y-3">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold text-white uppercase mb-1">
+            <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
+            <span>Arquivo _headers (Segurança Cloudflare)</span>
+          </div>
+          <p class="text-[11px] text-slate-400">HSTS forçado, CSP, X-Frame-Options DENY e nosniff.</p>
+        </div>
+        <button onclick="copyHeadersSnippet()" class="w-full px-4 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center justify-center gap-2 transition">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Código _headers
+        </button>
+      </div>
+
+      <!-- Snippet package.json -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 flex flex-col justify-between space-y-3">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold text-white uppercase mb-1">
+            <i data-lucide="package" class="w-4 h-4 text-amber-400"></i>
+            <span>Arquivo package.json (Build Automático)</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Script de sincronização automática com a pasta dist/.</p>
+        </div>
+        <button onclick="copyPackageJsonSnippet()" class="w-full px-4 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center justify-center gap-2 transition">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar package.json
+        </button>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="text-center text-xs text-slate-500 pt-4 pb-8">
+      Padrão Mestre de Criação de Sites • Homologado e Gravado no Sistema
+    </footer>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    let currentNicheType = 'geral';
+
+    function loadNiche(type) {
+      currentNicheType = type;
+      const btnEstudio = document.getElementById('btnNicheEstudio');
+      const btnLab = document.getElementById('btnNicheLab');
+
+      if (type === 'estudio') {
+        btnEstudio.classList.add('border-amber-500', 'bg-amber-500/10');
+        btnLab.classList.remove('border-cyan-500', 'bg-cyan-500/10');
+        showToast('✨ Nicho Salão & Estúdio de Luxo selecionado!');
+      } else if (type === 'laboratorio') {
+        btnLab.classList.add('border-cyan-500', 'bg-cyan-500/10');
+        btnEstudio.classList.remove('border-amber-500', 'bg-amber-500/10');
+        showToast('🔬 Nicho Laboratório & Diagnóstico selecionado!');
+      }
+      updatePromptPreview();
+    }
+
+    function getBasePrompt(name, instagram, city, phone) {
+      const pName = name || '[INSERIR NOME DO ESTABELECIMENTO / EMPRESA]';
+      const pInsta = instagram || '[INSERIR @ OU LINK DO INSTAGRAM]';
+      const pCity = city || '[CIDADE / ESTADO OU DEIXE PARA A IA BUSCAR NA WEB]';
+      const pPhone = phone || '[WHATSAPP OFICIAL OU DEIXE PARA A IA BUSCAR NA WEB]';
+
+      let nicheGuidance = '';
+      if (currentNicheType === 'estudio') {
+        nicheGuidance = `
+[DIRETRIZES DO NICHO: SALÃO, ESTÚDIO & COSMÉTICOS DE LUXO]
+- Estética Editorial de Luxo (Off-White/Linen #FAF7F2, Nude/Terracotta #C27D60, Dourado Champagne #D4AF37 e Espresso #2C221E);
+- Tipografia Cormorant Garamond (títulos) + Plus Jakarta Sans (corpo);
+- Seção de Serviços de Cabine com agendamento via WhatsApp;
+- Catálogo de Cosméticos & Rituais Home Care com filtros, modal Quick View e preços parcelados em até 6x;
+- Diagnóstico Interativo (Quiz de Beleza em 30 segundos) que recomenda o tratamento ideal;
+- Sacola Lateral (Drawer Cart) com barra de frete grátis, 5% de desconto no PIX e checkout seguro.`;
+      } else if (currentNicheType === 'laboratorio') {
+        nicheGuidance = `
+[DIRETRIZES DO NICHO: LABORATÓRIO, CLÍNICA & DIAGNÓSTICO]
+- Estética masculina e tecnológica em Azul Petróleo (#0B4F6C), Navy (#0A2540) e Slate;
+- Tipografia Outfit + Plus Jakarta Sans;
+- Painel de Check-ups Preventivos com instruções de preparo e jejum;
+- Sem checkout de e-commerce: agendamento e orçamentos direcionados ao WhatsApp oficial;
+- Artigos e preparos estritamente fundamentados em diretrizes SBPC/ML, SBC e CFM.`;
+      }
+
+      return `Você é um desenvolvedor web especialista em criar Single-Page Applications (SPAs) modernas, ultrarrápidas, responsivas e de altíssimo padrão visual, além de gerenciar a criação do repositório no GitHub e a publicação contínua na Cloudflare.
+
+Crie um site completo para o cliente abaixo seguindo OBRIGATORIAMENTE todas as diretrizes do nosso PADRÃO MESTRE:
+
+[DADOS DO CLIENTE]
+- Nome do Estabelecimento / Empresa: ${pName}
+- Instagram Oficial (@): ${pInsta}
+- Cidade / Localização: ${pCity}
+- WhatsApp / Contato Oficial: ${pPhone}
+${nicheGuidance}
+
+[REGRAS FUNDAMENTAIS E INVIOLÁVEIS]
+1. NUNCA INVENTE DADOS: Faça uma busca profunda na internet e no perfil do Instagram oficial informado para coletar todos os dados reais (endereço, telefone, CNPJ, responsável técnico, serviços/produtos reais, história e diferenciais). Zero alucinações. Nunca injete nomes de outros clientes anteriores.
+2. EMBASAMENTO FACTUAL E TÉCNICO: Todos os textos institucionais, artigos e dicas devem ser fundamentados em fontes oficiais e órgãos reguladores consolidados do nicho.
+3. PROIBIÇÃO ABSOLUTA DE REPETIR FOTOS: NUNCA use a mesma foto duas vezes no site. Cada card, serviço, post, modal e banner deve ter uma fotografia única, distinta e em alta definição (HD/4K/8K).
+4. BLINDAGEM DO LAYOUT: As publicações feitas pelo Admin NUNCA podem alterar a estrutura visual, grid ou CSS do site, apenas os dados de texto e fotos.
+5. SEGURANÇA BANCÁRIA & LGPD: Crie o arquivo _headers com HSTS (max-age=63072000), CSP, X-Frame-Options: DENY, X-Content-Type-Options: nosniff e sanitização universal contra XSS (escapeHTML e sanitizeUrl).
+6. SEO & SCHEMA.ORG: Configure metatags Open Graph completas e microdados estruturados JSON-LD Schema.org com os dados reais para indexação prioritária no Google Maps e Busca.
+7. PAINEL ADMIN BLINDADO:
+   - Botão Admin discreto no topo ou rodapé;
+   - Bloqueio anti-força bruta de 15 minutos após 5 erros de senha;
+   - Aba no painel para o cliente alterar a senha quando quiser;
+   - Modal de recuperação de acesso seguro (Esqueci a Senha);
+   - Botão de logout com limpeza de sessão.
+8. SISTEMA UNIVERSAL DE MÍDIA NO ADMIN:
+   - Upload de fotos e vídeos direto do dispositivo (celular/PC via FileReader com preview);
+   - Suporte para links do Google Drive, Dropbox e URLs externas com conversor automático;
+   - Gerador de imagens com IA em alta resolução (8K) com botões de temas contextuais rápidos;
+   - Reprodutor de vídeo interativo (<video controls>) para posts e destaques em vídeo.
+9. DESIGN, UX & WHATSAPP INTELIGENTE:
+   - Títulos (H1, H2, H3), subtítulos e botões principais de agendamento/contato CENTRALIZADOS;
+   - Menus diretos com apenas o nome da empresa ou profissional;
+   - Botão de WhatsApp que abre direto com mensagem contextualizada;
+   - Endereço clicável que abre no GPS (Google Maps/Waze) e telefone com link tel:+55;
+   - Carregamento instantâneo em HTML5, Tailwind CSS e Vanilla JS puro.
+10. ADAPTAÇÃO RESPONSIVA FLUIDA:
+   - Nunca confinar o layout em colunas estreitas; usar max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 com adaptação perfeita de mobile a monitores 4K/Ultrawide.
+11. HIERARQUIA TIPOGRÁFICA ÁUREA:
+   - Proibição de textos minúsculos ilegíveis; usar escala harmônica de H1 (text-4xl a text-7xl), H2 (text-3xl a text-5xl), H3 (text-xl a text-2xl) e corpo de texto relaxado (text-sm a text-base leading-relaxed).
+12. HARMONIA TOTAL DE DESIGN SYSTEM:
+   - Fontes, tamanhos, cores (Branco, Acentos Nobres, Cinzas Executivos) e espaçamentos verticais (py-20 lg:py-28) estritamente harmônicos entre si em todas as seções do site.
+13. CLÁUSULA PÉTREA DE NAVEGAÇÃO ESCRITA:
+   - O menu com todos os links textuais escritos das seções é incondicional e obrigatório no cabeçalho fixo;
+   - Todos os manipuladores de clique e eventos devem ser imutáveis e preservados em re-renderizações dinâmicas no DOM.
+14. MODO 'REVIEW-ONLY' & IMUTABILIDADE PÓS-APROVAÇÃO:
+   - Bloqueie o escopo do código e componentes aprovados, proibindo qualquer alteração sem autorização manual explícita.
+15. DESEMPENHO, SEGURANÇA BANCÁRIA, UX & BACKUPS CONSTANTES:
+   - Foque no desempenho, segurança e na experiência do usuário em todos os sites construídos.
+16. REPOSITÓRIO GITHUB & DEPLOY CLOUDFLARE AUTOMÁTICO:
+   - Gere index.html, styles.css, script.js, favicon.svg, _headers, _redirects, wrangler.jsonc, package.json e compile em dist/;
+   - Envie via git push origin main para o repositório GitHub para publicação automática na Cloudflare Pages.
+17. COMPRESSÃO WEBP AUTOMÁTICA, LAZY LOADING & CACHE ACELERADO CDN CLOUDFLARE:
+   - Compressão WebP automática, lazy loading (loading="lazy" decoding="async") e cache de borda de longa duração no _headers.
+18. LIBERDADE TOTAL DE TEMAS NA IA DO ADMIN, SINCRONIZAÇÃO COM O TÍTULO & REGENERAÇÃO DE IMAGENS (FLUX SOTA 8K):
+   - O painel administrativo de todos os sites deve permitir que o administrador digite QUALQUER TEMA OU ASSUNTO LIVRE para gerar artigos, dicas e fotos completos com IA, além de disponibilizar sugestões de pacotes prontos do nicho;
+   - Sincronização Inteligente em Tempo Real com o Título: A IA de geração de fotos deve ler diretamente o Título do Artigo (postTitle), sincronizando o prompt automaticamente caso o usuário não tenha digitado uma descrição manual, garantindo que a foto gerada ilustre exatamente o tema do artigo publicado;
+   - O sistema deve enriquecer automaticamente todo prompt digitado pelo usuário ou extraído do título com engenharia de prompt semântica de alto padrão (iluminação profissional, foco nítido, 8K ultra realista, sem cartoon, sem CGI, sem desfoque);
+   - O painel deve disponibilizar botão de 1 clique para 'Gerar Outra Opção / Nova Imagem' caso a primeira não agrade ao usuário, gerando uma nova variação em 8K com nova seed instantaneamente.
+19. BLINDAGEM TOTAL DE IMAGENS E MÍDIAS (ZERO IMAGENS QUEBRADAS & REGRAS UNIVERSAIS PARA 100% DAS FOTOS E VÍDEOS):
+   - Todas as fotos e vídeos gerados por IA, enviados do dispositivo, links da nuvem ou estáticos DEVEM OBRIGATORIAMENTE seguir as regras completas de mídia em 100% dos sites:
+   - 1. Lazy Loading & Async Decoding: Aplicar loading="lazy" e decoding="async" em 100% das tags <img> e pre-load controlado em <video>;
+   - 2. Manipulador Onerror Universal: Inserir onerror="this.onerror=null; this.src='[FALLBACK_HD]';" em todas as tags <img> (HTML estático, feeds do blog, catálogo, modais de leitura e previews do painel admin), impedindo que qualquer imagem de IA ou externa fique em branco ou quebrada;
+   - 3. Sanitização Segura: Todas as URLs de imagem devem passar por sanitizeUrl() com isolamento de URL base via split('?')[0], sem regex destrutiva;
+   - 4. Auto-Cura no localStorage: Rotinas de inicialização devem restaurar e corrigir automaticamente URLs corrompidas no cache do navegador;
+   - 5. Permissividade Total de CSP: O arquivo _headers deve conter Content-Security-Policy com img-src 'self' https: data: blob:; connect-src 'self' https: data: blob:; e media-src 'self' https: data: blob:;, permitindo carregamento irrestrito de qualquer endpoint de IA ou CDN.
+
+20. GERAÇÃO OBRIGATÓRIA DE FOTOS E VÍDEOS 100% INÉDITOS POR IA EM TODOS OS SITES (ZERO REPETIÇÃO & ASSETS EXCLUSIVOS):
+   - Mandato de Mídia Inédita: É terminantemente proibido utilizar fotos de banco genéricas repetidas ou reutilizar as mesmas fotos entre diferentes sites ou seções. Todo e qualquer novo site construído deve ter 100% das suas fotos e vídeos gerados de forma exclusiva e inédita por Inteligência Artificial de ponta (Flux / SOTA 8K / Midjourney-style);
+   - Engenharia de Prompts Contextuais Exclusivos: Cada elemento visual (Hero banner, cards de serviços, produtos do catálogo, destaques de blog, modais, fundo e galerias) deve possuir um prompt fotográfico específico com semente única (seed aleatória), iluminação cinematográfica, foco nítido, textura realista de pele/produtos e proporções adequadas (16:9 para banners, 4:3 para cards, 1:1 para produtos/instagram e 9:16 para reels/stories);
+   - Suporte Completo a Vídeos Inéditos por IA: Sempre que houver demonstrações dinâmicas, bastidores ou destaques em vídeo, integrar mídias geradas por IA em formato MP4/WebM com reprodução fluida (<video controls autoplay loop muted playsinline>);
+   - Blindagem e Cache Automático: Todas as mídias inéditas geradas por IA devem ser integradas respeitando as regras de lazy loading (loading="lazy" decoding="async"), manipulador onerror de auto-recuperação, sanitização e permissões totais no cabeçalho CSP do arquivo _headers.`;
+    }
+
+    function updatePromptPreview() {
+      const name = document.getElementById('clientName').value.trim();
+      const instagram = document.getElementById('clientInstagram').value.trim();
+      const city = document.getElementById('clientCity').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+
+      document.getElementById('promptDisplay').textContent = getBasePrompt(name, instagram, city, phone);
+    }
+
+    function copyToClipboard(text, message) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message || '✓ Copiado para a área de transferência!');
+      }).catch(err => {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(message || '✓ Copiado com sucesso!');
+      });
+    }
+
+    function copyFilledPrompt() {
+      const name = document.getElementById('clientName').value.trim();
+      const instagram = document.getElementById('clientInstagram').value.trim();
+      const city = document.getElementById('clientCity').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      copyToClipboard(getBasePrompt(name, instagram, city, phone), '✓ Prompt Mestre copiado com sucesso!');
+    }
+
+    function copyTemplatePrompt() {
+      copyToClipboard(getBasePrompt('', '', '', ''), '✓ Modelo em branco copiado!');
+    }
+
+    function copyHeadersSnippet() {
+      const headersContent = `/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:; font-src 'self' https: data:;`;
+      copyToClipboard(headersContent, '✓ Código do arquivo _headers copiado!');
+    }
+
+    function copyPackageJsonSnippet() {
+      const pkgContent = `{
+  "name": "projeto-site",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node -e \\"const fs=require('fs'); if(!fs.existsSync('dist')) fs.mkdirSync('dist'); ['index.html','styles.css','script.js','favicon.svg','_headers','_redirects'].forEach(f => { if(fs.existsSync(f)) fs.copyFileSync(f, 'dist/' + f); });\\""
+  }
+}`;
+      copyToClipboard(pkgContent, '✓ Código do package.json copiado!');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    // Inicializar visualizador
+    updatePromptPreview();
+  </script>
+</body>
+</html>
