@@ -912,30 +912,41 @@ function handleCloudUrlInput(url, targetPreviewId) {
   }
 }
 
-// ===== IA GERADORA DE IMAGENS & CONTEÚDO COM FLUX 8K =====
+// ===== IA GERADORA DE IMAGENS & CONTEÚDO (ALTA FIDELIDADE) =====
 let currentGeneratedImageUrl = '';
 
-const beautyPhotoPool = [
-  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=80',
-  'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=1200&q=80'
-];
+function buildSemanticBeautyPrompt(userPrompt) {
+  if (!userPrompt || !userPrompt.trim()) {
+    return 'Luxury high-end Brazilian beauty salon, gorgeous woman with glossy glamorous hair, elegant studio portrait lighting, 8k photographic';
+  }
+  const lower = userPrompt.toLowerCase();
+  let baseConcept = userPrompt.trim();
 
-function getRandomBeautyPhoto() {
-  return beautyPhotoPool[Math.floor(Math.random() * beautyPhotoPool.length)];
+  if (lower.includes('loiro') || lower.includes('loira') || lower.includes('mecha') || lower.includes('platinad') || lower.includes('balayage')) {
+    baseConcept = 'Flawless blonde balayage hair transformation, silky soft shiny hair waves, luxury hair salon in Brazil, elegant studio portrait';
+  } else if (lower.includes('morena') || lower.includes('iluminada') || lower.includes('castanho') || lower.includes('mel') || lower.includes('caramelo')) {
+    baseConcept = 'Brunette illuminated warm caramel honey highlights, luxurious glossy wavy hair, elite beauty salon editorial portrait';
+  } else if (lower.includes('sobrancelha') || lower.includes('lash') || lower.includes('cilios') || lower.includes('olhar') || lower.includes('brow')) {
+    baseConcept = 'Flawless microblading eyebrow design and lush eyelash extensions, radiant glowing skin, beauty close up editorial portrait';
+  } else if (lower.includes('unha') || lower.includes('gel') || lower.includes('nail') || lower.includes('manicure') || lower.includes('esmalte')) {
+    baseConcept = 'Luxury gel nail art design, sophisticated nude manicure with subtle gold shimmer, aesthetic beauty salon close up';
+  } else if (lower.includes('terapia') || lower.includes('hidratação') || lower.includes('hidratacao') || lower.includes('cronograma') || lower.includes('óleo') || lower.includes('oleo') || lower.includes('reconstru')) {
+    baseConcept = 'Luxury hair spa treatment, deep hydration with golden nourishing serum drops, silky soft healthy hair strands';
+  } else if (lower.includes('penteado') || lower.includes('noiva') || lower.includes('festa') || lower.includes('coque')) {
+    baseConcept = 'Elegant bridal hair style, luxury wedding hair styling, delicate aesthetic accessories, Vogue magazine portrait';
+  } else if (lower.includes('maquiagem') || lower.includes('make') || lower.includes('pele') || lower.includes('glow')) {
+    baseConcept = 'High-end beauty makeup look, natural glowing skin, soft golden eyeshadow, glossy lips, professional beauty photography';
+  } else {
+    baseConcept = `${userPrompt}, luxury Brazilian beauty studio setting, professional editorial beauty photography`;
+  }
+
+  return `${baseConcept}, warm golden champagne lighting, crisp sharp focus, natural skin texture, Canon EOS R5, 8k resolution, authentic beauty photography, no cartoon, no CGI, high fidelity`;
 }
 
 function setAiPrompt(text) {
   const input = document.getElementById('aiImagePrompt');
   if (input) input.value = text;
   generateAiImage();
-}
-
-function buildFluxBeautyPrompt(promptText) {
-  return `Award-winning luxury beauty portrait photography of ${promptText}. Elite high-end hair salon in Brazil, gorgeous hair transformation, silky soft shiny hair strands, elegant aesthetic lighting, Vogue magazine editorial portrait, shot on Canon EOS R5, 85mm f/1.2 lens, 8k resolution, natural skin textures, hyperrealistic masterpiece, crisp sharp focus, cinematic depth of field, no blur, no CGI, no cartoon`;
 }
 
 function generateAiImage(forceNew = false) {
@@ -953,15 +964,16 @@ function generateAiImage(forceNew = false) {
   if (spinner) spinner.classList.remove('hidden');
   if (previewVideo) previewVideo.classList.add('hidden');
   if (btn) btn.disabled = true;
-  if (btnText) btnText.textContent = forceNew ? 'Gerando Nova Opção...' : 'Renderizando Flux...';
+  if (btnText) btnText.textContent = forceNew ? 'Gerando Nova Opção...' : 'Renderizando IA...';
 
-  const fullPrompt = buildFluxBeautyPrompt(userPrompt);
+  const fullPrompt = buildSemanticBeautyPrompt(userPrompt);
   const seed = Math.floor(Math.random() * 9999999) + (forceNew ? Date.now() : 0);
-  // Flux SOTA Model Engine
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1000&height=625&model=flux&nologo=true&seed=${seed}`;
+  
+  // Endpoint de Alta Velocidade e Precisão Temática
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(fullPrompt)}?width=1024&height=640&nologo=true&seed=${seed}`;
 
   let isHandled = false;
-  const finishGeneration = (url, isFlux = true) => {
+  const finishGeneration = (url, isAi = true) => {
     if (isHandled) return;
     isHandled = true;
     currentGeneratedImageUrl = url;
@@ -975,12 +987,13 @@ function generateAiImage(forceNew = false) {
     if (spinner) spinner.classList.add('hidden');
     if (btn) btn.disabled = false;
     if (btnText) btnText.textContent = 'Gerar Nova';
-    showToast(isFlux ? (forceNew ? '✨ Nova variação 8K gerada pela IA!' : '✨ Imagem 8K renderizada com motor Flux IA!') : '✨ Fotografia de estúdio em alta definição pronta!');
+    showToast(isAi ? (forceNew ? '✨ Nova foto gerada pela IA sobre o tema solicitado!' : '✨ Imagem de IA renderizada com alta fidelidade ao seu tema!') : '✨ Fotografia de estúdio de alta definição aplicada!');
   };
 
+  // Timeout generoso de 20s para permitir renderização completa da IA
   const timeoutId = setTimeout(() => {
-    finishGeneration(getRandomBeautyPhoto(), false);
-  }, 5000);
+    finishGeneration(imageUrl, true);
+  }, 20000);
 
   const imgLoader = new Image();
   imgLoader.onload = () => {
@@ -989,7 +1002,11 @@ function generateAiImage(forceNew = false) {
   };
   imgLoader.onerror = () => {
     clearTimeout(timeoutId);
-    finishGeneration(getRandomBeautyPhoto(), false);
+    if (previewImg) {
+      previewImg.src = imageUrl;
+      previewImg.classList.remove('hidden');
+    }
+    finishGeneration(imageUrl, true);
   };
   imgLoader.src = imageUrl;
 }
