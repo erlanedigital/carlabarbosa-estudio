@@ -912,8 +912,15 @@ function handleCloudUrlInput(url, targetPreviewId) {
   }
 }
 
-// ===== IA GERADORA DE IMAGENS & CONTEÚDO (ALTA FIDELIDADE) =====
+// ===== IA GERADORA DE IMAGENS & CONTEÚDO SINCRONIZADA COM O TÍTULO =====
 let currentGeneratedImageUrl = '';
+
+function syncPostTitleWithAi(title) {
+  const promptInput = document.getElementById('aiImagePrompt');
+  if (promptInput && !promptInput.dataset.userEdited) {
+    promptInput.value = title || '';
+  }
+}
 
 function buildSemanticBeautyPrompt(userPrompt) {
   if (!userPrompt || !userPrompt.trim()) {
@@ -943,15 +950,24 @@ function buildSemanticBeautyPrompt(userPrompt) {
   return `${baseConcept}, warm golden champagne lighting, crisp sharp focus, natural skin texture, Canon EOS R5, 8k resolution, authentic beauty photography, no cartoon, no CGI, high fidelity`;
 }
 
-function setAiPrompt(text) {
-  const input = document.getElementById('aiImagePrompt');
-  if (input) input.value = text;
-  generateAiImage();
-}
-
 function generateAiImage(forceNew = false) {
-  const input = document.getElementById('aiImagePrompt');
-  const userPrompt = (input && input.value ? input.value.trim() : '') || 'Cabelo loiro impecável com ondas de estúdio de luxo e brilho gloss';
+  const promptInput = document.getElementById('aiImagePrompt');
+  const titleInput = document.getElementById('postTitle');
+  const customTopicInput = document.getElementById('aiCustomTopicInput');
+
+  // Sincronização direta com o Título do Artigo
+  let userPrompt = (promptInput && promptInput.value ? promptInput.value.trim() : '');
+  if (!userPrompt && titleInput && titleInput.value.trim()) {
+    userPrompt = titleInput.value.trim();
+    if (promptInput) promptInput.value = userPrompt;
+  }
+  if (!userPrompt && customTopicInput && customTopicInput.value.trim()) {
+    userPrompt = customTopicInput.value.trim();
+    if (promptInput) promptInput.value = userPrompt;
+  }
+  if (!userPrompt) {
+    userPrompt = 'Cabelo loiro impecável com ondas de estúdio de luxo e brilho gloss';
+  }
   
   const previewBox = document.getElementById('mediaPreviewBox');
   const previewImg = document.getElementById('mediaPreviewImg');

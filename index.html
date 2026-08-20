@@ -981,7 +981,7 @@
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block font-bold mb-1 uppercase">Título do Post *</label>
-                  <input type="text" id="postTitle" required placeholder="Ex: 5 Dicas para Cuidar do Cabelo Loiro" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                  <input type="text" id="postTitle" oninput="syncPostTitleWithAi(this.value)" required placeholder="Ex: 5 Dicas para Cuidar do Cabelo Loiro" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
                 </div>
                 <div>
                   <label class="block font-bold mb-1 uppercase">Categoria *</label>
