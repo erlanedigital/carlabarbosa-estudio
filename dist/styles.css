@@ -150,7 +150,7 @@ html.lenis, html.lenis body {
   box-shadow: inset 0 0 90px rgba(238, 117, 143, 0.22), 0 30px 60px -15px rgba(163, 88, 67, 0.12);
 }
 
-/* Vinheta cinematográfica aveludada em fundo bordô nobre */
+/* Vinheta cinematográfica aveludada em fundo bordô nobre (Vinho / Burgundy Real) */
 .cinematic-vignette-bordo {
-  box-shadow: inset 0 0 110px rgba(18, 2, 5, 0.88), 0 30px 60px -15px rgba(43, 5, 11, 0.6);
+  box-shadow: inset 0 0 120px rgba(35, 3, 10, 0.92), 0 30px 60px -15px rgba(74, 7, 20, 0.7);
 }
