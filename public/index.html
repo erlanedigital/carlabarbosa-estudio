@@ -16,7 +16,7 @@
   <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -26,6 +26,13 @@
       theme: {
         extend: {
           colors: {
+            cinema: {
+              black: '#0c0d0e',
+              surface: '#151719',
+              accent: '#d4af37',
+              muted: '#8e9297',
+              border: '#22252a'
+            },
             linen: '#FBF9F6',
             'linen-dark': '#F4EFEA',
             nude: '#EFE9E1',
@@ -101,6 +108,9 @@
   </script>
 </head>
 <body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
+  <!-- Camada de Granulação Analógica 35mm Cinematográfica -->
+  <div class="film-grain"></div>
+
 
   <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
   <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
@@ -140,7 +150,6 @@
       <!-- CENTRO DA BARRA: Links de Navegação Desktop (Harmonia e Espaçamento Nobre) -->
       <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-espresso/80">
         <a href="#servicos" class="hover:text-terracotta transition-colors py-2">Serviços</a>
-        <a href="#antes-depois" class="hover:text-terracotta transition-colors py-2 text-terracotta font-bold">Antes & Depois</a>
         <a href="#catalogo" class="hover:text-terracotta transition-colors py-2">Catálogo</a>
         <a href="#quiz" class="hover:text-terracotta transition-colors py-2">Diagnóstico</a>
         <a href="#posts" class="hover:text-terracotta transition-colors py-2">Dicas & Blog</a>
@@ -166,7 +175,6 @@
     <!-- Menu Lateral Mobile -->
     <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-3">
       <a href="#servicos" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Serviços do Estúdio</a>
-      <a href="#antes-depois" class="block text-sm font-semibold uppercase tracking-wider text-terracotta font-bold py-2 border-b border-nude">Antes & Depois (Comparador)</a>
       <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Catálogo de Produtos</a>
       <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
       <a href="#posts" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Dicas & Novidades</a>
@@ -182,10 +190,6 @@
     <a href="#" class="px-3.5 py-1.5 rounded-full bg-espresso text-gold-light text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 shadow-sm">
       <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
       <span>Início</span>
-    </a>
-    <a href="#antes-depois" class="px-3.5 py-1.5 rounded-full bg-terracotta/10 border border-terracotta text-terracotta text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
-      <i data-lucide="split" class="w-3.5 h-3.5 text-terracotta"></i>
-      <span>Antes/Depois</span>
     </a>
     <a href="#servicos" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
       <i data-lucide="scissors" class="w-3.5 h-3.5 text-terracotta"></i>
@@ -218,102 +222,111 @@
   </nav>
 
 
-    <!-- ===== SEÇÃO PRINCIPAL (HERO CINEMATOGRÁFICA) ===== -->
-  <section class="relative overflow-hidden bg-espresso text-white pt-16 pb-24 lg:py-32 border-b border-gold/20 min-h-[90vh] flex items-center">
-    
-    <!-- VÍDEO CINEMATOGRÁFICO DE FUNDO EM ALTA DEFINIÇÃO -->
-    <div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-      <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-45 scale-105 transition-transform duration-1000">
-        <source src="/assets/videos/hero-hair-luxury.mp4" type="video/mp4" />
-      </video>
-      <!-- Gradientes Cinematográficos de Iluminação Dourada e Contraste Nobre -->
-      <div class="absolute inset-0 bg-gradient-to-r from-espresso/95 via-espresso/80 to-espresso/50"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-espresso/40"></div>
-      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-terracotta/20 blur-3xl pointer-events-none"></div>
-    </div>
-
-    <div class="relative z-10 max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-12 items-center">
+    <!-- ===== SEÇÃO PRINCIPAL (HERO) ===== -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-linen-dark to-linen pt-12 pb-20 lg:py-28 border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
-        <!-- Conteúdo Textual Cinematográfico -->
+        <!-- Conteúdo Textual -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          
-          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-gold/40 backdrop-blur-md text-xs font-bold tracking-wider uppercase text-gold-light shadow-xl">
-            <span class="w-2.5 h-2.5 rounded-full bg-terracotta animate-pulse shadow-sm shadow-terracotta"></span>
+          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-2 rounded-full bg-nude/80 border border-gold/30 text-xs font-bold tracking-wider uppercase text-terracotta shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
             <span>Montes Claros - MG • Jardim São Luiz</span>
             <span class="text-gold/60 hidden sm:inline">•</span>
-            <span class="text-white hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
+            <span class="text-espresso hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
           </div>
-
-          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-white font-normal leading-[1.08] tracking-tight drop-shadow-md">
-            A Arte da Transformação Capilar & <em class="italic font-light text-gold-light block sm:inline">Rituais de Alta Costura</em>
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-espresso font-normal leading-[1.08] tracking-tight">
+            A Arte da Transformação Capilar & <em class="italic font-light text-terracotta block sm:inline">Rituais de Alta Costura</em>
           </h1>
           
-          <p class="text-base sm:text-lg text-gold-light/80 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+          <p class="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
             Fórmulas inteligentes, ativos botânicos de alta performance e rituais criados para realçar o que há de mais autêntico e refinado em você.
           </p>
 
           <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-xl shadow-terracotta/30 transition-all duration-300 text-center hover:scale-105 active:scale-95">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-terracotta/20 transition-all text-center">
               Explorar Catálogo
             </a>
-            <a href="#cine-cabine" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 border border-gold/40 text-gold-light rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-300 text-center flex items-center justify-center gap-2 hover:border-gold">
-              <i data-lucide="play" class="w-4 h-4 text-gold"></i>
-              <span>Ver Transformações em Vídeo</span>
+            <a href="#quiz" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-espresso/30 hover:border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-widest transition-all text-center">
+              Fazer Diagnóstico de Beleza →
             </a>
           </div>
 
-          <!-- Selos de Confiança Cinematográficos em Vidro Fosco -->
-          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-3 sm:gap-4 text-center lg:text-left">
-            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <span class="block font-serif text-2xl sm:text-3xl text-white font-semibold">100%</span>
-              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Vegano & Seguro</span>
+          <!-- Selos de Confiança -->
+          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">100%</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Vegano & Não Testado</span>
             </div>
-            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <span class="block font-serif text-2xl sm:text-3xl text-white font-semibold">Estúdio</span>
-              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Fórmula de Cabine</span>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">Estúdio</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Fórmula de Cabine</span>
             </div>
-            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-              <span class="block font-serif text-2xl sm:text-3xl text-gold font-semibold">4.9★</span>
-              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Avaliação Média</span>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">4.9★</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Avaliação Média</span>
             </div>
           </div>
         </div>
 
-        <!-- Reel Cinematográfico Vertical Flutuante de Cabine -->
+        <!-- Demonstração Visual do Produto -->
         <div class="lg:col-span-5 relative">
-          <div class="relative mx-auto max-w-sm rounded-3xl bg-white/10 p-3 sm:p-4 border border-gold/40 shadow-2xl backdrop-blur-xl group">
-            
-            <!-- Badge Flutuante no Topo do Vídeo -->
-            <div class="absolute top-7 left-7 z-20 px-3 py-1.5 rounded-full bg-espresso/80 backdrop-blur-md border border-gold/40 text-[10px] font-bold uppercase tracking-wider text-gold-light flex items-center gap-1.5 shadow-lg">
-              <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-              <span>Cabine em Movimento</span>
-            </div>
-
-            <!-- Player de Vídeo Vertical HD -->
-            <div class="aspect-[9/13] rounded-2xl overflow-hidden bg-espresso relative flex items-center justify-center shadow-inner">
-              <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
-                <source src="/assets/videos/reel-butterfly-cut.mp4" type="video/mp4" />
-              </video>
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-espresso/30 pointer-events-none"></div>
-
-              <!-- Cartão Flutuante do Procedimento -->
-              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-espresso/90 backdrop-blur-md border border-gold/30 flex items-center justify-between text-left shadow-2xl">
+          <div class="relative mx-auto max-w-md rounded-2xl bg-nude/60 p-6 border border-gold/30 shadow-2xl backdrop-blur-sm">
+            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-espresso/5 relative flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=480&q=70" alt="Cosméticos Carla Barbosa Estúdio" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent"></div>
+              
+              <!-- Cartão Flutuante -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-linen/95 backdrop-blur-md border border-gold/30 flex items-center justify-between">
                 <div>
-                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Destaque da Semana</span>
-                  <span class="font-serif text-sm sm:text-base font-semibold text-white">Butterfly Cut & Glow Facial</span>
-                  <span class="block text-[10px] text-gold-light/70">Montes Claros • Rua Dep. Antônio Pimenta, 72</span>
+                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Mais Vendido</span>
+                  <span class="font-serif text-base font-semibold text-espresso">Elixir Nutritivo e Iluminador Facial</span>
                 </div>
-                <a href="#servicos" class="w-9 h-9 rounded-full bg-terracotta hover:bg-terracotta-hover flex items-center justify-center text-white transition-transform hover:scale-110 shadow-md" title="Ver Serviços">
-                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
+                <span class="font-serif text-lg font-bold text-espresso">R$ 189</span>
               </div>
             </div>
-
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+      <!-- ===== SEÇÃO CINEMATOGRÁFICA PINNED STORYTELLING (JORNADA DE CABINE COM SCROLL ZOOM DOLLY) ===== -->
+  <section class="pinned-section min-h-screen w-full relative flex items-center justify-center bg-cinema-surface overflow-hidden border-y border-cinema-border my-0">
+    <!-- Frame widescreen com vinheta de cinema e iluminação de estúdio -->
+    <div class="pinned-frame relative w-[90vw] sm:w-[88vw] h-[80vh] sm:h-[78vh] rounded-3xl overflow-hidden bg-black flex flex-col justify-center items-center text-center p-6 sm:p-12 cinematic-vignette shadow-2xl">
+      
+      <!-- Gradientes Radiais Cinematográficos -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1d2024] via-black to-black opacity-95 pointer-events-none"></div>
+
+      <!-- Fotografia Editorial de Fundo com Fade Suave -->
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="Experiência de Cabine Carla Barbosa" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+
+      <!-- Conteúdo Editorial com Revelação Suave -->
+      <div class="z-10 max-w-3xl space-y-6 px-4">
+        <span class="inline-block text-xs uppercase tracking-[0.35em] text-cinema-accent pin-badge font-bold px-4 py-1.5 rounded-full bg-cinema-accent/10 border border-cinema-accent/30">
+          Jornada de Cabine & Autocuidado
+        </span>
+        
+        <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl font-normal pin-title leading-tight text-white drop-shadow-md">
+          Uma experiência que respeita a saúde dos seus fios e <em class="italic text-cinema-accent font-light">a sua história</em>.
+        </h2>
+        
+        <p class="text-sm sm:text-base text-cinema-muted font-light leading-relaxed pin-text max-w-2xl mx-auto">
+          Do diagnóstico individualizado da fibra capilar à precisão milimétrica em mechas peroladas, butterfly cut e alisamento fotoativado com luz LED. Cada ritual é desenhado no Jardim São Luiz para revelar a sua versão mais autêntica e sofisticada.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 pin-cta">
+          <a href="#servicos" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-cinema-accent text-black font-semibold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+            <span>Explorar Serviços de Cabine</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20cabine." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-cinema-border bg-cinema-surface/70 hover:bg-white/10 text-white text-xs uppercase tracking-widest transition-all">
+            <i data-lucide="message-circle" class="w-4 h-4 text-cinema-accent"></i>
+            <span>Agendar Consulta</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -663,175 +676,7 @@
   </section>
 
   <!-- ===== SEÇÃO INTERATIVA: ESPELHO DA TRANSFORMAÇÃO (ANTES & DEPOIS) ===== -->
-  <section id="antes-depois" class="py-20 lg:py-28 bg-linen text-espresso relative overflow-hidden border-b border-gold/20">
-    
-    <!-- Efeitos Suaves de Iluminação no Fundo -->
-    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-terracotta/10 blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
-      
-      <!-- Cabeçalho da Seção Centralizado e Nobre -->
-      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gold/40 text-xs font-bold uppercase tracking-widest text-terracotta shadow-sm">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
-          <span>Espelho da Transformação • Montes Claros</span>
-        </div>
-        <h2 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
-          Veja a Mágica na Prática: <em class="italic font-light text-terracotta">Antes & Depois</em>
-        </h2>
-        <p class="text-sm sm:text-base text-espresso/75 leading-relaxed">
-          Arraste o divisor interativo para os lados e sinta a diferença de luminosidade, alinhamento e saúde capilar proporcionados pelos rituais de Carla Barbosa.
-        </p>
-
-        <!-- Seletor de Casos Reais (Pills) -->
-        <div class="pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="baTabsContainer">
-          <button onclick="switchBeforeAfterCase('loiro')" id="baTab-loiro" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md bg-espresso text-gold-light border border-gold/40 scale-105">
-            ✨ Loiro Perolado
-          </button>
-          <button onclick="switchBeforeAfterCase('morena')" id="baTab-morena" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta">
-            🍂 Morena Iluminada
-          </button>
-          <button onclick="switchBeforeAfterCase('alisamento')" id="baTab-alisamento" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta">
-            💎 Alisamento LED & Spa
-          </button>
-        </div>
-      </div>
-
-      <!-- Grade Principal: Comparador Interativo + Detalhes do Procedimento -->
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        
-        <!-- COLUNA DA ESQUERDA: Comparador Visual com Slider Interativo (7 Colunas) -->
-        <div class="lg:col-span-7">
-          <div class="relative bg-espresso rounded-3xl p-2 sm:p-3 border-2 border-gold/40 shadow-2xl">
-            
-            <!-- Container do Slider com Proporção Nobre -->
-            <div class="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden select-none touch-none bg-espresso" id="baVisualBox">
-              
-              <!-- 1. Imagem DEPOIS (Camada de Fundo) -->
-              <img id="baAfterImg" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80" alt="Depois da transformação Carla Barbosa" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-              
-              <!-- Badge DEPOIS -->
-              <div class="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-espresso/85 border border-gold/50 text-[11px] font-bold uppercase tracking-widest text-gold-light backdrop-blur-md shadow-lg flex items-center gap-1.5 pointer-events-none">
-                <span class="w-2 h-2 rounded-full bg-gold"></span>
-                <span>DEPOIS</span>
-              </div>
-
-              <!-- 2. Imagem ANTES (Camada Recortada por clip-path) -->
-              <img id="baBeforeImg" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80" alt="Antes da transformação" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" />
-              
-              <!-- Badge ANTES -->
-              <div class="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-espresso/85 border border-terracotta/50 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md shadow-lg flex items-center gap-1.5 pointer-events-none">
-                <span class="w-2 h-2 rounded-full bg-terracotta"></span>
-                <span>ANTES</span>
-              </div>
-
-              <!-- 3. Linha Divisória e Alça Central de Arraste -->
-              <div id="baDividerLine" class="absolute top-0 bottom-0 pointer-events-none z-20 flex flex-col items-center" style="left: 50%; transform: translateX(-50%);">
-                <!-- Linha Iluminada -->
-                <div class="w-1 h-full bg-gradient-to-b from-gold via-white to-gold shadow-2xl"></div>
-                <!-- Alça com Ícone Tátil -->
-                <div class="absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-espresso shadow-2xl border-2 border-gold flex items-center justify-center transition-transform group-hover:scale-110">
-                  <i data-lucide="chevrons-left-right" class="w-5 h-5 text-terracotta"></i>
-                </div>
-              </div>
-
-              <!-- 4. Dica de Arraste Flutuante -->
-              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 rounded-full bg-espresso/80 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-gold-light backdrop-blur-md shadow-md pointer-events-none flex items-center gap-2">
-                <i data-lucide="hand" class="w-3.5 h-3.5 text-gold animate-bounce"></i>
-                <span>Arraste para comparar</span>
-              </div>
-
-              <!-- 5. Range Slider Transparente para Controle Tátil e Acessível -->
-              <input type="range" min="0" max="100" value="50" id="baRangeSlider" oninput="setBeforeAfterPos(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 touch-none m-0 p-0" aria-label="Comparar Antes e Depois do cabelo" />
-
-            </div>
-
-            <!-- Legenda Inferior do Comparador -->
-            <div class="p-3 bg-espresso text-center">
-              <p class="text-xs text-gold-light/80 font-light">
-                <strong class="text-white font-semibold">Tecnologia de Preservação Capilar:</strong> Descoloração com proteção lipídica para zero quebra e máxima densidade.
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- COLUNA DA DIREITA: Informações Fatuais e Agendamento WhatsApp (5 Colunas) -->
-        <div class="lg:col-span-5 space-y-6">
-          
-          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gold/30 shadow-xl space-y-5">
-            
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nude/50 border border-gold/30 text-[11px] font-bold uppercase tracking-wider text-terracotta" id="baCardBadge">
-              Mechas & Descoloração Segura
-            </div>
-
-            <h3 class="font-serif text-2xl sm:text-3xl text-espresso font-normal leading-tight" id="baCardTitle">
-              Loiro Perolado de Alta Costura & Esfumado Tridimensional
-            </h3>
-
-            <div class="space-y-4 text-xs sm:text-sm text-espresso/80 divide-y divide-nude">
-              
-              <div class="pt-2">
-                <span class="block text-[11px] uppercase tracking-wider text-gold font-bold">Diagnóstico Inicial:</span>
-                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardDiag">
-                  Raiz densa e comprimento com reflexos amarelados e oxidados por processos químicos anteriores, necessitando equalização de tom.
-                </p>
-              </div>
-
-              <div class="pt-3">
-                <span class="block text-[11px] uppercase tracking-wider text-terracotta font-bold">Protocolo Realizado por Carla Barbosa:</span>
-                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardTech">
-                  Técnica de mechas microcosturadas sem papel térmico agressivo + esfumado de raiz com transição suave + banho de neutralização perolada fria.
-                </p>
-              </div>
-
-              <div class="pt-3">
-                <span class="block text-[11px] uppercase tracking-wider text-espresso font-bold">Segurança & Tratamento Integrado:</span>
-                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardCare">
-                  Aplicação de Plex protetor com aminoácidos biomiméticos durante o clareamento, garantindo fios elásticos, resistentes e saudáveis.
-                </p>
-              </div>
-
-              <div class="pt-3 flex items-center justify-between text-xs text-espresso/60">
-                <span class="flex items-center gap-1.5 font-medium">
-                  <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
-                  <span id="baCardTime">Duração média: 4h30</span>
-                </span>
-                <span class="flex items-center gap-1.5 font-medium">
-                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-terracotta"></i>
-                  <span>Jardim São Luiz</span>
-                </span>
-              </div>
-
-            </div>
-
-            <!-- Botão de Ação WhatsApp Direto com a Carla Barbosa -->
-            <div class="pt-2">
-              <a id="baCardWhatsappBtn" href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cabelo!" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-6 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-xs font-bold uppercase tracking-widest shadow-xl shadow-terracotta/25 transition-all duration-300 text-center flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span id="baCardBtnText">Quero Este Loiro no Meu Cabelo</span>
-              </a>
-            </div>
-
-          </div>
-
-          <!-- Card de Avaliação / Depoimento Real -->
-          <div class="p-4 rounded-2xl bg-white/70 border border-gold/20 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gold/20 text-terracotta flex items-center justify-center font-bold text-sm flex-shrink-0">
-              5★
-            </div>
-            <p class="text-xs text-espresso/70 italic">
-              "Fiz meu loiro com a Carla e meu cabelo nunca esteve tão forte e macio. O esfumado de raiz dura meses sem precisar de retoque constante!"
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
+  
 
   <!-- ===== DIAGNÓSTICO INTERATIVO DE BELEZA ===== -->
   <section id="quiz" class="py-16 bg-nude/40 border-b border-gold/20">
@@ -1809,5 +1654,11 @@
   </div>
 
   <script src="script.js"></script>
+
+  <!-- Scripts Cinematográficos: Lenis (Smooth Scroll) + GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 </body>
 </html>

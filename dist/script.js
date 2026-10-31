@@ -1544,111 +1544,70 @@ function installPwaApp() {
 }
 
 
+
+
 // ============================================================
-// ESPELHO DA TRANSFORMAÇÃO: ANTES & DEPOIS INTERATIVO
+// ENGENHARIA CINEMATOGRÁFICA: LENIS SMOOTH SCROLL + GSAP PINNED DOLLY ZOOM
 // ============================================================
-const baCases = {
-  loiro: {
-    title: 'Loiro Perolado de Alta Costura & Esfumado Tridimensional',
-    tag: 'Mechas & Descoloração Segura',
-    badge: 'Procedimento Estrela',
-    beforeImg: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80',
-    diag: 'Raiz densa e comprimento com reflexos amarelados e oxidados por processos anteriores, necessitando equalização de tom.',
-    tech: 'Técnica de mechas microcosturadas sem papel térmico agressivo + esfumado de raiz com transição suave + banho de neutralização perolada fria.',
-    care: 'Aplicação de Plex protetor com aminoácidos biomiméticos durante o clareamento, garantindo fios elásticos, resistentes e saudáveis.',
-    time: 'Duração média: 4h30',
-    btnText: 'Quero Este Loiro no Meu Cabelo',
-    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cabelo!'
-  },
-  morena: {
-    title: 'Morena Iluminada Caramelo & Nuances de Mel',
-    tag: 'Contorno Facial & Luminosidade Natural',
-    badge: 'Tendência 2026',
-    beforeImg: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1605980776566-0486c3ac7617?auto=format&fit=crop&w=1200&q=80',
-    diag: 'Fios castanhos escuros e opacos, sem profundidade ou pontos de luz que valorizassem os traços do rosto.',
-    tech: 'Mechas em pontos estratégicos de contorno facial mescladas com nuances quentes de caramelo tostado e avelã.',
-    care: 'Matização com óleos nutritivos sem amônia para selagem instantânea das cutículas.',
-    time: 'Duração média: 3h30',
-    btnText: 'Quero Ficar Morena Iluminada',
-    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20de%20Morena%20Iluminada%20no%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o!'
-  },
-  alisamento: {
-    title: 'Alisamento Inteligente Fotoativado LED & Ozonioterapia',
-    tag: 'Alinhamento Sem Formol & Brilho Espelhado',
-    badge: 'Exclusivo do Estúdio',
-    beforeImg: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80',
-    afterImg: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
-    diag: 'Volume excessivo com frizz resistente, cutículas abertas e opacidade ao longo de todo o comprimento.',
-    tech: 'Aplicação de ativos botânicos e aminoácidos fotoativados com luz LED fria para fixação intramolecular sem agressão.',
-    care: 'Ozonioterapia a vapor para higienização profunda do couro cabeludo e revitalização da fibra.',
-    time: 'Duração média: 3h00',
-    btnText: 'Quero Alisamento Fotoativado',
-    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Alisamento%20Fotoativado%20no%20site%20e%20quero%20agendar%20meu%20hor%C3%A1rio!'
-  }
-};
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Inicializar Lenis para Scroll Suave Inercial de Cinema
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+    });
 
-function setBeforeAfterPos(val) {
-  const beforeImg = document.getElementById('baBeforeImg');
-  const dividerLine = document.getElementById('baDividerLine');
-  if (beforeImg) {
-    beforeImg.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
-  }
-  if (dividerLine) {
-    dividerLine.style.left = val + '%';
-  }
-}
+    // 2. Sincronizar Lenis com GSAP ScrollTrigger
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
 
-function switchBeforeAfterCase(key) {
-  const item = baCases[key];
-  if (!item) return;
+      lenis.on('scroll', ScrollTrigger.update);
 
-  const beforeImg = document.getElementById('baBeforeImg');
-  const afterImg = document.getElementById('baAfterImg');
-  const cardBadge = document.getElementById('baCardBadge');
-  const cardTitle = document.getElementById('baCardTitle');
-  const cardDiag = document.getElementById('baCardDiag');
-  const cardTech = document.getElementById('baCardTech');
-  const cardCare = document.getElementById('baCardCare');
-  const cardTime = document.getElementById('baCardTime');
-  const cardBtn = document.getElementById('baCardWhatsappBtn');
-  const cardBtnText = document.getElementById('baCardBtnText');
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
 
-  if (beforeImg) beforeImg.src = item.beforeImg;
-  if (afterImg) afterImg.src = item.afterImg;
-  if (cardBadge) cardBadge.textContent = item.tag;
-  if (cardTitle) cardTitle.textContent = item.title;
-  if (cardDiag) cardDiag.textContent = item.diag;
-  if (cardTech) cardTech.textContent = item.tech;
-  if (cardCare) cardCare.textContent = item.care;
-  if (cardTime) cardTime.textContent = item.time;
-  if (cardBtn) cardBtn.href = item.whatsapp;
-  if (cardBtnText) cardBtnText.textContent = item.btnText;
+      gsap.ticker.lagSmoothing(0);
 
-  ['loiro', 'morena', 'alisamento'].forEach(function(k) {
-    const btn = document.getElementById('baTab-' + k);
-    if (btn) {
-      if (k === key) {
-        btn.className = 'px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md bg-espresso text-gold-light border border-gold/40 scale-105';
-      } else {
-        btn.className = 'px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta';
+      // 3. Seção Fixa Pinned Storytelling com Efeito Dolly Zoom
+      const pinnedSection = document.querySelector('.pinned-section');
+      if (pinnedSection) {
+        const pinTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.pinned-section',
+            start: 'top top',
+            end: '+=150%',
+            pin: true,
+            scrub: 1,
+          }
+        });
+
+        pinTl
+          .from('.pinned-frame', { scale: 0.92, borderRadius: '48px', duration: 1 })
+          .from('.pin-badge', { opacity: 0, y: -10, duration: 0.5 }, '<')
+          .from('.pin-title', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
+          .from('.pin-text', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+          .from('.pin-cta', { opacity: 0, y: 15, duration: 0.8 }, '-=0.4');
       }
+
+      // 4. Parallax Suave nos Cards de Serviço
+      gsap.utils.toArray('.service-card').forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+          },
+          y: 35,
+          opacity: 0,
+          duration: 0.8,
+          delay: (index % 3) * 0.1,
+          ease: 'power2.out'
+        });
+      });
     }
-  });
-
-  const slider = document.getElementById('baRangeSlider');
-  if (slider) {
-    slider.value = 50;
-    setBeforeAfterPos(50);
   }
-
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-}
-
-// Inicializar na carga da página
-document.addEventListener('DOMContentLoaded', function() {
-  setBeforeAfterPos(50);
 });
