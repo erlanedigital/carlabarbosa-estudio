@@ -103,7 +103,6 @@
 <body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
 
   <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
-    <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
   <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
     <span id="announcementText" class="font-medium">✨ CARLA BARBOSA ESTÚDIO • RUA DEP. ANTÔNIO PIMENTA, 72 - JARDIM SÃO LUIZ • MONTES CLAROS MG</span>
     <span class="hidden md:inline text-gold/60">•</span>
@@ -112,54 +111,49 @@
     </a>
   </div>
 
-  <!-- ===== CABEÇALHO / NAVEGAÇÃO PRINCIPAL ===== -->
+  <!-- ===== CABEÇALHO / NAVEGAÇÃO PRINCIPAL (ALTO LUXO EDITORIAL) ===== -->
   <header id="header" class="sticky top-0 z-40 bg-linen/95 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
-    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between gap-4">
       
       <!-- Botão Menu Mobile -->
-      <button id="mobileMenuBtn" class="lg:hidden p-2 text-espresso hover:text-terracotta" aria-label="Menu de Navegação">
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-espresso hover:text-terracotta transition-colors" aria-label="Menu de Navegação">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
 
-      <!-- Links de Navegação Desktop -->
-      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-espresso/80">
-        <a href="#servicos" class="hover:text-terracotta transition-colors">Serviços</a>
-        <a href="#catalogo" class="hover:text-terracotta transition-colors">Catálogo</a>
-        <a href="#quiz" class="hover:text-terracotta transition-colors">Diagnóstico</a>
-        <a href="#posts" class="hover:text-terracotta transition-colors">Dicas & Blog</a>
-        <a href="#sobre" class="hover:text-terracotta transition-colors">O Estúdio</a>
+      <!-- Links de Navegação Desktop (Esquerda - Harmonia e Espaçamento Nobre) -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-espresso/80">
+        <a href="#servicos" class="hover:text-terracotta transition-colors py-2">Serviços</a>
+        <a href="#catalogo" class="hover:text-terracotta transition-colors py-2">Catálogo</a>
+        <a href="#quiz" class="hover:text-terracotta transition-colors py-2">Diagnóstico</a>
+        <a href="#posts" class="hover:text-terracotta transition-colors py-2">Dicas & Blog</a>
+        <a href="#sobre" class="hover:text-terracotta transition-colors py-2">O Estúdio</a>
       </nav>
 
-      <!-- Logotipo Central -->
-      <a href="#" class="text-center group">
-        <span class="block font-serif text-2xl sm:text-3xl tracking-widest font-semibold uppercase text-espresso group-hover:text-terracotta transition-colors">
-          CARLA BARBOSA
-        </span>
-        <span class="block text-[10px] tracking-[0.3em] uppercase text-gold font-medium -mt-1">
-          Estúdio • Montes Claros MG
-        </span>
-      </a>
-
-      <!-- Ações da Direita -->
-      <div class="flex items-center gap-4 sm:gap-6">
-        <!-- Botão Admin Discreto no Topo -->
+      <!-- Logotipo Central com Botão do Administrador Oculto Atrás da Logo -->
+      <div class="relative text-center group flex items-center justify-center">
+        <!-- Gatilho Secreto do Painel Admin embutido discretamente atrás da Logo -->
+        <button onclick="openAdminModal()" class="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] opacity-0 z-10 cursor-pointer" title="" aria-label="Acesso"></button>
         
-      <button id="pwaInstallMobileBtn" onclick="installPwaApp()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-gold py-2 flex items-center gap-2 border-b border-nude">
-        <i data-lucide="download" class="w-4 h-4 text-gold"></i> Instalar Aplicativo no Celular
-      </button>
-      <button onclick="openAdminModal()" class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-semibold text-espresso/40 hover:text-terracotta opacity-60 hover:opacity-100 transition-all" title="Área Administrativa">
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-          <span>Admin</span>
-        </button>
+        <div class="relative z-0 block select-none">
+          <span class="block font-serif text-2xl sm:text-3xl tracking-[0.2em] font-semibold uppercase text-espresso transition-colors">
+            CARLA BARBOSA
+          </span>
+          <span class="block text-[10px] tracking-[0.35em] uppercase text-gold font-medium -mt-0.5">
+            Estúdio • Montes Claros MG
+          </span>
+        </div>
+      </div>
 
-        <!-- Botão da Sacola com Contador -->
-        <button id="cartBtn" class="relative p-2 text-espresso hover:text-terracotta transition-colors" title="Ver Sacola de Compras">
+      <!-- Ações da Direita (Sacola com Contador + Botão de Agendamento Harmonioso) -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <!-- Botão da Sacola com Contador Nobre -->
+        <button id="cartBtn" class="relative p-2.5 text-espresso hover:text-terracotta transition-colors" title="Ver Sacola de Compras">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span id="cartCount" class="absolute top-0 right-0 w-4 h-4 bg-terracotta text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+          <span id="cartCount" class="absolute top-1 right-1 w-4 h-4 bg-terracotta text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">0</span>
         </button>
 
-        <!-- Botão de Agendamento -->
-        <a href="#servicos" class="hidden sm:inline-flex items-center gap-2 bg-espresso text-white text-xs font-semibold uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-terracotta transition-colors">
+        <!-- Botão de Agendamento Oficial -->
+        <a href="#servicos" class="inline-flex items-center justify-center bg-espresso hover:bg-terracotta text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95">
           <span>Agendamento</span>
         </a>
       </div>
@@ -167,15 +161,15 @@
     </div>
 
     <!-- Menu Lateral Mobile -->
-    <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-4">
+    <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-3">
       <a href="#servicos" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Serviços do Estúdio</a>
       <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Catálogo de Produtos</a>
       <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
       <a href="#posts" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Dicas & Novidades</a>
       <a href="#sobre" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Sobre o Estúdio</a>
       <a href="#contato" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Atendimento & WhatsApp</a>
-      <button onclick="openAdminModal()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-terracotta py-2 flex items-center gap-2">
-        <i data-lucide="lock" class="w-4 h-4"></i> Acessar Painel Admin (Postar)
+      <button id="pwaInstallMobileBtn" onclick="installPwaApp()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-gold py-2 flex items-center gap-2 border-b border-nude">
+        <i data-lucide="download" class="w-4 h-4 text-gold"></i> Instalar Aplicativo no Celular
       </button>
     </div>
   </header>
