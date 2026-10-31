@@ -1,8 +1,11 @@
 // ===== DADOS INICIAIS (MONTES CLAROS - MG) =====
 const defaultSettings = {
-  city: 'Montes Claros - MG',
+  city: 'Montes Claros - MG (Jardim São Luiz)',
+  address: 'Rua Deputado Antônio Pimenta, 72 - Jardim São Luiz',
+  cnpj: '57.423.968/0001-48',
+  instagram: 'carlabarbosa.estudio',
   whatsapp: '5538999999999',
-  announcement: '✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | ESTÚDIO MONTES CLAROS - MG',
+  announcement: '✨ CARLA BARBOSA ESTÚDIO • RUA DEP. ANTÔNIO PIMENTA, 72 - JARDIM SÃO LUIZ • MONTES CLAROS MG',
   adminPass: 'admin123'
 };
 
@@ -15,11 +18,11 @@ const defaultProducts = [
     price: 139.00,
     installments: '3x de R$ 46,33',
     rating: 5.0,
-    reviewsCount: 112,
+    reviewsCount: 118,
     image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Nutrição intensa, proteção térmica e brilho espelhado para pontas e mechas.',
-    fullDesc: 'Fórmula exclusiva do estúdio com Óleo de Argan e Rosa Mosqueta nobre. Sela pontas duplas, controla o frizz e devolve luminosidade imediata a cabelos loiros e morenas iluminadas.',
+    shortDesc: 'Nutrição intensa, proteção térmica até 230°C e brilho espelhado para pontas e mechas.',
+    fullDesc: 'Fórmula exclusiva do estúdio com Óleo de Argan marroquino puro e Rosa Mosqueta nobre. Sela pontas duplas, controla o frizz e devolve luminosidade imediata a cabelos loiros e morenas iluminadas.',
     usage: 'Aplique 2 a 3 gotas na palma das mãos e distribua no comprimento e pontas com os fios úmidos ou secos.'
   },
   {
@@ -34,8 +37,8 @@ const defaultProducts = [
     image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Trio de Reconstrução, Nutrição e Hidratação para cabelos pós-química.',
-    fullDesc: 'O mesmo protocolo utilizado na cadeira da Carla Barbosa para manter o cabelo com toque aveludado e estrutura reforçada em casa.',
-    usage: 'Alterne as etapas de hidratação, nutrição e reconstrução conforme o cronograma semanal indicado.'
+    fullDesc: 'O mesmo protocolo utilizado na cadeira da Carla Barbosa em Montes Claros para manter o cabelo com toque aveludado e estrutura reforçada em casa.',
+    usage: 'Alterne as etapas de hidratação, nutrição e reconstrução conforme o cronograma semanal indicado no diagnóstico.'
   },
   {
     id: 'mascara-matizadora',
@@ -45,12 +48,27 @@ const defaultProducts = [
     price: 159.00,
     installments: '3x de R$ 53,00',
     rating: 4.9,
-    reviewsCount: 78,
+    reviewsCount: 82,
     image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Neutralização de tons amarelados com hidratação ultra reconstrutora.',
-    fullDesc: 'Pigmentos violeta perolados de microprecisão combinados a aminoácidos para neutralizar tons indesejados sem ressecar a fibra capilar.',
-    usage: 'Aplique nos cabelos limpos e úmidos, massageando mecha a mecha. Deixe agir de 3 a 5 minutos e enxágue.'
+    fullDesc: 'Pigmentos violeta perolados de microprecisão combinados a aminoácidos essenciais para neutralizar tons indesejados sem ressecar a fibra capilar.',
+    usage: 'Aplique nos cabelos limpos e úmidos, massageando mecha a mecha. Deixe agir de 3 a 5 minutos e enxágue abundantemente.'
+  },
+  {
+    id: 'serum-blindagem-led',
+    name: 'Sérum Termoprotetor Blindagem & Brilho LED',
+    category: 'oleos',
+    badge: 'Efeito Espelho',
+    price: 169.00,
+    installments: '3x de R$ 56,33',
+    rating: 5.0,
+    reviewsCount: 65,
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
+    shortDesc: 'Fluido ativador com tecnologia de reflexão fotônica para brilho espelhado prolongado.',
+    fullDesc: 'Inspirado no protocolo de fotoativação a LED do estúdio. Cria uma barreira protetora contra calor, vento e umidade, garantindo alinhamento liso duradouro.',
+    usage: 'Borrife suavemente em todo o comprimento antes de utilizar secador, chapinha ou difusor.'
   },
   {
     id: 'brow-booster',
@@ -60,12 +78,12 @@ const defaultProducts = [
     price: 149.00,
     installments: '3x de R$ 49,66',
     rating: 5.0,
-    reviewsCount: 64,
-    image: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
+    reviewsCount: 71,
+    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=600&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
     shortDesc: 'Nutrição, alinhamento e fortalecimento dos fios de sobrancelhas e cílios.',
     fullDesc: 'Complexo bioativo enriquecido com Peptídeos e Biotina botânica para fortalecer a raiz, reduzir quedas e proporcionar alinhamento elegante dos fios.',
-    usage: 'Passe o aplicador suavemente na raiz das sobrancelhas e cílios toda noite.'
+    usage: 'Passe o aplicador suavemente na raiz das sobrancelhas e cílios toda noite antes de dormir.'
   },
   {
     id: 'vela-silence',
@@ -75,11 +93,11 @@ const defaultProducts = [
     price: 129.00,
     installments: '2x de R$ 64,50',
     rating: 4.8,
-    reviewsCount: 42,
+    reviewsCount: 47,
     image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80',
     hoverImage: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=600&q=80',
-    shortDesc: 'Notas de figo branco, âmbar e cedro para o seu santuário de paz.',
-    fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância acolhedora do Carla Barbosa Estúdio para enriquecer seus momentos de descanso.',
+    shortDesc: 'Notas de figo branco, âmbar e cedro para o seu santuário de paz e autocuidado.',
+    fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância acolhedora do Carla Barbosa Estúdio em Montes Claros para enriquecer seus momentos de descanso.',
     usage: 'Acenda durante o seu banho ou momento de autocuidado noturno por até 3 horas.'
   }
 ];
@@ -87,30 +105,30 @@ const defaultProducts = [
 const defaultPosts = [
   {
     id: 'post-1',
-    title: '5 Cuidados Essenciais para Manter o Cabelo Loiro Saudável',
-    category: 'Dicas de Cabelo',
-    date: '19 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85',
-    excerpt: 'Descubra como proteger os fios descoloridos contra o ressecamento e manter o brilho de salão em casa.',
-    content: 'Manter o cabelo loiro radiante exige uma rotina equilibrada de hidratação, nutrição e reconstrução. Aqui no estúdio em Montes Claros, sempre recomendamos o uso de óleos nobres para proteção térmica e o cronograma capilar com fórmulas ricas em aminoácidos. Lembre-se: água morna ou fria na lavagem faz toda a diferença para selar as cutículas!'
+    title: 'Butterfly Cut: O Corte em Camadas que Conquistou o Estúdio',
+    category: 'Cortes & Tendências',
+    date: '30 de Outubro, 2026',
+    image: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=1000&q=85',
+    excerpt: 'Descubra como o corte em camadas graduadas e franja cortina traz leveza e movimento de passarela sem tirar o comprimento.',
+    content: 'O Butterfly Cut é a técnica mais pedida pelas clientes no Carla Barbosa Estúdio em Montes Claros. Ele combina camadas superiores mais curtas que emolduram o rosto com camadas longas que preservam a densidade das pontas. A grande vantagem é a versatilidade: você pode estilizar com ondas glamourosas ou escova lisa fluida!'
   },
   {
     id: 'post-2',
-    title: 'O Poder da Nutrição para Sobrancelhas Naturais e Marcantes',
-    category: 'Sobrancelhas',
-    date: '15 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85',
-    excerpt: 'Como estimular o crescimento e a densidade dos fios de forma saudável e com acabamento elegante.',
-    content: 'As sobrancelhas são a moldura do olhar. O segredo para deixá-las encorpadas e alinhadas não é sobrecarregar com maquiagem pesada, mas sim nutrir a raiz com biotina e ativos botânicos. Aplicar o sérum nutritivo todas as noites antes de dormir estimula a regeneração folicular e previne falhas.'
+    title: '5 Segredos para um Loiro Saudável sem Quebra no Clima Seco',
+    category: 'Colorimetria & Loiros',
+    date: '24 de Outubro, 2026',
+    image: 'https://images.unsplash.com/photo-1584297091622-af8e5fdcf9e2?auto=format&fit=crop&w=1000&q=85',
+    excerpt: 'Dicas práticas de estúdio para blindar os fios descoloridos contra a oxidação, ressecamento e quebra.',
+    content: 'Manter mechas e loiros radiantes em Montes Claros exige hidratação lipídica constante e proteção térmica. No estúdio, sempre realizamos o teste de mecha prévio e utilizamos protetores de pontes de sulfeto. Dica de ouro da Carla: nunca lave o cabelo em água pelando e finalize sempre com óleo de argan nas pontas!'
   },
   {
     id: 'post-3',
-    title: 'Novidades no Carla Barbosa Estúdio em Montes Claros',
-    category: 'Novidades do Estúdio',
-    date: '10 de Agosto, 2026',
-    image: 'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=1000&q=85',
-    excerpt: 'Nosso espaço foi renovado para oferecer uma experiência ainda mais acolhedora e exclusiva para você.',
-    content: 'Preparamos um ambiente pensado nos mínimos detalhes: aromas relaxantes, iluminação acolhedora e tratamentos personalizados para cabelos, estética e autocuidado. Venha nos visitar e vivenciar um momento só seu!'
+    title: 'Por que o Alisamento a LED é a Revolução dos Cabelos Lisos?',
+    category: 'Alinhamento & Tecnologia',
+    date: '18 de Outubro, 2026',
+    image: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=85',
+    excerpt: 'Entenda como a fotoativação com luz de LED sela as cutículas sem formol, entregando brilho espelhado duradouro.',
+    content: 'O Alisamento a LED do Carla Barbosa Estúdio atua através de fotobioestimulação. A luz fria estimula a penetração profunda dos aminoácidos na fibra capilar sem queimar as cutículas. O resultado é um cabelo com movimento natural, sedoso e que não desbota a cor!'
   }
 ];
 

@@ -60,12 +60,56 @@
   <link rel="apple-touch-icon" href="/icon-192.png" />
   <meta name="mobile-web-app-capable" content="yes" />
 
+
+  <!-- Schema.org JSON-LD — Dados Factualmente Auditados do CNPJ 57.423.968/0001-48 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Carla Barbosa Estúdio de Beleza",
+    "legalName": "Barbosa Serviços de Beleza Ltda",
+    "taxID": "57.423.968/0001-48",
+    "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+    "url": "https://carlabarbosa.emia.workers.dev",
+    "telephone": "+5538999999999",
+    "priceRange": "$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Deputado Antônio Pimenta, 72",
+      "addressLocality": "Montes Claros",
+      "addressRegion": "MG",
+      "postalCode": "39401-054",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -16.7282,
+      "longitude": -43.8644
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "sameAs": [
+      "https://instagram.com/carlabarbosa.estudio"
+    ]
+  }
+  </script>
 </head>
 <body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
 
   <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
-  <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex items-center justify-center gap-3">
-    <span id="announcementText">✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | ESTÚDIO MONTES CLAROS - MG</span>
+    <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
+  <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+    <span id="announcementText" class="font-medium">✨ CARLA BARBOSA ESTÚDIO • RUA DEP. ANTÔNIO PIMENTA, 72 - JARDIM SÃO LUIZ • MONTES CLAROS MG</span>
+    <span class="hidden md:inline text-gold/60">•</span>
+    <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 text-gold hover:text-white transition-colors">
+      <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @carlabarbosa.estudio
+    </a>
   </div>
 
   <!-- ===== CABEÇALHO / NAVEGAÇÃO PRINCIPAL ===== -->
@@ -179,13 +223,14 @@
         
         <!-- Conteúdo Textual -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nude/80 border border-gold/30 text-xs font-medium tracking-widest uppercase text-terracotta">
-            <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
-            Montes Claros - MG • Alta Cosmética
+          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-2 rounded-full bg-nude/80 border border-gold/30 text-xs font-bold tracking-wider uppercase text-terracotta shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
+            <span>Montes Claros - MG • Jardim São Luiz</span>
+            <span class="text-gold/60 hidden sm:inline">•</span>
+            <span class="text-espresso hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
           </div>
-          
-          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-espresso font-normal">
-            O cuidado que a sua beleza merece, <em class="italic font-light text-terracotta">todos os dias.</em>
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-espresso font-normal leading-[1.08] tracking-tight">
+            A Arte da Transformação Capilar & <em class="italic font-light text-terracotta block sm:inline">Rituais de Alta Costura</em>
           </h1>
           
           <p class="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
@@ -241,153 +286,213 @@
     </div>
   </section>
 
-  <!-- ===== SEÇÃO DE SERVIÇOS & PROCEDIMENTOS DE CABINE (MONTES CLAROS) ===== -->
-  <section id="servicos" class="py-20 bg-linen border-b border-gold/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ===== SEÇÃO DE SERVIÇOS & PROCEDIMENTOS DE CABINE (MONTES CLAROS) ===== -->
+  <section id="servicos" class="py-20 lg:py-28 bg-linen border-b border-gold/20">
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
       
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento Presencial em Montes Claros - MG</span>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
-          Serviços & Procedimentos de <em class="italic font-light">Cabine</em>
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento Exclusivo com Hora Marcada</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+          Menu de Serviços & Procedimentos de <em class="italic font-light text-terracotta">Cabine</em>
         </h2>
-        <p class="text-sm text-muted">
-          Especialização técnica, protocolos personalizados e produtos de alto padrão para transformar e valorizar a sua beleza com total segurança.
+        <p class="text-sm text-muted leading-relaxed">
+          Técnicas de alta precisão, visagismo e protocolos consolidados no Carla Barbosa Estúdio de Beleza. Rua Dep. Antônio Pimenta, 72 - Jardim São Luiz, Montes Claros - MG.
         </p>
       </div>
 
-      <!-- Grade de Serviços do Estúdio -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Grade de 8 Serviços com Fotografias Exclusivas em Alta Resolução -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         
         <!-- Serviço 1: Loiros & Mechas -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="sparkles" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Especialidade</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Mechas & Loiros Saudáveis</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Loiros platinados, dourados elegantes e Morenas Iluminadas com tecnologia de proteção dos fios durante todo o processo de descoloração.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Loiro Dourado, Bege e Platinado</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Morena Iluminada com Visagismo</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Proteção Plex Anti-Danos</li>
-            </ul>
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=80" alt="Loiros & Mechas de Alta Precisão" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-espresso/80 backdrop-blur-md text-gold-light text-[10px] font-bold uppercase tracking-wider">Assinatura</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Mechas/Loiros." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Avaliação
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Loiros & Mechas de Alta Precisão</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Loiros platinados, perolados e dourados elegantes com teste de mecha rigoroso e proteção de pontes capilares.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Balayage & Micromechas</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Loiro Perolado & Platinado</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Protocolo Anti-Quebra Plex</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Loiros/Mechas." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Avaliação
+            </a>
+          </div>
         </div>
 
-        <!-- Serviço 2: Cronograma & Terapia Capilar -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="shield" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Recuperação</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Cronograma & Terapia Capilar</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Tratamentos intensivos para reconstrução de massa, nutrição lipídica e reposição hídrica para fios danificados ou ressecados.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Reconstrução com Aminoácidos</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Cauterização e Nutrição Lipídica</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Selamento de Cutículas e Brilho</li>
-            </ul>
+        <!-- Serviço 2: Corte Butterfly Cut & Visagismo -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Corte Butterfly Cut & Visagismo" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta text-white text-[10px] font-bold uppercase tracking-wider">Tendência Internacional</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Tratamento/Cronograma%20Capilar." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Tratamento
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Corte Butterfly Cut & Visagismo</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Camadas graduadas com leveza e movimento de passarela, harmonizadas ao formato do seu rosto e textura natural.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Camadas Flutuantes com Volume</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Franja Cortina (Curtain Bangs)</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Finalização Glow de Estúdio</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Corte%20Butterfly%20Cut." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Corte
+            </a>
+          </div>
         </div>
 
-        <!-- Serviço 3: Alinhamento & Selagem Orgânica -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="feather" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Alinhamento</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Alinhamento Térmico Orgânico</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Fórmula sem formol para redução de volume, controle de frizz e brilho espelhado, mantendo o movimento natural e toque sedoso.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> 100% Livre de Formol</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Brilho Espelhado Duradouro</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Movimento Natural e Maciez</li>
-            </ul>
+        <!-- Serviço 3: Alisamento a LED / Fotoativação -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=80" alt="Alisamento a LED e Fotoativação" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold text-espresso text-[10px] font-bold uppercase tracking-wider">Tecnologia Fotônica</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Alinhamento%20Org%C3%A2nico." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Selagem
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Alisamento a LED & Fotoativação</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Selagem capilar com tecnologia a LED. Fixa nutrientes na fibra capilar, elimina o frizz e entrega brilho espelhado sem formol.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> 100% Livre de Fumaça e Formol</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Luz LED Fixadora de Brilho</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Durabilidade e Toque Sedoso</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20Alisamento%20a%20LED." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Alisamento
+            </a>
+          </div>
         </div>
 
-        <!-- Serviço 4: Sobrancelhas & Olhar -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="eye" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Olhar Marcante</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Design de Sobrancelhas & Olhar</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Mapeamento facial personalizado para realçar suas linhas naturais com simetria e sofisticação.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Design Personalizado com Visagismo</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Brow Lamination & Alinhamento</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Nutrição e Aplicação de Henna</li>
-            </ul>
+        <!-- Serviço 4: Morena Iluminada -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=700&q=80" alt="Morena Iluminada Tons Quentes" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Sofisticação Natural</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20Design%20de%20Sobrancelhas." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Sobrancelhas
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Morena Iluminada & Tons Quentes</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Tons avelã, caramelo, mel e canela com transição sutil que não marca a raiz e realça a luminosidade do rosto.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Iluminação sem Ressecamento</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Contorno Facial Iluminado</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Manutenção Prática e Elegante</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20Morena%20Iluminada." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Morena
+            </a>
+          </div>
         </div>
 
-        <!-- Serviço 5: Manicure & Nails -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="heart" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Nails & Spa</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Manicure, Pedicure & Nails</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Cuidados completos para mãos e pés com técnicas de alta durabilidade, esmaltação perfeita e biossegurança esterilizada.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Esmaltação em Gel de Longa Duração</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Blindagem Diamante Fortalecedora</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Spa dos Pés com Esfoliação Suave</li>
-            </ul>
+        <!-- Serviço 5: Soltura de Cachos & Curvaturas -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1522337094345-a044afc6d0d6?auto=format&fit=crop&w=700&q=80" alt="Soltura de Cachos e Terapia de Curvaturas" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Curvaturas 3A a 4C</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20hor%C3%A1rio%20para%20Unhas/Manicure." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Unhas
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Soltura de Cachos & Curvaturas</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Técnica especializada para redução de frizz, relaxamento suave e definição estruturada preservando a identidade dos cachos.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Cachos Definidos e Macios</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Hidratação Lipídica Profunda</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Suavização de Volume Excessivo</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20Soltura%20de%20Cachos." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Cachos
+            </a>
+          </div>
         </div>
 
-        <!-- Serviço 6: Maquiagem & Produções -->
-        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
-              <i data-lucide="smile" class="w-7 h-7"></i>
-            </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Produção Completa</span>
-            <h3 class="font-serif text-2xl font-bold text-espresso">Maquiagem Social & Eventos</h3>
-            <p class="text-xs text-muted leading-relaxed">
-              Produções impecáveis para noivas, formandas, convidadas e ensaios fotográficos com produtos importados e fixação de alta resistência.
-            </p>
-            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Maquiagem Social & Noivas</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Penteados Sofisticados e Modernos</li>
-              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Preparação de Pele Blindada</li>
-            </ul>
+        <!-- Serviço 6: Terapia Capilar & Cronograma de Cabine -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&q=80" alt="Cronograma & Terapia Capilar" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Regeneração</div>
           </div>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20Produ%C3%A7%C3%A3o%20de%20Maquiagem/Penteado." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Produção
-          </a>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Terapia Capilar & Cronograma</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Tratamentos intensivos de reposição de queratina, aminoácidos e óleos nobres para cabelos pós-química ou sensibilizados.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Detox do Couro & Ozonioterapia</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Cauterização e Reposição Lipídica</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Reconstrução Molecular Imediata</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Cronograma%20Capilar." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Terapia
+            </a>
+          </div>
+        </div>
+
+        <!-- Serviço 7: Design de Sobrancelhas & Brow Lamination -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=700&q=80" alt="Design de Sobrancelhas e Brow Lamination" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Olhar Marcante</div>
+          </div>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Design de Sobrancelhas & Brow</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Mapeamento facial visagista, alinhamento dos fios com Brow Lamination e nutrição de sobrancelhas e cílios.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Brow Lamination com Queratina</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Mapeamento Facial com Simetria</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Henna Híbrida & Tintura Suave</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20Design%20de%20Sobrancelhas." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Sobrancelhas
+            </a>
+          </div>
+        </div>
+
+        <!-- Serviço 8: Nails de Luxo & Gel -->
+        <div class="rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div class="aspect-[16/11] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=700&q=80" alt="Nails em Gel e Blindagem Diamante" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Alta Durabilidade</div>
+          </div>
+          <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-2xl font-bold text-espresso">Nails em Gel & Blindagem</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Alongamento em fibra de vidro, blindagem de diamante e esmaltação em gel com biossegurança 100% esterilizada em autoclave.
+              </p>
+              <ul class="text-xs text-espresso/80 space-y-1.5 pt-2 border-t border-nude">
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Alongamento em Fibra Natural</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Blindagem Diamante Anti-Quebra</li>
+                <li class="flex items-center gap-2"><span class="text-gold">✓</span> Esmaltação em Gel de 21 Dias</li>
+              </ul>
+            </div>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20hor%C3%A1rio%20para%20Unhas/Nails." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Nails
+            </a>
+          </div>
         </div>
 
       </div>
@@ -633,54 +738,84 @@
     </div>
   </section>
 
-  <!-- ===== DÚVIDAS FREQUENTES & ATENDIMENTO ===== -->
-  <section id="contato" class="py-20 max-w-4xl mx-auto px-4 sm:px-6">
+    <!-- ===== DÚVIDAS FREQUENTES & ATENDIMENTO ===== -->
+  <section id="contato" class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center space-y-3 mb-12">
-      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento & Dúvidas</span>
-      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Como podemos ajudar você?</h2>
-      <p class="text-sm text-muted">Atendimento presencial em Montes Claros - MG e envios para todo o Brasil.</p>
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento Físico & Localização</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Venha Viver a Experiência Carla Barbosa</h2>
+      <p class="text-sm text-muted">Rua Deputado Antônio Pimenta, 72 — Bairro Jardim São Luiz, Montes Claros - MG.</p>
+    </div>
+
+    <!-- Card de Endereço Físico e Dados Cadastrais -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm text-center space-y-2">
+        <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta mb-2">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>
+        </div>
+        <span class="font-bold text-espresso text-sm block">Endereço do Estúdio</span>
+        <p class="text-xs text-muted">Rua Deputado Antônio Pimenta, nº 72<br />Bairro Jardim São Luiz, Montes Claros - MG<br />CEP 39401-054</p>
+        <a href="https://maps.google.com/?q=Rua+Deputado+Antonio+Pimenta+72+Montes+Claros+MG" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-terracotta font-bold hover:underline pt-2">
+          Abrir no Google Maps →
+        </a>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm text-center space-y-2">
+        <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta mb-2">
+          <i data-lucide="clock" class="w-5 h-5"></i>
+        </div>
+        <span class="font-bold text-espresso text-sm block">Horário de Cabine</span>
+        <p class="text-xs text-muted">Terça a Sábado: 09h às 18h<br />Domingo e Segunda: Fechado<br />Atendimento exclusivo com hora marcada</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm text-center space-y-2">
+        <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta mb-2">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+        <span class="font-bold text-espresso text-sm block">Dados da Empresa</span>
+        <p class="text-xs text-muted">Razão Social: Barbosa Serviços de Beleza Ltda<br />CNPJ: 57.423.968/0001-48<br />Instagram Oficial: @carlabarbosa.estudio</p>
+      </div>
     </div>
 
     <!-- Acordeão de Perguntas Frequentes -->
     <div class="space-y-4 mb-16">
       <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
         <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
-          <span>Onde fica o estúdio presencial em Montes Claros - MG?</span>
+          <span>Onde fica o Carla Barbosa Estúdio de Beleza em Montes Claros?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
         </summary>
         <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Nosso estúdio físico está localizado na <strong>Rua Deputado Antônio Pimenta, 72 — Bairro Jardim São Luiz, Montes Claros - MG</strong> (CEP 39401-057), em um ambiente climatizado, acolhedor e exclusivo para o seu atendimento.
+          Nosso estúdio físico está localizado na <strong>Rua Deputado Antônio Pimenta, 72 — Bairro Jardim São Luiz, Montes Claros - MG (CEP 39401-054)</strong>, com ambiente climatizado, acolhedor e biossegurança esterilizada.
         </p>
       </details>
 
       <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
         <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
-          <span>Como funciona a entrega dos cosméticos?</span>
+          <span>O que é o Alisamento a LED e quais são os benefícios?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
         </summary>
         <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Para Montes Claros temos entrega expressa via motoboy. Para as demais cidades do Brasil enviamos via Correios e transportadoras com rastreamento seguro.
+          O alisamento a LED utiliza fotoativação por feixe de luz que potencializa a absorção de aminoácidos e óleos nobres na fibra, selando as cutículas com brilho espelhado sem agredir os fios e 100% livre de formol ou fumaça tóxica.
         </p>
       </details>
 
       <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
         <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
-          <span>Como agendar procedimentos presenciais com a Carla Barbosa?</span>
+          <span>Como funciona a consulta para corte Butterfly Cut ou Mechas?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
         </summary>
         <p class="text-sm text-muted mt-3 font-light leading-relaxed">
-          Os atendimentos em cabine são realizados com hora marcada. Você pode solicitar um horário diretamente com nossa consultora através do WhatsApp oficial.
+          Antes de qualquer processo de mechas, realizamos o <strong>teste de mecha obrigatório</strong> para assegurar a elasticidade e saúde do fio. Para o corte Butterfly Cut, fazemos uma análise visagista das proporções do rosto para definir a altura ideal das camadas.
         </p>
       </details>
     </div>
 
     <!-- Banner WhatsApp -->
-    <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4">
-      <h3 class="font-serif text-2xl sm:text-3xl">Deseja um atendimento personalizado?</h3>
+    <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4 shadow-xl">
+      <h3 class="font-serif text-2xl sm:text-3xl">Deseja agendar sua avaliação personalizada?</h3>
       <p class="text-sm text-gold-light/80 max-w-md mx-auto">
-        Fale diretamente no nosso WhatsApp para tirar dúvidas sobre produtos, dicas de tratamentos ou agendamentos.
+        Fale diretamente no nosso WhatsApp oficial para agendar seu horário na cabine ou tirar dúvidas sobre os cosméticos home care.
       </p>
-      <a id="whatsappCtaLink" href="https://wa.me/5538999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+      <a id="whatsappCtaLink" href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
         <i data-lucide="message-circle" class="w-4 h-4"></i> Iniciar Conversa no WhatsApp
       </a>
     </div>
@@ -688,25 +823,31 @@
 
   <!-- ===== RODAPÉ (FOOTER) ===== -->
   <footer class="bg-espresso-light text-gold-light py-12 border-t border-gold/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gold/20 text-center md:text-left">
         <div>
           <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-white block">CARLA BARBOSA</span>
           <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza • Montes Claros - MG</span>
+          <p class="text-[11px] text-gold-light/60 mt-1">Barbosa Serviços de Beleza Ltda • CNPJ: 57.423.968/0001-48</p>
+          <p class="text-[11px] text-gold-light/60">Rua Deputado Antônio Pimenta, 72 - Jardim São Luiz • CEP 39401-054</p>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider">
+          <a href="#servicos" class="hover:text-white transition">Serviços</a>
           <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
+          <a href="#quiz" class="hover:text-white transition">Diagnóstico</a>
           <a href="#posts" class="hover:text-white transition">Blog & Dicas</a>
           <a href="#sobre" class="hover:text-white transition">O Estúdio</a>
-          <a href="#contato" class="hover:text-white transition">Contato</a>
-          <button onclick="openAdminModal()" class="text-gold-light/40 hover:text-white transition flex items-center gap-1 opacity-60 hover:opacity-100">
+          <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-white transition flex items-center gap-1">
+            <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @carlabarbosa.estudio
+          </a>
+          <button onclick="openAdminModal()" class="text-gold-light/40 hover:text-white transition flex items-center gap-1 opacity-60 hover:opacity-100" title="Área Administrativa">
             <i data-lucide="lock" class="w-3 h-3"></i> Admin
           </button>
         </div>
       </div>
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gold-light/60 gap-4">
-        <p>© 2026 Carla Barbosa Estúdio — Montes Claros MG. Todos os direitos reservados.</p>
-        <p>Desenvolvido com excelência • Alta Performance & Estética</p>
+        <p>© 2026 Carla Barbosa Estúdio de Beleza — Barbosa Serviços de Beleza Ltda. CNPJ: 57.423.968/0001-48.</p>
+        <p>Montes Claros - MG • Todos os direitos reservados • Padrão Ouro</p>
       </div>
     </div>
   </footer>
