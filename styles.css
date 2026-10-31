@@ -87,3 +87,22 @@ header#header {
   top: 0 !important;
   z-index: 40 !important;
 }
+
+
+/* ===== EFEITOS CINEMATOGRÁFICOS DE ALTA COSTURA ===== */
+.cinema-glow {
+  box-shadow: 0 0 50px -10px rgba(200, 157, 124, 0.25);
+}
+
+video {
+  pointer-events: auto;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}

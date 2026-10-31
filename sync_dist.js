@@ -22,6 +22,23 @@ const filesToSync = [
   '_redirects'
 ];
 
+function copyFolderRecursiveSync(source, target) {
+  if (!fs.existsSync(target)) fs.mkdirSync(target, { recursive: true });
+  if (fs.existsSync(source)) {
+    fs.readdirSync(source).forEach(file => {
+      const curSource = path.join(source, file);
+      const curTarget = path.join(target, file);
+      if (fs.lstatSync(curSource).isDirectory()) {
+        copyFolderRecursiveSync(curSource, curTarget);
+      } else {
+        fs.copyFileSync(curSource, curTarget);
+      }
+    });
+  }
+}
+copyFolderRecursiveSync(path.join(baseDir, 'assets'), path.join(distDir, 'assets'));
+copyFolderRecursiveSync(path.join(baseDir, 'assets'), path.join(publicDir, 'assets'));
+
 filesToSync.forEach(file => {
   const src = path.join(baseDir, file);
   if (fs.existsSync(src)) {

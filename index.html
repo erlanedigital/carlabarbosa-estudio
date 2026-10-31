@@ -212,69 +212,99 @@
   </nav>
 
 
-  <!-- ===== SEÇÃO PRINCIPAL (HERO) ===== -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-linen-dark to-linen pt-12 pb-20 lg:py-28 border-b border-gold/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <!-- ===== SEÇÃO PRINCIPAL (HERO CINEMATOGRÁFICA) ===== -->
+  <section class="relative overflow-hidden bg-espresso text-white pt-16 pb-24 lg:py-32 border-b border-gold/20 min-h-[90vh] flex items-center">
+    
+    <!-- VÍDEO CINEMATOGRÁFICO DE FUNDO EM ALTA DEFINIÇÃO -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+      <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-45 scale-105 transition-transform duration-1000">
+        <source src="/assets/videos/hero-hair-luxury.mp4" type="video/mp4" />
+      </video>
+      <!-- Gradientes Cinematográficos de Iluminação Dourada e Contraste Nobre -->
+      <div class="absolute inset-0 bg-gradient-to-r from-espresso/95 via-espresso/80 to-espresso/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-espresso/40"></div>
+      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-terracotta/20 blur-3xl pointer-events-none"></div>
+    </div>
+
+    <div class="relative z-10 max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-12 items-center">
         
-        <!-- Conteúdo Textual -->
+        <!-- Conteúdo Textual Cinematográfico -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-2 rounded-full bg-nude/80 border border-gold/30 text-xs font-bold tracking-wider uppercase text-terracotta shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
+          
+          <div class="inline-flex flex-wrap items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-gold/40 backdrop-blur-md text-xs font-bold tracking-wider uppercase text-gold-light shadow-xl">
+            <span class="w-2.5 h-2.5 rounded-full bg-terracotta animate-pulse shadow-sm shadow-terracotta"></span>
             <span>Montes Claros - MG • Jardim São Luiz</span>
             <span class="text-gold/60 hidden sm:inline">•</span>
-            <span class="text-espresso hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
+            <span class="text-white hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
           </div>
-          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-espresso font-normal leading-[1.08] tracking-tight">
-            A Arte da Transformação Capilar & <em class="italic font-light text-terracotta block sm:inline">Rituais de Alta Costura</em>
+
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-white font-normal leading-[1.08] tracking-tight drop-shadow-md">
+            A Arte da Transformação Capilar & <em class="italic font-light text-gold-light block sm:inline">Rituais de Alta Costura</em>
           </h1>
           
-          <p class="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+          <p class="text-base sm:text-lg text-gold-light/80 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
             Fórmulas inteligentes, ativos botânicos de alta performance e rituais criados para realçar o que há de mais autêntico e refinado em você.
           </p>
 
           <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-terracotta/20 transition-all text-center">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-xl shadow-terracotta/30 transition-all duration-300 text-center hover:scale-105 active:scale-95">
               Explorar Catálogo
             </a>
-            <a href="#quiz" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-espresso/30 hover:border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-widest transition-all text-center">
-              Fazer Diagnóstico de Beleza →
+            <a href="#cine-cabine" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 border border-gold/40 text-gold-light rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-300 text-center flex items-center justify-center gap-2 hover:border-gold">
+              <i data-lucide="play" class="w-4 h-4 text-gold"></i>
+              <span>Ver Transformações em Vídeo</span>
             </a>
           </div>
 
-          <!-- Selos de Confiança -->
-          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-4 text-center lg:text-left">
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">100%</span>
-              <span class="text-[11px] uppercase tracking-wider text-muted">Vegano & Não Testado</span>
+          <!-- Selos de Confiança Cinematográficos em Vidro Fosco -->
+          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-3 sm:gap-4 text-center lg:text-left">
+            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <span class="block font-serif text-2xl sm:text-3xl text-white font-semibold">100%</span>
+              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Vegano & Seguro</span>
             </div>
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">Estúdio</span>
-              <span class="text-[11px] uppercase tracking-wider text-muted">Fórmula de Cabine</span>
+            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <span class="block font-serif text-2xl sm:text-3xl text-white font-semibold">Estúdio</span>
+              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Fórmula de Cabine</span>
             </div>
-            <div>
-              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">4.9★</span>
-              <span class="text-[11px] uppercase tracking-wider text-muted">Avaliação Média</span>
+            <div class="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+              <span class="block font-serif text-2xl sm:text-3xl text-gold font-semibold">4.9★</span>
+              <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gold-light/70">Avaliação Média</span>
             </div>
           </div>
         </div>
 
-        <!-- Demonstração Visual do Produto -->
+        <!-- Reel Cinematográfico Vertical Flutuante de Cabine -->
         <div class="lg:col-span-5 relative">
-          <div class="relative mx-auto max-w-md rounded-2xl bg-nude/60 p-6 border border-gold/30 shadow-2xl backdrop-blur-sm">
-            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-espresso/5 relative flex items-center justify-center">
-              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=480&q=70" alt="Cosméticos Carla Barbosa Estúdio" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent"></div>
-              
-              <!-- Cartão Flutuante -->
-              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-linen/95 backdrop-blur-md border border-gold/30 flex items-center justify-between">
+          <div class="relative mx-auto max-w-sm rounded-3xl bg-white/10 p-3 sm:p-4 border border-gold/40 shadow-2xl backdrop-blur-xl group">
+            
+            <!-- Badge Flutuante no Topo do Vídeo -->
+            <div class="absolute top-7 left-7 z-20 px-3 py-1.5 rounded-full bg-espresso/80 backdrop-blur-md border border-gold/40 text-[10px] font-bold uppercase tracking-wider text-gold-light flex items-center gap-1.5 shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+              <span>Cabine em Movimento</span>
+            </div>
+
+            <!-- Player de Vídeo Vertical HD -->
+            <div class="aspect-[9/13] rounded-2xl overflow-hidden bg-espresso relative flex items-center justify-center shadow-inner">
+              <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                <source src="/assets/videos/reel-butterfly-cut.mp4" type="video/mp4" />
+              </video>
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-espresso/30 pointer-events-none"></div>
+
+              <!-- Cartão Flutuante do Procedimento -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-espresso/90 backdrop-blur-md border border-gold/30 flex items-center justify-between text-left shadow-2xl">
                 <div>
-                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Mais Vendido</span>
-                  <span class="font-serif text-base font-semibold text-espresso">Elixir Nutritivo e Iluminador Facial</span>
+                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Destaque da Semana</span>
+                  <span class="font-serif text-sm sm:text-base font-semibold text-white">Butterfly Cut & Glow Facial</span>
+                  <span class="block text-[10px] text-gold-light/70">Montes Claros • Rua Dep. Antônio Pimenta, 72</span>
                 </div>
-                <span class="font-serif text-lg font-bold text-espresso">R$ 189</span>
+                <a href="#servicos" class="w-9 h-9 rounded-full bg-terracotta hover:bg-terracotta-hover flex items-center justify-center text-white transition-transform hover:scale-110 shadow-md" title="Ver Serviços">
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -282,7 +312,7 @@
     </div>
   </section>
 
-    <!-- ===== SEÇÃO DE SERVIÇOS & PROCEDIMENTOS DE CABINE (MONTES CLAROS) ===== -->
+  <!-- ===== SEÇÃO DE SERVIÇOS & PROCEDIMENTOS DE CABINE (MONTES CLAROS) ===== -->
   <section id="servicos" class="py-20 lg:py-28 bg-linen border-b border-gold/20">
     <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
       
@@ -487,6 +517,136 @@
             </div>
             <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20hor%C3%A1rio%20para%20Unhas/Nails." target="_blank" rel="noopener noreferrer" class="mt-4 w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2 shadow-md">
               <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Nails
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+    <!-- ===== NOVA SEÇÃO CINEMATOGRÁFICA: CINE CABINE & BASTIDORES ===== -->
+  <section id="cine-cabine" class="py-20 lg:py-28 bg-espresso text-white relative overflow-hidden border-b border-gold/20">
+    
+    <!-- Luzes de Estúdio de Fundo -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-terracotta/15 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/20 border border-gold/40 text-xs font-bold uppercase tracking-widest text-gold-light">
+          <i data-lucide="film" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Cinema & Bastidores de Salão</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl text-white font-normal">
+          Cine Cabine: A Transformação <em class="italic font-light text-gold-light">em Movimento</em>
+        </h2>
+        <p class="text-sm text-gold-light/75 leading-relaxed">
+          Assista em alta definição ao balanço real, corte e luminosidade das clientes atendidas na cadeira de Carla Barbosa.
+        </p>
+      </div>
+
+      <!-- Grade de 4 Vídeos Cinematográficos Verticais (Reels de Alta Costura) -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        
+        <!-- Reel 1: Loiro Perolado -->
+        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300">
+          <div class="aspect-[9/14] relative bg-black overflow-hidden">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <source src="/assets/videos/reel-loiro-perolado.mp4" type="video/mp4" />
+            </video>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-espresso/80 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-gold-light border border-gold/30">
+              Loiro Perolado
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
+              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Descoloração Segura</span>
+              <h3 class="font-serif text-lg font-bold text-white">Loiro Saudável & Brilho Gloss</h3>
+              <p class="text-[11px] text-gold-light/70 line-clamp-2">Técnica com micromechas e proteção de pontes capilares.</p>
+            </div>
+          </div>
+          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-gold-light/80 font-medium">Protocolo de Cabine</span>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20v%C3%ADdeo%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md">
+              Agendar
+            </a>
+          </div>
+        </div>
+
+        <!-- Reel 2: Butterfly Cut -->
+        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300">
+          <div class="aspect-[9/14] relative bg-black overflow-hidden">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <source src="/assets/videos/reel-butterfly-cut.mp4" type="video/mp4" />
+            </video>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-terracotta">
+              Butterfly Cut
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
+              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Visagismo Internacional</span>
+              <h3 class="font-serif text-lg font-bold text-white">Camadas Fluidas & Curtain Bangs</h3>
+              <p class="text-[11px] text-gold-light/70 line-clamp-2">Leveza extrema e movimento sem sacrificar o comprimento.</p>
+            </div>
+          </div>
+          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-gold-light/80 font-medium">Corte de Tendência</span>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20v%C3%ADdeo%20do%20Butterfly%20Cut%20e%20quero%20agendar%20meu%20corte." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md">
+              Agendar
+            </a>
+          </div>
+        </div>
+
+        <!-- Reel 3: Alisamento a LED -->
+        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300">
+          <div class="aspect-[9/14] relative bg-black overflow-hidden">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <source src="/assets/videos/reel-alisamento-led.mp4" type="video/mp4" />
+            </video>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-espresso border border-gold">
+              Tecnologia a LED
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
+              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Fotoativação</span>
+              <h3 class="font-serif text-lg font-bold text-white">Liso Espelhado sem Formol</h3>
+              <p class="text-[11px] text-gold-light/70 line-clamp-2">A luz LED sela os nutrientes preservando a saúde da fibra.</p>
+            </div>
+          </div>
+          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-gold-light/80 font-medium">Sem Fumaça Tóxica</span>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20e%20agendamento%20para%20o%20Alisamento%20a%20LED." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md">
+              Agendar
+            </a>
+          </div>
+        </div>
+
+        <!-- Reel 4: Spa Capilar & Terapia -->
+        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300">
+          <div class="aspect-[9/14] relative bg-black overflow-hidden">
+            <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <source src="/assets/videos/reel-spa-capilar.mp4" type="video/mp4" />
+            </video>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-gold-light border border-white/30">
+              Spa da Fibra
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
+              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Rituais de Lavatório</span>
+              <h3 class="font-serif text-lg font-bold text-white">Cronograma & Ozonioterapia</h3>
+              <p class="text-[11px] text-gold-light/70 line-clamp-2">Massagem relaxante e reposição de massa lipídica intensiva.</p>
+            </div>
+          </div>
+          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-gold-light/80 font-medium">Regeneração Profunda</span>
+            <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Spa%20Capilar." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md">
+              Agendar
             </a>
           </div>
         </div>
