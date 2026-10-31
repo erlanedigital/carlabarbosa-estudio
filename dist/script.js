@@ -19,8 +19,7 @@ const defaultProducts = [
     installments: '3x de R$ 46,33',
     rating: 5.0,
     reviewsCount: 118,
-    image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Nutrição intensa, proteção térmica até 230°C e brilho espelhado para pontas e mechas.',
     fullDesc: 'Fórmula exclusiva do estúdio com Óleo de Argan marroquino puro e Rosa Mosqueta nobre. Sela pontas duplas, controla o frizz e devolve luminosidade imediata a cabelos loiros e morenas iluminadas.',
     usage: 'Aplique 2 a 3 gotas na palma das mãos e distribua no comprimento e pontas com os fios úmidos ou secos.'
@@ -34,8 +33,7 @@ const defaultProducts = [
     installments: '6x de R$ 58,16',
     rating: 4.9,
     reviewsCount: 94,
-    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Trio de Reconstrução, Nutrição e Hidratação para cabelos pós-química.',
     fullDesc: 'O mesmo protocolo utilizado na cadeira da Carla Barbosa em Montes Claros para manter o cabelo com toque aveludado e estrutura reforçada em casa.',
     usage: 'Alterne as etapas de hidratação, nutrição e reconstrução conforme o cronograma semanal indicado no diagnóstico.'
@@ -49,8 +47,7 @@ const defaultProducts = [
     installments: '3x de R$ 53,00',
     rating: 4.9,
     reviewsCount: 82,
-    image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Neutralização de tons amarelados com hidratação ultra reconstrutora.',
     fullDesc: 'Pigmentos violeta perolados de microprecisão combinados a aminoácidos essenciais para neutralizar tons indesejados sem ressecar a fibra capilar.',
     usage: 'Aplique nos cabelos limpos e úmidos, massageando mecha a mecha. Deixe agir de 3 a 5 minutos e enxágue abundantemente.'
@@ -64,8 +61,7 @@ const defaultProducts = [
     installments: '3x de R$ 56,33',
     rating: 5.0,
     reviewsCount: 65,
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Fluido ativador com tecnologia de reflexão fotônica para brilho espelhado prolongado.',
     fullDesc: 'Inspirado no protocolo de fotoativação a LED do estúdio. Cria uma barreira protetora contra calor, vento e umidade, garantindo alinhamento liso duradouro.',
     usage: 'Borrife suavemente em todo o comprimento antes de utilizar secador, chapinha ou difusor.'
@@ -79,8 +75,7 @@ const defaultProducts = [
     installments: '3x de R$ 49,66',
     rating: 5.0,
     reviewsCount: 71,
-    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Nutrição, alinhamento e fortalecimento dos fios de sobrancelhas e cílios.',
     fullDesc: 'Complexo bioativo enriquecido com Peptídeos e Biotina botânica para fortalecer a raiz, reduzir quedas e proporcionar alinhamento elegante dos fios.',
     usage: 'Passe o aplicador suavemente na raiz das sobrancelhas e cílios toda noite antes de dormir.'
@@ -94,8 +89,7 @@ const defaultProducts = [
     installments: '2x de R$ 64,50',
     rating: 4.8,
     reviewsCount: 47,
-    image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80',
-    hoverImage: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80',
     shortDesc: 'Notas de figo branco, âmbar e cedro para o seu santuário de paz e autocuidado.',
     fullDesc: 'Cera 100% vegetal com pavio de algodão. A mesma fragrância acolhedora do Carla Barbosa Estúdio em Montes Claros para enriquecer seus momentos de descanso.',
     usage: 'Acenda durante o seu banho ou momento de autocuidado noturno por até 3 horas.'
@@ -108,7 +102,7 @@ const defaultPosts = [
     title: 'Butterfly Cut: O Corte em Camadas que Conquistou o Estúdio',
     category: 'Cortes & Tendências',
     date: '30 de Outubro, 2026',
-    image: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Descubra como o corte em camadas graduadas e franja cortina traz leveza e movimento de passarela sem tirar o comprimento.',
     content: 'O Butterfly Cut é a técnica mais pedida pelas clientes no Carla Barbosa Estúdio em Montes Claros. Ele combina camadas superiores mais curtas que emolduram o rosto com camadas longas que preservam a densidade das pontas. A grande vantagem é a versatilidade: você pode estilizar com ondas glamourosas ou escova lisa fluida!'
   },
@@ -117,7 +111,7 @@ const defaultPosts = [
     title: '5 Segredos para um Loiro Saudável sem Quebra no Clima Seco',
     category: 'Colorimetria & Loiros',
     date: '24 de Outubro, 2026',
-    image: 'https://images.unsplash.com/photo-1584297091622-af8e5fdcf9e2?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Dicas práticas de estúdio para blindar os fios descoloridos contra a oxidação, ressecamento e quebra.',
     content: 'Manter mechas e loiros radiantes em Montes Claros exige hidratação lipídica constante e proteção térmica. No estúdio, sempre realizamos o teste de mecha prévio e utilizamos protetores de pontes de sulfeto. Dica de ouro da Carla: nunca lave o cabelo em água pelando e finalize sempre com óleo de argan nas pontas!'
   },
@@ -126,7 +120,7 @@ const defaultPosts = [
     title: 'Por que o Alisamento a LED é a Revolução dos Cabelos Lisos?',
     category: 'Alinhamento & Tecnologia',
     date: '18 de Outubro, 2026',
-    image: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1000&q=85',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1000&q=85',
     excerpt: 'Entenda como a fotoativação com luz de LED sela as cutículas sem formol, entregando brilho espelhado duradouro.',
     content: 'O Alisamento a LED do Carla Barbosa Estúdio atua através de fotobioestimulação. A luz fria estimula a penetração profunda dos aminoácidos na fibra capilar sem queimar as cutículas. O resultado é um cabelo com movimento natural, sedoso e que não desbota a cor!'
   }
@@ -279,8 +273,7 @@ function renderProducts() {
   grid.innerHTML = filtered.map(p => `
     <div class="product-card rounded-2xl bg-white border border-gold/20 overflow-hidden flex flex-col justify-between group">
       <div class="relative overflow-hidden aspect-[4/4.5] bg-nude/30 cursor-pointer" onclick="openQuickModal('${p.id}')">
-        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-        <img src="${sanitizeUrl(p.hoverImage || p.image)}" alt="${p.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <img src="${sanitizeUrl(p.image)}" alt="${p.name}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         
         <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-linen/95 border border-gold/30 text-[10px] uppercase font-bold tracking-wider text-terracotta backdrop-blur-sm">
           ${p.badge || 'Exclusivo'}
@@ -903,22 +896,22 @@ function switchAdminTab(tab) {
 // ===== GERENCIADOR INTEGRAL DE VÍDEOS E FOTOS DO SITE (CARLA BARBOSA) =====
 const defaultSiteMedia = {
   reel1Video: '/assets/videos/reel-loiro-perolado.mp4',
-  reel1Poster: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80',
+  reel1Poster: 'https://images.unsplash.com/photo-1584297091622-af8e5fdcf9e2?auto=format&fit=crop&w=600&q=80',
   reel1Badge: 'Loiro Perolado',
   reel1Title: 'Loiro Saudável & Brilho Gloss',
 
   reel2Video: '/assets/videos/reel-butterfly-cut.mp4',
-  reel2Poster: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
+  reel2Poster: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80',
   reel2Badge: 'Butterfly Cut',
   reel2Title: 'Camadas Fluidas & Curtain Bangs',
 
   reel3Video: '/assets/videos/reel-alisamento-led.mp4',
-  reel3Poster: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80',
+  reel3Poster: 'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=600&q=80',
   reel3Badge: 'Tecnologia a LED',
   reel3Title: 'Liso Espelhado sem Formol',
 
   reel4Video: '/assets/videos/reel-spa-capilar.mp4',
-  reel4Poster: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80',
+  reel4Poster: 'https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=600&q=80',
   reel4Badge: 'Spa da Fibra',
   reel4Title: 'Cronograma & Ozonioterapia',
 
@@ -1816,9 +1809,71 @@ function installPwaApp() {
 
 
 // ============================================================
-// ENGENHARIA CINEMATOGRÁFICA: GSAP PINNED DOLLY ZOOM & LENIS SYNC
+// ENGENHARIA CINEMATOGRÁFICA: GSAP LETRAS SUBINDO & LENIS 1.5s
 // ============================================================
+function initHeroRisingLetters() {
+  const title = document.getElementById('heroMainTitle');
+  if (!title) return;
+
+  const childNodes = Array.from(title.childNodes);
+  title.innerHTML = '';
+
+  childNodes.forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+      words.forEach(word => {
+        const wordWrapper = document.createElement('span');
+        wordWrapper.className = 'inline-block whitespace-nowrap overflow-hidden mr-2 sm:mr-3.5';
+        for (let char of word) {
+          const charSpan = document.createElement('span');
+          charSpan.className = 'hero-char inline-block translate-y-[125%] opacity-0 will-change-transform';
+          charSpan.textContent = char;
+          wordWrapper.appendChild(charSpan);
+        }
+        title.appendChild(wordWrapper);
+      });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const isEm = node.tagName.toLowerCase() === 'em';
+      const words = node.textContent.trim().split(/\s+/).filter(Boolean);
+      words.forEach(word => {
+        const wordWrapper = document.createElement('span');
+        wordWrapper.className = 'inline-block whitespace-nowrap overflow-hidden mr-2 sm:mr-3.5' + (isEm ? ' italic font-light text-terracotta' : '');
+        for (let char of word) {
+          const charSpan = document.createElement('span');
+          charSpan.className = 'hero-char inline-block translate-y-[125%] opacity-0 will-change-transform';
+          charSpan.textContent = char;
+          wordWrapper.appendChild(charSpan);
+        }
+        title.appendChild(wordWrapper);
+      });
+    }
+  });
+
+  if (typeof gsap !== 'undefined') {
+    gsap.to('#heroMainTitle .hero-char', {
+      y: '0%',
+      opacity: 1,
+      duration: 0.85,
+      stagger: 0.022,
+      ease: 'power3.out',
+      delay: 0.15
+    });
+
+    gsap.from('.hero-eyebrow', { opacity: 0, y: -12, duration: 0.8, delay: 0.05 });
+    gsap.from('.hero-desc', { opacity: 0, y: 18, duration: 0.9, delay: 0.45 });
+    gsap.from('.hero-cta', { opacity: 0, y: 15, duration: 0.8, delay: 0.6 });
+    gsap.from('.hero-media', { opacity: 0, scale: 0.94, duration: 1.1, ease: 'power3.out', delay: 0.4 });
+  } else {
+    document.querySelectorAll('#heroMainTitle .hero-char').forEach(c => {
+      c.style.transform = 'none';
+      c.style.opacity = '1';
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroRisingLetters();
+
   const lenisInstance = window.lenis || (typeof Lenis !== 'undefined' ? new Lenis({
     duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1829,31 +1884,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (lenisInstance && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
-
     lenisInstance.on('scroll', ScrollTrigger.update);
 
-    // Seção Fixa Pinned Storytelling com Efeito Dolly Zoom
-    const pinnedSection = document.querySelector('.pinned-section');
-    if (pinnedSection) {
-      const pinTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.pinned-section',
-          start: 'top top',
-          end: '+=150%',
-          pin: true,
-          scrub: 1,
-        }
-      });
-
-      pinTl
-        .from('.pinned-frame', { scale: 0.92, borderRadius: '48px', duration: 1 })
-        .from('.pin-badge', { opacity: 0, y: -10, duration: 0.5 }, '<')
-        .from('.pin-title', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
-        .from('.pin-text', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
-        .from('.pin-cta', { opacity: 0, y: 15, duration: 0.8 }, '-=0.4');
-    }
-
-    // Parallax Suave nos Cards de Serviço
+    // Fade suave nos cards de serviço
     gsap.utils.toArray('.service-card').forEach((card, index) => {
       gsap.from(card, {
         scrollTrigger: {

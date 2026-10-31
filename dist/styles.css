@@ -182,3 +182,20 @@ html.lenis, html.lenis body {
   border-color: rgba(163, 88, 67, 0.45) !important;
   box-shadow: 0 20px 35px -10px rgba(163, 88, 67, 0.12), 0 0 1px 1px rgba(200, 157, 124, 0.2) !important;
 }
+
+/* Responsividade 100% Fluida sem Rolagem Horizontal */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+}
+
+img, video {
+  max-width: 100%;
+}
+
+/* Efeito Letras Subindo no Título Hero */
+.hero-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}

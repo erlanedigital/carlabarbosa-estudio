@@ -23,7 +23,7 @@
       if (typeof Lenis === 'undefined') return;
       const lenis = new Lenis({
         duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing cinematográfico suave
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing suave 1.5s
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
@@ -46,25 +46,8 @@
         gsap.ticker.lagSmoothing(0);
       }
 
-      // Interceptar âncoras para scroll cinematográfico de 1.5s
+      // Interceptar âncoras para scroll suave de 1.5s
       document.addEventListener('DOMContentLoaded', () => {
-        // Animação Cinematográfica Text Mask Reveal no Título do Topo (Hero)
-        if (typeof gsap !== 'undefined') {
-          const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-          heroTl
-            .from('.hero-eyebrow', { opacity: 0, y: -12, duration: 0.8, delay: 0.1 })
-            .from('.hero-line', {
-              y: '115%',
-              duration: 1.3,
-              stagger: 0.16,
-              ease: 'power4.out'
-            }, '-=0.4')
-            .from('.hero-desc', { opacity: 0, y: 18, duration: 0.9 }, '-=0.6')
-            .from('.hero-cta', { opacity: 0, y: 15, duration: 0.8 }, '-=0.6')
-            .from('.hero-media', { opacity: 0, scale: 0.94, duration: 1.1, ease: 'power3.out' }, '-=0.8');
-        }
-
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -83,6 +66,12 @@
                   drawer.classList.add('hidden');
                 }
               }
+            }
+          });
+        });
+      });
+    })();
+  </script>
             }
           });
         });
@@ -192,18 +181,18 @@
   <div class="film-grain"></div>
 
   <!-- ===== BARRA DE AVISOS SUPERIOR (COM STATUS ONLINE AO VIVO PADRÃO MARCYA IMÓVEIS) ===== -->
-  <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-semibold text-emerald-300 tracking-wider">
+  <div id="announcementBar" class="bg-linen-dark text-espresso text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/30 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-600/10 border border-emerald-600/30 text-[10px] font-semibold text-emerald-700 tracking-wider">
       <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
       </span>
       Atendimento Online • Montes Claros
     </span>
     <span class="hidden md:inline text-gold/60">•</span>
-    <span id="announcementText" class="font-medium">✨ CARLA BARBOSA ESTÚDIO • RUA DEP. ANTÔNIO PIMENTA, 72 - JARDIM SÃO LUIZ</span>
+    <span id="announcementText" class="font-semibold text-espresso">✨ CARLA BARBOSA ESTÚDIO • RUA DEP. ANTÔNIO PIMENTA, 72 - JARDIM SÃO LUIZ</span>
     <span class="hidden md:inline text-gold/60">•</span>
-    <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 text-gold hover:text-white transition-colors">
+    <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 text-terracotta hover:text-espresso font-semibold transition-colors">
       <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @carlabarbosa.estudio
     </a>
   </div>
@@ -322,10 +311,8 @@
             <span class="text-gold/60 hidden sm:inline">•</span>
             <span class="text-espresso hidden sm:inline">Expert em Loiros & Butterfly Cut</span>
           </div>
-          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-espresso font-normal leading-[1.08] tracking-tight">
-            <span class="block overflow-hidden"><span class="hero-line block">A Arte da</span></span>
-            <span class="block overflow-hidden"><span class="hero-line block">Transformação Capilar &</span></span>
-            <span class="block overflow-hidden"><span class="hero-line block italic font-light text-terracotta">Rituais de Alta Costura</span></span>
+          <h1 id="heroMainTitle" class="font-serif text-4xl sm:text-6xl lg:text-7xl text-espresso font-normal leading-[1.08] tracking-tight">
+            A Arte da Transformação Capilar & <em class="italic font-light text-terracotta">Rituais de Alta Costura</em>
           </h1>
           
           <p class="hero-desc text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
@@ -377,45 +364,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-      <!-- ===== SEÇÃO CINEMATOGRÁFICA PINNED STORYTELLING (JORNADA DE CABINE - FUNDO NA COR EXATA DA FONTE: TERRACOTA #A35843) ===== -->
-  <section class="pinned-section min-h-screen w-full relative flex items-center justify-center bg-gradient-to-b from-[#8C4733] via-[#A35843] to-[#7A3B29] overflow-hidden border-y border-[#B56751]/50 my-0">
-    <!-- Frame widescreen com fundo terracota nobre (#A35843), vinheta aveludada e iluminação suave -->
-    <div class="pinned-frame relative w-[90vw] sm:w-[88vw] h-[80vh] sm:h-[78vh] rounded-3xl overflow-hidden bg-gradient-to-br from-[#A35843] via-[#8C4733] to-[#6E3222] border-2 border-white/30 flex flex-col justify-center items-center text-center p-6 sm:p-12 cinematic-vignette-terracotta shadow-2xl">
-      
-      <!-- Gradientes Radiais Suaves e Luminosos em Branco & Champagne -->
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.22),_transparent_75%)] pointer-events-none"></div>
-
-      <!-- Fotografia Editorial de Fundo com Fade Suave em Luminosidade -->
-      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80" alt="Experiência de Cabine Carla Barbosa" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-overlay" />
-
-      <!-- Conteúdo Editorial de Alta Costura em Branco Puro & Champagne -->
-      <div class="z-10 max-w-3xl space-y-6 px-4">
-        <span class="inline-block text-xs uppercase tracking-[0.35em] text-white pin-badge font-bold px-4 py-1.5 rounded-full bg-white/15 border border-white/30 shadow-md backdrop-blur-md">
-          Jornada de Cabine & Autocuidado
-        </span>
-        
-        <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl font-normal pin-title leading-tight text-white drop-shadow-md">
-          Uma experiência que respeita a saúde dos seus fios e <em class="italic text-[#FDEEE9] font-light">a sua história</em>.
-        </h2>
-        
-        <p class="text-sm sm:text-base text-white/90 font-light leading-relaxed pin-text max-w-2xl mx-auto">
-          Do diagnóstico individualizado da fibra capilar à precisão milimétrica em mechas peroladas, butterfly cut e alisamento fotoativado com luz LED. Cada ritual é desenhado no Jardim São Luiz para revelar a sua versão mais autêntica e sofisticada.
-        </p>
-
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 pin-cta">
-          <a href="#servicos" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-linen text-[#8C4733] font-bold text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/20">
-            <span>Explorar Serviços de Cabine</span>
-            <i data-lucide="arrow-down" class="w-4 h-4"></i>
-          </a>
-          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20de%20cabine." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs uppercase tracking-widest transition-all backdrop-blur-md shadow-md">
-            <i data-lucide="message-circle" class="w-4 h-4 text-white"></i>
-            <span>Agendar no WhatsApp</span>
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -635,23 +583,23 @@
   </section>
 
     <!-- ===== NOVA SEÇÃO CINEMATOGRÁFICA: CINE CABINE & BASTIDORES ===== -->
-  <section id="cine-cabine" class="py-20 lg:py-28 bg-espresso text-white relative overflow-hidden border-b border-gold/20">
+  <section id="cine-cabine" class="py-20 lg:py-28 bg-linen text-espresso relative overflow-hidden border-b border-gold/20">
     
-    <!-- Luzes de Estúdio de Fundo -->
-    <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-terracotta/15 blur-3xl pointer-events-none"></div>
+    <!-- Luzes Suaves de Fundo em Tons Champagne e Terracota -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-terracotta/10 blur-3xl pointer-events-none"></div>
 
     <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
       
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/20 border border-gold/40 text-xs font-bold uppercase tracking-widest text-gold-light">
-          <i data-lucide="film" class="w-3.5 h-3.5 text-gold"></i>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta/10 border border-terracotta/30 text-xs font-bold uppercase tracking-widest text-terracotta">
+          <i data-lucide="film" class="w-3.5 h-3.5 text-terracotta"></i>
           <span>Cinema & Bastidores de Salão</span>
         </div>
-        <h2 class="font-serif text-3xl sm:text-5xl text-white font-normal">
-          Cine Cabine: A Transformação <em class="italic font-light text-gold-light">em Movimento</em>
+        <h2 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+          Cine Cabine: A Transformação <em class="italic font-light text-terracotta">em Movimento</em>
         </h2>
-        <p class="text-sm text-gold-light/75 leading-relaxed">
+        <p class="text-sm text-muted leading-relaxed">
           Assista em alta definição ao balanço real, corte e luminosidade das clientes atendidas na cadeira de Carla Barbosa.
         </p>
       </div>
@@ -660,24 +608,24 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         
         <!-- Reel 1: Loiro Perolado -->
-        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300 luxury-card-hover">
+        <div class="rounded-3xl bg-white border border-gold/30 overflow-hidden shadow-lg flex flex-col justify-between group hover:border-terracotta transition-all duration-300 luxury-card-hover">
           <div class="aspect-[9/14] relative bg-black overflow-hidden">
-            <video id="siteVideoReel1" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <video id="siteVideoReel1" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1584297091622-af8e5fdcf9e2?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <source id="siteSourceReel1" src="/assets/videos/reel-loiro-perolado.mp4" type="video/mp4" />
             </video>
             <div id="siteBadgeReel1" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-terracotta">
               Loiro Perolado
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90"></div>
             
             <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
-              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Descoloração Segura</span>
+              <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Descoloração Segura</span>
               <h3 id="siteTitleReel1" class="font-serif text-lg font-bold text-white">Loiro Saudável & Brilho Gloss</h3>
-              <p class="text-[11px] text-gold-light/70 line-clamp-2">Técnica com micromechas e proteção de pontes capilares.</p>
+              <p class="text-[11px] text-white/80 line-clamp-2">Técnica com micromechas e proteção de pontes capilares.</p>
             </div>
           </div>
-          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
-            <span class="text-xs text-gold-light/80 font-medium">Protocolo de Cabine</span>
+          <div class="p-4 bg-white border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-espresso font-semibold">Protocolo de Cabine</span>
             <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20v%C3%ADdeo%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md shadow-terracotta/25">
               Agendar
             </a>
@@ -685,24 +633,24 @@
         </div>
 
         <!-- Reel 2: Butterfly Cut -->
-        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300 luxury-card-hover">
+        <div class="rounded-3xl bg-white border border-gold/30 overflow-hidden shadow-lg flex flex-col justify-between group hover:border-terracotta transition-all duration-300 luxury-card-hover">
           <div class="aspect-[9/14] relative bg-black overflow-hidden">
-            <video id="siteVideoReel2" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <video id="siteVideoReel2" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <source id="siteSourceReel2" src="/assets/videos/reel-butterfly-cut.mp4" type="video/mp4" />
             </video>
             <div id="siteBadgeReel2" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-terracotta">
               Butterfly Cut
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90"></div>
             
             <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
-              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Visagismo Internacional</span>
+              <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Visagismo Internacional</span>
               <h3 id="siteTitleReel2" class="font-serif text-lg font-bold text-white">Camadas Fluidas & Curtain Bangs</h3>
-              <p class="text-[11px] text-gold-light/70 line-clamp-2">Leveza extrema e movimento sem sacrificar o comprimento.</p>
+              <p class="text-[11px] text-white/80 line-clamp-2">Leveza extrema e movimento sem sacrificar o comprimento.</p>
             </div>
           </div>
-          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
-            <span class="text-xs text-gold-light/80 font-medium">Corte de Tendência</span>
+          <div class="p-4 bg-white border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-espresso font-semibold">Corte de Tendência</span>
             <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20v%C3%ADdeo%20do%20Butterfly%20Cut%20e%20quero%20agendar%20meu%20corte." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md shadow-terracotta/25">
               Agendar
             </a>
@@ -710,24 +658,24 @@
         </div>
 
         <!-- Reel 3: Alisamento a LED -->
-        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300 luxury-card-hover">
+        <div class="rounded-3xl bg-white border border-gold/30 overflow-hidden shadow-lg flex flex-col justify-between group hover:border-terracotta transition-all duration-300 luxury-card-hover">
           <div class="aspect-[9/14] relative bg-black overflow-hidden">
-            <video id="siteVideoReel3" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <video id="siteVideoReel3" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <source id="siteSourceReel3" src="/assets/videos/reel-alisamento-led.mp4" type="video/mp4" />
             </video>
-            <div id="siteBadgeReel3" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-gold/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-espresso border border-gold">
+            <div id="siteBadgeReel3" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-terracotta">
               Tecnologia a LED
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90"></div>
             
             <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
-              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Fotoativação</span>
+              <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Fotoativação</span>
               <h3 id="siteTitleReel3" class="font-serif text-lg font-bold text-white">Liso Espelhado sem Formol</h3>
-              <p class="text-[11px] text-gold-light/70 line-clamp-2">A luz LED sela os nutrientes preservando a saúde da fibra.</p>
+              <p class="text-[11px] text-white/80 line-clamp-2">A luz LED sela os nutrientes preservando a saúde da fibra.</p>
             </div>
           </div>
-          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
-            <span class="text-xs text-gold-light/80 font-medium">Sem Fumaça Tóxica</span>
+          <div class="p-4 bg-white border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-espresso font-semibold">Sem Fumaça Tóxica</span>
             <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20e%20agendamento%20para%20o%20Alisamento%20a%20LED." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md shadow-terracotta/25">
               Agendar
             </a>
@@ -735,24 +683,24 @@
         </div>
 
         <!-- Reel 4: Spa Capilar & Terapia -->
-        <div class="rounded-3xl bg-white/5 border border-gold/30 overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold transition-all duration-300 luxury-card-hover">
+        <div class="rounded-3xl bg-white border border-gold/30 overflow-hidden shadow-lg flex flex-col justify-between group hover:border-terracotta transition-all duration-300 luxury-card-hover">
           <div class="aspect-[9/14] relative bg-black overflow-hidden">
-            <video id="siteVideoReel4" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <video id="siteVideoReel4" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <source id="siteSourceReel4" src="/assets/videos/reel-spa-capilar.mp4" type="video/mp4" />
             </video>
             <div id="siteBadgeReel4" class="absolute top-3 left-3 px-3 py-1 rounded-full bg-terracotta/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-terracotta">
               Spa da Fibra
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90"></div>
             
             <div class="absolute bottom-4 left-4 right-4 space-y-1.5 text-left">
-              <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Rituais de Lavatório</span>
+              <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Rituais de Lavatório</span>
               <h3 id="siteTitleReel4" class="font-serif text-lg font-bold text-white">Cronograma & Ozonioterapia</h3>
-              <p class="text-[11px] text-gold-light/70 line-clamp-2">Massagem relaxante e reposição de massa lipídica intensiva.</p>
+              <p class="text-[11px] text-white/80 line-clamp-2">Massagem relaxante e reposição de massa lipídica intensiva.</p>
             </div>
           </div>
-          <div class="p-4 bg-espresso/90 border-t border-gold/20 flex items-center justify-between">
-            <span class="text-xs text-gold-light/80 font-medium">Regeneração Profunda</span>
+          <div class="p-4 bg-white border-t border-gold/20 flex items-center justify-between">
+            <span class="text-xs text-espresso font-semibold">Regeneração Profunda</span>
             <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20sess%C3%A3o%20de%20Spa%20Capilar." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition-colors shadow-md shadow-terracotta/25">
               Agendar
             </a>
@@ -974,31 +922,31 @@
   </section>
 
   <!-- ===== PROVA SOCIAL & INSTAGRAM ===== -->
-  <section class="py-16 bg-espresso text-linen">
+  <section class="py-20 bg-linen border-b border-gold/20 text-espresso">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center space-y-3 mb-12">
-        <span class="text-xs font-bold uppercase tracking-[0.25em] text-gold">@carlabarbosa.estudio</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-normal">Comunidade & Rituais Reais</h2>
-        <p class="text-xs text-muted text-gold-light/70">Acompanhe os bastidores diários e transformações no Instagram.</p>
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">@carlabarbosa.estudio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Comunidade & Rituais Reais</h2>
+        <p class="text-xs text-muted">Acompanhe os bastidores diários e transformações no Instagram.</p>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="aspect-square rounded-xl overflow-hidden relative group">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=480&q=70" alt="Instagram 1" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Estúdio Carla Barbosa Montes Claros" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
         <div class="aspect-square rounded-xl overflow-hidden relative group">
-          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=480&q=70" alt="Instagram 2" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Cachos e Rituais de Cabine" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
         <div class="aspect-square rounded-xl overflow-hidden relative group">
-          <img src="https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70" alt="Instagram 3" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Ativos Botânicos Naturais" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
         <div class="aspect-square rounded-xl overflow-hidden relative group">
-          <img src="https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=480&q=70" alt="Instagram 4" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Bancada de Cabine Carla Barbosa" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
       </div>
 
       <div class="text-center mt-10">
-        <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-espresso transition-colors">
+        <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-terracotta text-terracotta text-xs font-bold uppercase tracking-widest hover:bg-terracotta hover:text-white transition-colors shadow-sm">
           <i data-lucide="instagram" class="w-4 h-4"></i> Seguir @CARLABARBOSA.ESTUDIO
         </a>
       </div>
@@ -1077,51 +1025,51 @@
     </div>
 
     <!-- Banner WhatsApp -->
-    <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4 shadow-xl">
-      <h3 class="font-serif text-2xl sm:text-3xl">Deseja agendar sua avaliação personalizada?</h3>
-      <p class="text-sm text-gold-light/80 max-w-md mx-auto">
+    <div class="rounded-3xl bg-gradient-to-br from-[#FAF7F2] via-[#F4EFEA] to-[#EFE9E1] border border-gold/40 text-espresso p-8 sm:p-10 text-center space-y-4 shadow-xl">
+      <h3 class="font-serif text-2xl sm:text-3xl text-espresso font-normal">Deseja agendar sua avaliação personalizada?</h3>
+      <p class="text-sm text-muted max-w-md mx-auto">
         Fale diretamente no nosso WhatsApp oficial para agendar seu horário na cabine ou tirar dúvidas sobre os cosméticos home care.
       </p>
-      <a id="whatsappCtaLink" href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+      <a id="whatsappCtaLink" href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg shadow-terracotta/20">
         <i data-lucide="message-circle" class="w-4 h-4"></i> Iniciar Conversa no WhatsApp
       </a>
     </div>
   </section>
 
   <!-- ===== RODAPÉ (FOOTER) ===== -->
-  <footer class="bg-espresso-light text-gold-light py-12 border-t border-gold/20">
+  <footer class="bg-linen-dark text-espresso py-12 border-t border-gold/30">
     <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gold/20 text-center md:text-left">
         <div>
-          <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-white block">CARLA BARBOSA</span>
-          <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza • Montes Claros - MG</span>
-          <p class="text-[11px] text-gold-light/60 mt-1">Barbosa Serviços de Beleza Ltda • CNPJ: 57.423.968/0001-48</p>
-          <p class="text-[11px] text-gold-light/60">Rua Deputado Antônio Pimenta, 72 - Jardim São Luiz • CEP 39401-054</p>
+          <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-espresso block">CARLA BARBOSA</span>
+          <span class="text-[10px] tracking-[0.3em] uppercase text-terracotta font-bold">Estúdio de Beleza • Montes Claros - MG</span>
+          <p class="text-[11px] text-muted mt-1">Barbosa Serviços de Beleza Ltda • CNPJ: 57.423.968/0001-48</p>
+          <p class="text-[11px] text-muted">Rua Deputado Antônio Pimenta, 72 - Jardim São Luiz • CEP 39401-054</p>
         </div>
-        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider">
-          <a href="#servicos" class="hover:text-white transition">Serviços</a>
-          <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
-          <a href="#quiz" class="hover:text-white transition">Diagnóstico</a>
-          <a href="#posts" class="hover:text-white transition">Blog & Dicas</a>
-          <a href="#sobre" class="hover:text-white transition">O Estúdio</a>
-          <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-white transition flex items-center gap-1">
+        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider text-espresso/80">
+          <a href="#servicos" class="hover:text-terracotta transition">Serviços</a>
+          <a href="#catalogo" class="hover:text-terracotta transition">Catálogo</a>
+          <a href="#quiz" class="hover:text-terracotta transition">Diagnóstico</a>
+          <a href="#posts" class="hover:text-terracotta transition">Blog & Dicas</a>
+          <a href="#sobre" class="hover:text-terracotta transition">O Estúdio</a>
+          <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" rel="noopener noreferrer" class="text-terracotta hover:text-espresso transition flex items-center gap-1 font-semibold">
             <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @carlabarbosa.estudio
           </a>
         </div>
       </div>
 
       <!-- Selos de Segurança Bancária, LGPD e PWA (Padrão Marcya Imóveis) -->
-      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-5 border-b border-gold/15 text-[11px] text-gold-light/80">
-        <span class="inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Criptografia SSL 256-Bit</span>
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-5 border-b border-gold/15 text-[11px] text-muted">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Criptografia SSL 256-Bit</span>
         <span class="text-gold/40">•</span>
-        <span class="inline-flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-gold"></i> Privacidade & LGPD Blindada</span>
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-terracotta"></i> Privacidade & LGPD Blindada</span>
         <span class="text-gold/40">•</span>
         <span class="inline-flex items-center gap-1.5"><i data-lucide="smartphone" class="w-4 h-4 text-terracotta"></i> Aplicativo PWA Instalável</span>
         <span class="text-gold/40">•</span>
         <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-gold"></i> Jardim São Luiz, Montes Claros - MG</span>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gold-light/60 gap-4">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted gap-4">
         <p>© 2026 Carla Barbosa Estúdio de Beleza — Barbosa Serviços de Beleza Ltda. CNPJ: 57.423.968/0001-48.</p>
         <p>Montes Claros - MG • Todos os direitos reservados • Padrão Ouro</p>
       </div>
@@ -1742,7 +1690,7 @@
                   </span>
                   <div class="flex gap-1">
                     <input type="text" id="aiImagePrompt" placeholder="Tema livre ou descrição..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
-                    <button type="button" onclick="generateAiImage()" id="btnGenerateAi" class="px-3 py-1.5 rounded-lg bg-espresso hover:bg-terracotta text-white font-bold text-[10px] uppercase tracking-wider transition">
+                    <button type="button" onclick="generateAiImage()" id="btnGenerateAi" class="px-3 py-1.5 rounded-lg bg-terracotta hover:bg-terracotta-hover text-white font-bold text-[10px] uppercase tracking-wider transition">
                       <span id="btnGenerateAiText">Gerar</span>
                     </button>
                   </div>
@@ -1880,7 +1828,7 @@
                   </span>
                   <div class="flex gap-1">
                     <input type="text" id="prodAiPrompt" placeholder="Descreva o produto..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
-                    <button type="button" onclick="generateProductAiImage()" id="btnGenerateProdAi" class="px-3 py-1.5 rounded-lg bg-espresso hover:bg-terracotta text-white font-bold text-[10px] uppercase tracking-wider transition">
+                    <button type="button" onclick="generateProductAiImage()" id="btnGenerateProdAi" class="px-3 py-1.5 rounded-lg bg-terracotta hover:bg-terracotta-hover text-white font-bold text-[10px] uppercase tracking-wider transition">
                       <span>Gerar</span>
                     </button>
                   </div>
@@ -2060,7 +2008,7 @@
   <button id="floatingCartBtn" onclick="toggleCart()" class="fixed bottom-6 left-6 z-40 bg-terracotta hover:bg-terracotta-hover text-white border border-gold/40 shadow-2xl px-4 py-3 rounded-full flex items-center gap-2.5 hover:scale-105 active:scale-95 transition-all md:hidden">
     <div class="relative">
       <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
-      <span id="floatingCartCount" class="absolute -top-1.5 -right-2 bg-espresso text-gold-light text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      <span id="floatingCartCount" class="absolute -top-1.5 -right-2 bg-terracotta text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-sm">0</span>
     </div>
     <span class="text-xs font-bold uppercase tracking-wider">Ver Sacola</span>
   </button>
@@ -2078,26 +2026,26 @@
   </a>
 
   <!-- PWA Install Banner Discreto -->
-  <div id="pwaInstallBanner" class="hidden fixed bottom-6 right-6 z-40 max-w-sm w-full bg-espresso text-linen p-4 rounded-2xl border border-gold/40 shadow-2xl flex items-center justify-between gap-3 animate-fade">
+  <div id="pwaInstallBanner" class="hidden fixed bottom-6 right-6 z-40 max-w-sm w-full bg-white text-espresso p-4 rounded-2xl border border-gold/40 shadow-2xl flex items-center justify-between gap-3 animate-fade">
     <div class="flex items-center gap-3">
       <img src="/icon-192.png" alt="Carla Barbosa App" class="w-10 h-10 rounded-xl object-cover border border-gold/30" />
       <div>
-        <span class="block text-xs font-bold text-gold-light uppercase tracking-wider">Instalar Aplicativo</span>
-        <span class="block text-[11px] text-linen/70">Acesse o catálogo e agende com 1 clique</span>
+        <span class="block text-xs font-bold text-espresso uppercase tracking-wider">Instalar Aplicativo</span>
+        <span class="block text-[11px] text-muted">Acesse o catálogo e agende com 1 clique</span>
       </div>
     </div>
     <div class="flex items-center gap-1.5">
-      <button onclick="installPwaApp()" class="px-3 py-1.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition">
+      <button onclick="installPwaApp()" class="px-3 py-1.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition shadow-sm">
         Instalar
       </button>
-      <button onclick="document.getElementById('pwaInstallBanner').classList.add('hidden')" class="p-1.5 text-linen/60 hover:text-white" title="Fechar">
+      <button onclick="document.getElementById('pwaInstallBanner').classList.add('hidden')" class="p-1.5 text-muted hover:text-espresso" title="Fechar">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
     </div>
   </div>
 
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-espresso text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-gold/30 text-xs font-semibold">
-    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-terracotta text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-white/20 text-xs font-semibold">
+    <i data-lucide="check-circle" class="w-4 h-4 text-white"></i>
     <span id="toastMsg">Alterações salvas!</span>
   </div>
 
