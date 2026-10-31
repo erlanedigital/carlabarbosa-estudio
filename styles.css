@@ -106,3 +106,26 @@ video {
 .animate-pulse-glow {
   animation: pulseGlow 3s ease-in-out infinite;
 }
+
+/* ===== COMPARADOR ANTES & DEPOIS TÁTIL ===== */
+#baRangeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+#baRangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+}
+#baRangeSlider::-moz-range-thumb {
+  width: 48px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+  border: none;
+}
+

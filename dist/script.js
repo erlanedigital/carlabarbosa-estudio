@@ -1542,3 +1542,113 @@ function installPwaApp() {
     showToast('Para instalar: toque em Compartilhar e selecione "Adicionar à Tela de Início".');
   }
 }
+
+
+// ============================================================
+// ESPELHO DA TRANSFORMAÇÃO: ANTES & DEPOIS INTERATIVO
+// ============================================================
+const baCases = {
+  loiro: {
+    title: 'Loiro Perolado de Alta Costura & Esfumado Tridimensional',
+    tag: 'Mechas & Descoloração Segura',
+    badge: 'Procedimento Estrela',
+    beforeImg: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80',
+    afterImg: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80',
+    diag: 'Raiz densa e comprimento com reflexos amarelados e oxidados por processos anteriores, necessitando equalização de tom.',
+    tech: 'Técnica de mechas microcosturadas sem papel térmico agressivo + esfumado de raiz com transição suave + banho de neutralização perolada fria.',
+    care: 'Aplicação de Plex protetor com aminoácidos biomiméticos durante o clareamento, garantindo fios elásticos, resistentes e saudáveis.',
+    time: 'Duração média: 4h30',
+    btnText: 'Quero Este Loiro no Meu Cabelo',
+    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cabelo!'
+  },
+  morena: {
+    title: 'Morena Iluminada Caramelo & Nuances de Mel',
+    tag: 'Contorno Facial & Luminosidade Natural',
+    badge: 'Tendência 2026',
+    beforeImg: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=80',
+    afterImg: 'https://images.unsplash.com/photo-1605980776566-0486c3ac7617?auto=format&fit=crop&w=1200&q=80',
+    diag: 'Fios castanhos escuros e opacos, sem profundidade ou pontos de luz que valorizassem os traços do rosto.',
+    tech: 'Mechas em pontos estratégicos de contorno facial mescladas com nuances quentes de caramelo tostado e avelã.',
+    care: 'Matização com óleos nutritivos sem amônia para selagem instantânea das cutículas.',
+    time: 'Duração média: 3h30',
+    btnText: 'Quero Ficar Morena Iluminada',
+    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20de%20Morena%20Iluminada%20no%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o!'
+  },
+  alisamento: {
+    title: 'Alisamento Inteligente Fotoativado LED & Ozonioterapia',
+    tag: 'Alinhamento Sem Formol & Brilho Espelhado',
+    badge: 'Exclusivo do Estúdio',
+    beforeImg: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80',
+    afterImg: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
+    diag: 'Volume excessivo com frizz resistente, cutículas abertas e opacidade ao longo de todo o comprimento.',
+    tech: 'Aplicação de ativos botânicos e aminoácidos fotoativados com luz LED fria para fixação intramolecular sem agressão.',
+    care: 'Ozonioterapia a vapor para higienização profunda do couro cabeludo e revitalização da fibra.',
+    time: 'Duração média: 3h00',
+    btnText: 'Quero Alisamento Fotoativado',
+    whatsapp: 'https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Alisamento%20Fotoativado%20no%20site%20e%20quero%20agendar%20meu%20hor%C3%A1rio!'
+  }
+};
+
+function setBeforeAfterPos(val) {
+  const beforeImg = document.getElementById('baBeforeImg');
+  const dividerLine = document.getElementById('baDividerLine');
+  if (beforeImg) {
+    beforeImg.style.clipPath = 'polygon(0 0, ' + val + '% 0, ' + val + '% 100%, 0 100%)';
+  }
+  if (dividerLine) {
+    dividerLine.style.left = val + '%';
+  }
+}
+
+function switchBeforeAfterCase(key) {
+  const item = baCases[key];
+  if (!item) return;
+
+  const beforeImg = document.getElementById('baBeforeImg');
+  const afterImg = document.getElementById('baAfterImg');
+  const cardBadge = document.getElementById('baCardBadge');
+  const cardTitle = document.getElementById('baCardTitle');
+  const cardDiag = document.getElementById('baCardDiag');
+  const cardTech = document.getElementById('baCardTech');
+  const cardCare = document.getElementById('baCardCare');
+  const cardTime = document.getElementById('baCardTime');
+  const cardBtn = document.getElementById('baCardWhatsappBtn');
+  const cardBtnText = document.getElementById('baCardBtnText');
+
+  if (beforeImg) beforeImg.src = item.beforeImg;
+  if (afterImg) afterImg.src = item.afterImg;
+  if (cardBadge) cardBadge.textContent = item.tag;
+  if (cardTitle) cardTitle.textContent = item.title;
+  if (cardDiag) cardDiag.textContent = item.diag;
+  if (cardTech) cardTech.textContent = item.tech;
+  if (cardCare) cardCare.textContent = item.care;
+  if (cardTime) cardTime.textContent = item.time;
+  if (cardBtn) cardBtn.href = item.whatsapp;
+  if (cardBtnText) cardBtnText.textContent = item.btnText;
+
+  ['loiro', 'morena', 'alisamento'].forEach(function(k) {
+    const btn = document.getElementById('baTab-' + k);
+    if (btn) {
+      if (k === key) {
+        btn.className = 'px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md bg-espresso text-gold-light border border-gold/40 scale-105';
+      } else {
+        btn.className = 'px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta';
+      }
+    }
+  });
+
+  const slider = document.getElementById('baRangeSlider');
+  if (slider) {
+    slider.value = 50;
+    setBeforeAfterPos(50);
+  }
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+// Inicializar na carga da página
+document.addEventListener('DOMContentLoaded', function() {
+  setBeforeAfterPos(50);
+});

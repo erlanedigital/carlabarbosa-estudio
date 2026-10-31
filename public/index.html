@@ -140,6 +140,7 @@
       <!-- CENTRO DA BARRA: Links de Navegação Desktop (Harmonia e Espaçamento Nobre) -->
       <nav class="hidden lg:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-espresso/80">
         <a href="#servicos" class="hover:text-terracotta transition-colors py-2">Serviços</a>
+        <a href="#antes-depois" class="hover:text-terracotta transition-colors py-2 text-terracotta font-bold">Antes & Depois</a>
         <a href="#catalogo" class="hover:text-terracotta transition-colors py-2">Catálogo</a>
         <a href="#quiz" class="hover:text-terracotta transition-colors py-2">Diagnóstico</a>
         <a href="#posts" class="hover:text-terracotta transition-colors py-2">Dicas & Blog</a>
@@ -165,6 +166,7 @@
     <!-- Menu Lateral Mobile -->
     <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-3">
       <a href="#servicos" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Serviços do Estúdio</a>
+      <a href="#antes-depois" class="block text-sm font-semibold uppercase tracking-wider text-terracotta font-bold py-2 border-b border-nude">Antes & Depois (Comparador)</a>
       <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Catálogo de Produtos</a>
       <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
       <a href="#posts" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Dicas & Novidades</a>
@@ -180,6 +182,10 @@
     <a href="#" class="px-3.5 py-1.5 rounded-full bg-espresso text-gold-light text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 shadow-sm">
       <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
       <span>Início</span>
+    </a>
+    <a href="#antes-depois" class="px-3.5 py-1.5 rounded-full bg-terracotta/10 border border-terracotta text-terracotta text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
+      <i data-lucide="split" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Antes/Depois</span>
     </a>
     <a href="#servicos" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
       <i data-lucide="scissors" class="w-3.5 h-3.5 text-terracotta"></i>
@@ -649,6 +655,177 @@
               Agendar
             </a>
           </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO INTERATIVA: ESPELHO DA TRANSFORMAÇÃO (ANTES & DEPOIS) ===== -->
+  <section id="antes-depois" class="py-20 lg:py-28 bg-linen text-espresso relative overflow-hidden border-b border-gold/20">
+    
+    <!-- Efeitos Suaves de Iluminação no Fundo -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-terracotta/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Cabeçalho da Seção Centralizado e Nobre -->
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gold/40 text-xs font-bold uppercase tracking-widest text-terracotta shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+          <span>Espelho da Transformação • Montes Claros</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl text-espresso font-normal">
+          Veja a Mágica na Prática: <em class="italic font-light text-terracotta">Antes & Depois</em>
+        </h2>
+        <p class="text-sm sm:text-base text-espresso/75 leading-relaxed">
+          Arraste o divisor interativo para os lados e sinta a diferença de luminosidade, alinhamento e saúde capilar proporcionados pelos rituais de Carla Barbosa.
+        </p>
+
+        <!-- Seletor de Casos Reais (Pills) -->
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="baTabsContainer">
+          <button onclick="switchBeforeAfterCase('loiro')" id="baTab-loiro" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md bg-espresso text-gold-light border border-gold/40 scale-105">
+            ✨ Loiro Perolado
+          </button>
+          <button onclick="switchBeforeAfterCase('morena')" id="baTab-morena" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta">
+            🍂 Morena Iluminada
+          </button>
+          <button onclick="switchBeforeAfterCase('alisamento')" id="baTab-alisamento" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm bg-white text-espresso/80 border border-gold/30 hover:border-terracotta">
+            💎 Alisamento LED & Spa
+          </button>
+        </div>
+      </div>
+
+      <!-- Grade Principal: Comparador Interativo + Detalhes do Procedimento -->
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- COLUNA DA ESQUERDA: Comparador Visual com Slider Interativo (7 Colunas) -->
+        <div class="lg:col-span-7">
+          <div class="relative bg-espresso rounded-3xl p-2 sm:p-3 border-2 border-gold/40 shadow-2xl">
+            
+            <!-- Container do Slider com Proporção Nobre -->
+            <div class="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden select-none touch-none bg-espresso" id="baVisualBox">
+              
+              <!-- 1. Imagem DEPOIS (Camada de Fundo) -->
+              <img id="baAfterImg" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80" alt="Depois da transformação Carla Barbosa" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+              
+              <!-- Badge DEPOIS -->
+              <div class="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-espresso/85 border border-gold/50 text-[11px] font-bold uppercase tracking-widest text-gold-light backdrop-blur-md shadow-lg flex items-center gap-1.5 pointer-events-none">
+                <span class="w-2 h-2 rounded-full bg-gold"></span>
+                <span>DEPOIS</span>
+              </div>
+
+              <!-- 2. Imagem ANTES (Camada Recortada por clip-path) -->
+              <img id="baBeforeImg" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80" alt="Antes da transformação" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" />
+              
+              <!-- Badge ANTES -->
+              <div class="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-espresso/85 border border-terracotta/50 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md shadow-lg flex items-center gap-1.5 pointer-events-none">
+                <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+                <span>ANTES</span>
+              </div>
+
+              <!-- 3. Linha Divisória e Alça Central de Arraste -->
+              <div id="baDividerLine" class="absolute top-0 bottom-0 pointer-events-none z-20 flex flex-col items-center" style="left: 50%; transform: translateX(-50%);">
+                <!-- Linha Iluminada -->
+                <div class="w-1 h-full bg-gradient-to-b from-gold via-white to-gold shadow-2xl"></div>
+                <!-- Alça com Ícone Tátil -->
+                <div class="absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-espresso shadow-2xl border-2 border-gold flex items-center justify-center transition-transform group-hover:scale-110">
+                  <i data-lucide="chevrons-left-right" class="w-5 h-5 text-terracotta"></i>
+                </div>
+              </div>
+
+              <!-- 4. Dica de Arraste Flutuante -->
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 rounded-full bg-espresso/80 border border-gold/30 text-[10px] font-bold uppercase tracking-wider text-gold-light backdrop-blur-md shadow-md pointer-events-none flex items-center gap-2">
+                <i data-lucide="hand" class="w-3.5 h-3.5 text-gold animate-bounce"></i>
+                <span>Arraste para comparar</span>
+              </div>
+
+              <!-- 5. Range Slider Transparente para Controle Tátil e Acessível -->
+              <input type="range" min="0" max="100" value="50" id="baRangeSlider" oninput="setBeforeAfterPos(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 touch-none m-0 p-0" aria-label="Comparar Antes e Depois do cabelo" />
+
+            </div>
+
+            <!-- Legenda Inferior do Comparador -->
+            <div class="p-3 bg-espresso text-center">
+              <p class="text-xs text-gold-light/80 font-light">
+                <strong class="text-white font-semibold">Tecnologia de Preservação Capilar:</strong> Descoloração com proteção lipídica para zero quebra e máxima densidade.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- COLUNA DA DIREITA: Informações Fatuais e Agendamento WhatsApp (5 Colunas) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gold/30 shadow-xl space-y-5">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nude/50 border border-gold/30 text-[11px] font-bold uppercase tracking-wider text-terracotta" id="baCardBadge">
+              Mechas & Descoloração Segura
+            </div>
+
+            <h3 class="font-serif text-2xl sm:text-3xl text-espresso font-normal leading-tight" id="baCardTitle">
+              Loiro Perolado de Alta Costura & Esfumado Tridimensional
+            </h3>
+
+            <div class="space-y-4 text-xs sm:text-sm text-espresso/80 divide-y divide-nude">
+              
+              <div class="pt-2">
+                <span class="block text-[11px] uppercase tracking-wider text-gold font-bold">Diagnóstico Inicial:</span>
+                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardDiag">
+                  Raiz densa e comprimento com reflexos amarelados e oxidados por processos químicos anteriores, necessitando equalização de tom.
+                </p>
+              </div>
+
+              <div class="pt-3">
+                <span class="block text-[11px] uppercase tracking-wider text-terracotta font-bold">Protocolo Realizado por Carla Barbosa:</span>
+                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardTech">
+                  Técnica de mechas microcosturadas sem papel térmico agressivo + esfumado de raiz com transição suave + banho de neutralização perolada fria.
+                </p>
+              </div>
+
+              <div class="pt-3">
+                <span class="block text-[11px] uppercase tracking-wider text-espresso font-bold">Segurança & Tratamento Integrado:</span>
+                <p class="mt-1 text-espresso/70 leading-relaxed" id="baCardCare">
+                  Aplicação de Plex protetor com aminoácidos biomiméticos durante o clareamento, garantindo fios elásticos, resistentes e saudáveis.
+                </p>
+              </div>
+
+              <div class="pt-3 flex items-center justify-between text-xs text-espresso/60">
+                <span class="flex items-center gap-1.5 font-medium">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i>
+                  <span id="baCardTime">Duração média: 4h30</span>
+                </span>
+                <span class="flex items-center gap-1.5 font-medium">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-terracotta"></i>
+                  <span>Jardim São Luiz</span>
+                </span>
+              </div>
+
+            </div>
+
+            <!-- Botão de Ação WhatsApp Direto com a Carla Barbosa -->
+            <div class="pt-2">
+              <a id="baCardWhatsappBtn" href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Vi%20o%20Antes%20e%20Depois%20do%20Loiro%20Perolado%20no%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20o%20meu%20cabelo!" target="_blank" rel="noopener noreferrer" class="w-full py-4 px-6 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-xs font-bold uppercase tracking-widest shadow-xl shadow-terracotta/25 transition-all duration-300 text-center flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span id="baCardBtnText">Quero Este Loiro no Meu Cabelo</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Card de Avaliação / Depoimento Real -->
+          <div class="p-4 rounded-2xl bg-white/70 border border-gold/20 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold/20 text-terracotta flex items-center justify-center font-bold text-sm flex-shrink-0">
+              5★
+            </div>
+            <p class="text-xs text-espresso/70 italic">
+              "Fiz meu loiro com a Carla e meu cabelo nunca esteve tão forte e macio. O esfumado de raiz dura meses sem precisar de retoque constante!"
+            </p>
+          </div>
+
         </div>
 
       </div>
