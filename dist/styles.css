@@ -139,3 +139,8 @@ html.lenis, html.lenis body {
 .cinematic-vignette {
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.75);
 }
+
+/* Vinheta de alta costura em fundo claro */
+.cinematic-vignette-light {
+  box-shadow: inset 0 0 90px rgba(200, 157, 124, 0.2), 0 30px 60px -15px rgba(44, 34, 30, 0.08);
+}
