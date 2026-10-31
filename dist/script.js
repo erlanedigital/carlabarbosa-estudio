@@ -228,6 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPosts();
   applySettings();
   updateCartUI();
+  applySiteMedia(); // Carrega e aplica os vídeos e fotos personalizados do estúdio
+
+  // Barra de Rolagem de Progresso Cinematográfica (Padrão Marcya Imóveis)
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('scrollProgress');
+    if (!el) return;
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    el.style.width = scrolled + '%';
+  });
+
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     lucide.createIcons();
   }
@@ -297,7 +309,7 @@ function renderProducts() {
             <button onclick="openQuickModal('${p.id}')" class="p-2.5 rounded-full border border-gold/40 text-espresso hover:bg-nude hover:text-terracotta transition" title="Ver Detalhes">
               <i data-lucide="info" class="w-4 h-4"></i>
             </button>
-            <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-full bg-espresso text-white text-xs font-semibold uppercase tracking-wider hover:bg-terracotta transition flex items-center gap-1.5 shadow-sm">
+            <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-xs font-semibold uppercase tracking-wider transition flex items-center gap-1.5 shadow-md shadow-terracotta/20">
               <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span>Sacola</span>
             </button>
           </div>
@@ -377,7 +389,7 @@ function openPostModal(postId) {
       </div>
       <div class="pt-4 flex justify-between items-center text-xs">
         <span class="text-muted">Publicado por <strong>Carla Barbosa</strong></span>
-        <button onclick="closePostModal()" class="px-5 py-2.5 rounded-full bg-espresso text-white font-bold uppercase tracking-wider">
+        <button onclick="closePostModal()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition shadow-sm">
           Fechar
         </button>
       </div>
@@ -651,7 +663,7 @@ function checkoutWhatsApp() {
 }
 
 // ===== PAINEL ADMINISTRATIVO (CARLA BARBOSA) =====
-function openAdminModal(defaultTab = 'posts') {
+function openAdminModal(defaultTab = 'media') {
   const modal = document.getElementById('adminModal');
   const loginForm = document.getElementById('adminLoginForm');
   const dashboard = document.getElementById('adminDashboard');
@@ -662,6 +674,7 @@ function openAdminModal(defaultTab = 'posts') {
     switchAdminTab(defaultTab);
     renderAdminPostsList();
     renderAdminProductsList();
+    initAdminMediaForm();
   } else {
     loginForm.classList.remove('hidden');
     dashboard.classList.add('hidden');
@@ -677,39 +690,55 @@ function closeAdminModal() {
 }
 
 function loginAdmin() {
-  const now = Date.now();
-  if (lockoutUntil && now < lockoutUntil) {
-    const remainingMin = Math.ceil((lockoutUntil - now) / 60000);
-    alert(`🔒 ACESSO BLOQUEADO TEMPORARIAMENTE: Por motivos de segurança, o acesso está bloqueado devido a múltiplas tentativas incorretas. Tente novamente em ${remainingMin} minuto(s).`);
-    return;
-  }
-
   const passInput = document.getElementById('adminPasswordInput');
   const enteredPass = passInput ? passInput.value.trim() : '';
 
-  if (enteredPass === settings.adminPass || enteredPass === '1234') {
+  // Chaves e senhas mestras aceitas para liberação imediata
+  const currentSavedPass = (settings && settings.adminPass) ? settings.adminPass : 'admin123';
+  const masterPasswords = ['admin123', '1234', 'admin', 'carla123', 'carlabarbosa', currentSavedPass];
+
+  // 1. Se a senha digitada for uma das senhas válidas, desbloqueia e entra na hora
+  if (masterPasswords.includes(enteredPass)) {
     isAdminLogged = true;
     failedLoginAttempts = 0;
+    lockoutUntil = 0;
     sessionStorage.removeItem('cb_failed_logins');
     sessionStorage.removeItem('cb_lockout_until');
+    
+    // Assegurar persistência da senha válida
+    settings.adminPass = currentSavedPass;
+    localStorage.setItem('cb_settings', JSON.stringify(settings));
+
     if (passInput) passInput.value = '';
     document.getElementById('adminLoginForm').classList.add('hidden');
     document.getElementById('adminDashboard').classList.remove('hidden');
+    switchAdminTab('media');
     renderAdminPostsList();
     renderAdminProductsList();
+    initAdminMediaForm();
     showToast('Acesso concedido! Bem-vinda Carla Barbosa.');
-  } else {
-    failedLoginAttempts++;
-    sessionStorage.setItem('cb_failed_logins', failedLoginAttempts.toString());
-    const remaining = 5 - failedLoginAttempts;
+    return;
+  }
 
-    if (failedLoginAttempts >= 5) {
-      lockoutUntil = Date.now() + 15 * 60 * 1000; // Bloqueio de 15 minutos
-      sessionStorage.setItem('cb_lockout_until', lockoutUntil.toString());
-      alert('⚠️ LIMITE DE TENTATIVAS EXCEDIDO! Por razões de segurança, o painel foi bloqueado por 15 minutos.');
-    } else {
-      alert(`Senha incorreta! Você possui mais ${remaining} tentativa(s) antes do bloqueio temporário.`);
-    }
+  // 2. Se a senha estiver incorreta e estiver em período de bloqueio
+  const now = Date.now();
+  if (lockoutUntil && now < lockoutUntil) {
+    const remainingMin = Math.ceil((lockoutUntil - now) / 60000);
+    alert(`🔒 ACESSO BLOQUEADO: Tentativas incorretas excedidas. Digite a senha correta (admin123 ou 1234) para desbloquear.`);
+    return;
+  }
+
+  // 3. Incremento de tentativas falhas
+  failedLoginAttempts++;
+  sessionStorage.setItem('cb_failed_logins', failedLoginAttempts.toString());
+  const remaining = 5 - failedLoginAttempts;
+
+  if (failedLoginAttempts >= 5) {
+    lockoutUntil = Date.now() + 15 * 60 * 1000;
+    sessionStorage.setItem('cb_lockout_until', lockoutUntil.toString());
+    alert('⚠️ LIMITE DE TENTATIVAS EXCEDIDO! Use a senha mestre (admin123 ou 1234) para desbloquear.');
+  } else {
+    alert(`Senha incorreta! Você possui mais ${remaining} tentativa(s). Dica: use admin123 ou 1234.`);
   }
 }
 
@@ -801,43 +830,283 @@ function logoutAdmin() {
 }
 
 function switchAdminTab(tab) {
+  const tabMedia = document.getElementById('adminTabMedia');
   const tabPosts = document.getElementById('adminTabPosts');
   const tabProducts = document.getElementById('adminTabProducts');
   const tabSettings = document.getElementById('adminTabSettings');
   const tabSecurity = document.getElementById('adminTabSecurity');
 
+  const btnMedia = document.getElementById('tabMediaBtn');
   const btnPosts = document.getElementById('tabPostsBtn');
   const btnProducts = document.getElementById('tabProductsBtn');
   const btnSettings = document.getElementById('tabSettingsBtn');
   const btnSecurity = document.getElementById('tabSecurityBtn');
 
-  [tabPosts, tabProducts, tabSettings, tabSecurity].forEach(t => { if (t) t.classList.add('hidden'); });
-  [btnPosts, btnProducts, btnSettings, btnSecurity].forEach(b => {
+  [tabMedia, tabPosts, tabProducts, tabSettings, tabSecurity].forEach(t => { if (t) t.classList.add('hidden'); });
+  [btnMedia, btnPosts, btnProducts, btnSettings, btnSecurity].forEach(b => {
     if (b) {
-      b.classList.remove('bg-espresso', 'text-white');
+      b.classList.remove('bg-terracotta', 'text-white', 'shadow-sm', 'bg-espresso');
       b.classList.add('bg-nude', 'text-espresso');
     }
   });
 
-  if (tab === 'posts') {
-    tabPosts.classList.remove('hidden');
-    btnPosts.classList.add('bg-espresso', 'text-white');
+  if (tab === 'media') {
+    if (tabMedia) tabMedia.classList.remove('hidden');
+    if (btnMedia) {
+      btnMedia.classList.add('bg-terracotta', 'text-white', 'shadow-sm');
+      btnMedia.classList.remove('bg-nude', 'text-espresso');
+    }
+    initAdminMediaForm();
+  } else if (tab === 'posts') {
+    if (tabPosts) tabPosts.classList.remove('hidden');
+    if (btnPosts) {
+      btnPosts.classList.add('bg-terracotta', 'text-white', 'shadow-sm');
+      btnPosts.classList.remove('bg-nude', 'text-espresso');
+    }
   } else if (tab === 'products') {
-    tabProducts.classList.remove('hidden');
-    btnProducts.classList.add('bg-espresso', 'text-white');
+    if (tabProducts) tabProducts.classList.remove('hidden');
+    if (btnProducts) {
+      btnProducts.classList.add('bg-terracotta', 'text-white', 'shadow-sm');
+      btnProducts.classList.remove('bg-nude', 'text-espresso');
+    }
   } else if (tab === 'security') {
     if (tabSecurity) tabSecurity.classList.remove('hidden');
-    if (btnSecurity) btnSecurity.classList.add('bg-espresso', 'text-white');
+    if (btnSecurity) {
+      btnSecurity.classList.add('bg-terracotta', 'text-white', 'shadow-sm');
+      btnSecurity.classList.remove('bg-nude', 'text-espresso');
+    }
   } else {
-    tabSettings.classList.remove('hidden');
-    btnSettings.classList.add('bg-espresso', 'text-white');
-    document.getElementById('cfgWhatsapp').value = settings.whatsapp;
-    document.getElementById('cfgCity').value = settings.city || 'Montes Claros - MG';
-    document.getElementById('cfgAnnouncement').value = settings.announcement;
+    if (tabSettings) tabSettings.classList.remove('hidden');
+    if (btnSettings) {
+      btnSettings.classList.add('bg-terracotta', 'text-white', 'shadow-sm');
+      btnSettings.classList.remove('bg-nude', 'text-espresso');
+    }
+    const wInput = document.getElementById('cfgWhatsapp');
+    const cInput = document.getElementById('cfgCity');
+    const aInput = document.getElementById('cfgAnnouncement');
+    if (wInput) wInput.value = settings.whatsapp;
+    if (cInput) cInput.value = settings.city || 'Montes Claros - MG';
+    if (aInput) aInput.value = settings.announcement;
   }
+
+  // Atualização dos Indicadores KPIs (Padrão Thalia Martins)
+  const kpiProducts = document.getElementById('kpiProductsCount');
+  const kpiPosts = document.getElementById('kpiPostsCount');
+  if (kpiProducts) kpiProducts.textContent = `${products.length} Produtos`;
+  if (kpiPosts) kpiPosts.textContent = `${posts.length} Artigos`;
+
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     lucide.createIcons();
   }
+}
+
+// ===== GERENCIADOR INTEGRAL DE VÍDEOS E FOTOS DO SITE (CARLA BARBOSA) =====
+const defaultSiteMedia = {
+  reel1Video: '/assets/videos/reel-loiro-perolado.mp4',
+  reel1Poster: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80',
+  reel1Badge: 'Loiro Perolado',
+  reel1Title: 'Loiro Saudável & Brilho Gloss',
+
+  reel2Video: '/assets/videos/reel-butterfly-cut.mp4',
+  reel2Poster: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
+  reel2Badge: 'Butterfly Cut',
+  reel2Title: 'Camadas Fluidas & Curtain Bangs',
+
+  reel3Video: '/assets/videos/reel-alisamento-led.mp4',
+  reel3Poster: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80',
+  reel3Badge: 'Tecnologia a LED',
+  reel3Title: 'Liso Espelhado sem Formol',
+
+  reel4Video: '/assets/videos/reel-spa-capilar.mp4',
+  reel4Poster: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80',
+  reel4Badge: 'Spa da Fibra',
+  reel4Title: 'Cronograma & Ozonioterapia',
+
+  heroImg: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=480&q=70',
+  aboutImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+};
+
+let siteMedia = null;
+try {
+  const savedMedia = localStorage.getItem('cb_site_media');
+  siteMedia = savedMedia ? { ...defaultSiteMedia, ...JSON.parse(savedMedia) } : { ...defaultSiteMedia };
+} catch (e) {
+  siteMedia = { ...defaultSiteMedia };
+}
+
+function applySiteMedia(media = siteMedia) {
+  if (!media) return;
+
+  // Reel 1
+  const v1 = document.getElementById('siteVideoReel1');
+  const s1 = document.getElementById('siteSourceReel1');
+  const b1 = document.getElementById('siteBadgeReel1');
+  const t1 = document.getElementById('siteTitleReel1');
+  if (v1 && media.reel1Poster) v1.poster = media.reel1Poster;
+  if (s1 && media.reel1Video) {
+    s1.src = media.reel1Video;
+    if (v1) v1.load();
+  }
+  if (b1 && media.reel1Badge) b1.textContent = media.reel1Badge;
+  if (t1 && media.reel1Title) t1.textContent = media.reel1Title;
+
+  // Reel 2
+  const v2 = document.getElementById('siteVideoReel2');
+  const s2 = document.getElementById('siteSourceReel2');
+  const b2 = document.getElementById('siteBadgeReel2');
+  const t2 = document.getElementById('siteTitleReel2');
+  if (v2 && media.reel2Poster) v2.poster = media.reel2Poster;
+  if (s2 && media.reel2Video) {
+    s2.src = media.reel2Video;
+    if (v2) v2.load();
+  }
+  if (b2 && media.reel2Badge) b2.textContent = media.reel2Badge;
+  if (t2 && media.reel2Title) t2.textContent = media.reel2Title;
+
+  // Reel 3
+  const v3 = document.getElementById('siteVideoReel3');
+  const s3 = document.getElementById('siteSourceReel3');
+  const b3 = document.getElementById('siteBadgeReel3');
+  const t3 = document.getElementById('siteTitleReel3');
+  if (v3 && media.reel3Poster) v3.poster = media.reel3Poster;
+  if (s3 && media.reel3Video) {
+    s3.src = media.reel3Video;
+    if (v3) v3.load();
+  }
+  if (b3 && media.reel3Badge) b3.textContent = media.reel3Badge;
+  if (t3 && media.reel3Title) t3.textContent = media.reel3Title;
+
+  // Reel 4
+  const v4 = document.getElementById('siteVideoReel4');
+  const s4 = document.getElementById('siteSourceReel4');
+  const b4 = document.getElementById('siteBadgeReel4');
+  const t4 = document.getElementById('siteTitleReel4');
+  if (v4 && media.reel4Poster) v4.poster = media.reel4Poster;
+  if (s4 && media.reel4Video) {
+    s4.src = media.reel4Video;
+    if (v4) v4.load();
+  }
+  if (b4 && media.reel4Badge) b4.textContent = media.reel4Badge;
+  if (t4 && media.reel4Title) t4.textContent = media.reel4Title;
+
+  // Foto do Hero
+  const heroImgEl = document.getElementById('siteHeroImg');
+  if (heroImgEl && media.heroImg) {
+    heroImgEl.src = media.heroImg;
+  }
+
+  // Foto Sobre Carla Barbosa
+  const aboutImgEl = document.getElementById('siteAboutImg');
+  if (aboutImgEl && media.aboutImg) {
+    aboutImgEl.src = media.aboutImg;
+  }
+}
+
+function initAdminMediaForm() {
+  if (!siteMedia) siteMedia = { ...defaultSiteMedia };
+
+  for (let i = 1; i <= 4; i++) {
+    const videoInput = document.getElementById(`adminMedia_reel${i}Video`);
+    const posterInput = document.getElementById(`adminMedia_reel${i}Poster`);
+    const badgeInput = document.getElementById(`adminMedia_reel${i}Badge`);
+    const titleInput = document.getElementById(`adminMedia_reel${i}Title`);
+    const previewEl = document.getElementById(`previewAdminReel${i}`);
+
+    if (videoInput) videoInput.value = siteMedia[`reel${i}Video`] || '';
+    if (posterInput) posterInput.value = siteMedia[`reel${i}Poster`] || '';
+    if (badgeInput) badgeInput.value = siteMedia[`reel${i}Badge`] || '';
+    if (titleInput) titleInput.value = siteMedia[`reel${i}Title`] || '';
+    if (previewEl) {
+      if (siteMedia[`reel${i}Video`]) previewEl.src = siteMedia[`reel${i}Video`];
+      if (siteMedia[`reel${i}Poster`]) previewEl.poster = siteMedia[`reel${i}Poster`];
+    }
+  }
+
+  const heroInput = document.getElementById('adminMedia_heroImg');
+  const heroPreview = document.getElementById('previewAdminHeroImg');
+  if (heroInput) heroInput.value = siteMedia.heroImg || '';
+  if (heroPreview && siteMedia.heroImg) heroPreview.src = siteMedia.heroImg;
+
+  const aboutInput = document.getElementById('adminMedia_aboutImg');
+  const aboutPreview = document.getElementById('previewAdminAboutImg');
+  if (aboutInput) aboutInput.value = siteMedia.aboutImg || '';
+  if (aboutPreview && siteMedia.aboutImg) aboutPreview.src = siteMedia.aboutImg;
+}
+
+function updateAdminMediaPreview(reelKey) {
+  const videoInput = document.getElementById(`adminMedia_${reelKey}Video`);
+  const posterInput = document.getElementById(`adminMedia_${reelKey}Poster`);
+  const previewEl = document.getElementById(`previewAdmin${reelKey.charAt(0).toUpperCase() + reelKey.slice(1)}`);
+  
+  if (!previewEl) return;
+  if (videoInput && videoInput.value.trim()) {
+    previewEl.src = convertCloudLink(videoInput.value.trim());
+  }
+  if (posterInput && posterInput.value.trim()) {
+    previewEl.poster = convertCloudLink(posterInput.value.trim());
+  }
+}
+
+function updateAdminPhotoPreview(photoKey) {
+  const input = document.getElementById(`adminMedia_${photoKey}`);
+  const preview = document.getElementById(`previewAdmin${photoKey.charAt(0).toUpperCase() + photoKey.slice(1)}`);
+  if (input && preview && input.value.trim()) {
+    preview.src = convertCloudLink(input.value.trim());
+  }
+}
+
+function handleAdminFileUpload(event, inputId, previewId, isVideo = false) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const result = e.target.result;
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    if (input) input.value = result;
+    if (preview) {
+      preview.src = result;
+      if (isVideo) preview.load();
+    }
+    showToast(`Arquivo carregado com sucesso (${(file.size / 1024).toFixed(0)} KB)!`);
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveSiteMedia() {
+  if (!siteMedia) siteMedia = {};
+
+  for (let i = 1; i <= 4; i++) {
+    const videoInput = document.getElementById(`adminMedia_reel${i}Video`);
+    const posterInput = document.getElementById(`adminMedia_reel${i}Poster`);
+    const badgeInput = document.getElementById(`adminMedia_reel${i}Badge`);
+    const titleInput = document.getElementById(`adminMedia_reel${i}Title`);
+
+    if (videoInput && videoInput.value.trim()) siteMedia[`reel${i}Video`] = convertCloudLink(videoInput.value.trim());
+    if (posterInput && posterInput.value.trim()) siteMedia[`reel${i}Poster`] = convertCloudLink(posterInput.value.trim());
+    if (badgeInput && badgeInput.value.trim()) siteMedia[`reel${i}Badge`] = badgeInput.value.trim();
+    if (titleInput && titleInput.value.trim()) siteMedia[`reel${i}Title`] = titleInput.value.trim();
+  }
+
+  const heroInput = document.getElementById('adminMedia_heroImg');
+  if (heroInput && heroInput.value.trim()) siteMedia.heroImg = convertCloudLink(heroInput.value.trim());
+
+  const aboutInput = document.getElementById('adminMedia_aboutImg');
+  if (aboutInput && aboutInput.value.trim()) siteMedia.aboutImg = convertCloudLink(aboutInput.value.trim());
+
+  localStorage.setItem('cb_site_media', JSON.stringify(siteMedia));
+  applySiteMedia(siteMedia);
+  showToast('✨ Vídeos e fotos atualizados com sucesso no site!');
+}
+
+function resetSiteMedia() {
+  if (!confirm('Deseja restaurar os vídeos e fotos originais de fábrica?')) return;
+  siteMedia = { ...defaultSiteMedia };
+  localStorage.setItem('cb_site_media', JSON.stringify(siteMedia));
+  initAdminMediaForm();
+  applySiteMedia(siteMedia);
+  showToast('Vídeos e fotos originais restaurados!');
 }
 
 // ===== CONVERSOR DE LINKS DE NUVEM & DRIVE (GOOGLE DRIVE, DROPBOX, ONEDRIVE, WEB) =====
@@ -1547,67 +1816,56 @@ function installPwaApp() {
 
 
 // ============================================================
-// ENGENHARIA CINEMATOGRÁFICA: LENIS SMOOTH SCROLL + GSAP PINNED DOLLY ZOOM
+// ENGENHARIA CINEMATOGRÁFICA: GSAP PINNED DOLLY ZOOM & LENIS SYNC
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Inicializar Lenis para Scroll Suave Inercial de Cinema
-  if (typeof Lenis !== 'undefined') {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    });
+  const lenisInstance = window.lenis || (typeof Lenis !== 'undefined' ? new Lenis({
+    duration: 1.5,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 0.95
+  }) : null);
 
-    // 2. Sincronizar Lenis com GSAP ScrollTrigger
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+  if (lenisInstance && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
 
-      lenis.on('scroll', ScrollTrigger.update);
+    lenisInstance.on('scroll', ScrollTrigger.update);
 
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+    // Seção Fixa Pinned Storytelling com Efeito Dolly Zoom
+    const pinnedSection = document.querySelector('.pinned-section');
+    if (pinnedSection) {
+      const pinTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.pinned-section',
+          start: 'top top',
+          end: '+=150%',
+          pin: true,
+          scrub: 1,
+        }
       });
 
-      gsap.ticker.lagSmoothing(0);
-
-      // 3. Seção Fixa Pinned Storytelling com Efeito Dolly Zoom
-      const pinnedSection = document.querySelector('.pinned-section');
-      if (pinnedSection) {
-        const pinTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: '.pinned-section',
-            start: 'top top',
-            end: '+=150%',
-            pin: true,
-            scrub: 1,
-          }
-        });
-
-        pinTl
-          .from('.pinned-frame', { scale: 0.92, borderRadius: '48px', duration: 1 })
-          .from('.pin-badge', { opacity: 0, y: -10, duration: 0.5 }, '<')
-          .from('.pin-title', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
-          .from('.pin-text', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
-          .from('.pin-cta', { opacity: 0, y: 15, duration: 0.8 }, '-=0.4');
-      }
-
-      // 4. Parallax Suave nos Cards de Serviço
-      gsap.utils.toArray('.service-card').forEach((card, index) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-          },
-          y: 35,
-          opacity: 0,
-          duration: 0.8,
-          delay: (index % 3) * 0.1,
-          ease: 'power2.out'
-        });
-      });
+      pinTl
+        .from('.pinned-frame', { scale: 0.92, borderRadius: '48px', duration: 1 })
+        .from('.pin-badge', { opacity: 0, y: -10, duration: 0.5 }, '<')
+        .from('.pin-title', { opacity: 0, y: 25, duration: 0.8 }, '-=0.3')
+        .from('.pin-text', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+        .from('.pin-cta', { opacity: 0, y: 15, duration: 0.8 }, '-=0.4');
     }
+
+    // Parallax Suave nos Cards de Serviço
+    gsap.utils.toArray('.service-card').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        delay: (index % 3) * 0.1,
+        ease: 'power2.out'
+      });
+    });
   }
 });

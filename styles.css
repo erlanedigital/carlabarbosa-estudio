@@ -26,11 +26,23 @@
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Filter pills */
+/* Filter pills - Terracotta #A35843 */
 .active-pill {
-  background-color: #201B17 !important;
+  background-color: #A35843 !important;
   color: #FFFFFF !important;
-  border-color: #201B17 !important;
+  border-color: #A35843 !important;
+  box-shadow: 0 4px 14px rgba(163, 88, 67, 0.28) !important;
+}
+
+/* Regra Mestre de Botões Terracota #A35843 (Zero Botões Pretos) */
+.btn-terracotta {
+  background-color: #A35843 !important;
+  color: #FFFFFF !important;
+  transition: all 0.3s ease;
+}
+.btn-terracotta:hover {
+  background-color: #8C4733 !important;
+  box-shadow: 0 8px 20px -4px rgba(163, 88, 67, 0.35) !important;
 }
 
 /* Product Card Hover effects */
@@ -150,7 +162,23 @@ html.lenis, html.lenis body {
   box-shadow: inset 0 0 90px rgba(238, 117, 143, 0.22), 0 30px 60px -15px rgba(163, 88, 67, 0.12);
 }
 
-/* Vinheta cinematográfica aveludada em fundo bordô nobre (Vinho / Burgundy Real) */
-.cinematic-vignette-bordo {
-  box-shadow: inset 0 0 120px rgba(35, 3, 10, 0.92), 0 30px 60px -15px rgba(74, 7, 20, 0.7);
+/* Vinheta cinematográfica aveludada na cor oficial terracota (#A35843) */
+.cinematic-vignette-terracotta {
+  box-shadow: inset 0 0 110px rgba(70, 25, 14, 0.78), 0 30px 60px -15px rgba(115, 55, 38, 0.5);
+}
+
+/* Barra de Progresso de Rolagem (Padrão Marcya Imóveis) */
+#scrollProgress {
+  transform-origin: 0% 50%;
+  pointer-events: none;
+}
+
+/* Micro-interações de Luxo nos Cards (Padrão Marcya Imóveis sem mudar fontes nem layout) */
+.luxury-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(163, 88, 67, 0.45) !important;
+  box-shadow: 0 20px 35px -10px rgba(163, 88, 67, 0.12), 0 0 1px 1px rgba(200, 157, 124, 0.2) !important;
 }
