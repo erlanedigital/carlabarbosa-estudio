@@ -11,6 +11,7 @@ if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
 const filesToSync = [
   'index.html',
   'styles.css',
+  'app.js',
   'script.js',
   'favicon.svg',
   'manifest.json',

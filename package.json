@@ -1,10 +1,11 @@
 {
   "name": "estudiocarlabarbosa",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
-  "description": "Carla Barbosa Estúdio - Alta Cosmética & Rituais - PWA & Cloudflare Pages",
+  "description": "Carla Barbosa Estúdio de Beleza - React + Tailwind SPA - PWA & Cloudflare Pages",
   "scripts": {
-    "build": "node sync_dist.js",
-    "dev": "wrangler pages dev dist --port 3000"
+    "bundle": "npx esbuild src/index.js --bundle --outfile=app.js --minify --loader:.jsx=jsx --external:react --external:react-dom",
+    "build": "npm run bundle && node sync_dist.js",
+    "deploy": "npm run build && wrangler deploy"
   }
 }

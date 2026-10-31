@@ -1,127 +1,62 @@
-/* ===== Custom Styles for Carla Barbosa Estúdio ===== */
+/* ============================================================
+   CARLA BARBOSA ESTÚDIO DE BELEZA — ALTA COSTURA & DESIGN SYSTEM
+   Fundo BRANCO PURO #FFFFFF • Borda #FFE0E8 • Texto #2D1B22
+   Accents Rosa #E8A0BF, #FF8FAB, #C08497 & Terracota Nobre #A35843
+   ============================================================ */
 
-/* Scrollbar refinement */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-pure: #FFFFFF;
+  --text-dark: #2D1B22;
+  --border-blush: #FFE0E8;
+  --accent-pink: #FF8FAB;
+  --accent-rose: #E8A0BF;
+  --accent-plum: #C08497;
+  --accent-terracotta: #A35843;
+}
+
+/* ===== ZERO HORIZONTAL OVERFLOW & 100% RESPONSIVE ===== */
+html, body {
+  background-color: #FFFFFF !important;
+  color: #2D1B22;
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia de Alta Costura */
+.font-serif-luxury {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ===== SCROLL REFINADO ===== */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #FBF9F6;
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EFE9E1;
-  border-radius: 4px;
+  background: #FFE0E8;
+  border-radius: 9999px;
+  border: 2px solid #FFFFFF;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C89D7C;
+  background: #FF8FAB;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Filter pills - Terracotta #A35843 */
-.active-pill {
-  background-color: #A35843 !important;
-  color: #FFFFFF !important;
-  border-color: #A35843 !important;
-  box-shadow: 0 4px 14px rgba(163, 88, 67, 0.28) !important;
-}
-
-/* Regra Mestre de Botões Terracota #A35843 (Zero Botões Pretos) */
-.btn-terracotta {
-  background-color: #A35843 !important;
-  color: #FFFFFF !important;
-  transition: all 0.3s ease;
-}
-.btn-terracotta:hover {
-  background-color: #8C4733 !important;
-  box-shadow: 0 8px 20px -4px rgba(163, 88, 67, 0.35) !important;
-}
-
-/* Product Card Hover effects */
-.product-card {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 30px -10px rgba(32, 27, 23, 0.08);
-}
-
-/* Details summary remove arrow */
-details summary::-webkit-details-marker {
-  display: none;
-}
-
-/* ===== BLINDAGEM ABSOLUTA DE MODAIS E OVERLAYS ===== */
-#quickModal.hidden,
-#postModal.hidden,
-#adminModal.hidden,
-#cartDrawer.hidden,
-#mobileDrawer.hidden,
-div[id$="Modal"].hidden,
-div[id$="Drawer"].hidden,
-.modal-backdrop.hidden {
-  display: none !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-  z-index: -9999 !important;
-  opacity: 0 !important;
-}
-
-#quickModal:not(.hidden),
-#postModal:not(.hidden),
-#adminModal:not(.hidden) {
-  display: flex !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 50 !important;
-}
-
-#cartDrawer:not(.hidden) {
-  display: flex !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 50 !important;
-}
-
-/* Header Sticky Safety */
-header#header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 40 !important;
-}
-
-
-/* ===== EFEITOS CINEMATOGRÁFICOS DE ALTA COSTURA ===== */
-.cinema-glow {
-  box-shadow: 0 0 50px -10px rgba(200, 157, 124, 0.25);
-}
-
-video {
-  pointer-events: auto;
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-
-
-/* ===== ENGENHARIA CINEMATOGRÁFICA: LENIS SMOOTH SCROLL & FILM GRAIN ===== */
+/* ===== LENIS SMOOTH SCROLL INTEGRATION ===== */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -135,67 +70,230 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Granulação analógica 35mm pura em SVG */
-.film-grain {
+/* ===== CUSTOM CURSOR LUXURY (DESKTOP ONLY) ===== */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #FF8FAB;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 143, 171, 0.65);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, transform 0.08s ease-out;
+  will-change: transform;
+}
+
+.cursor-ring.active {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(232, 160, 191, 0.9);
+  background-color: rgba(255, 224, 232, 0.2);
+}
+
+/* ===== GRAIN ROSA / ANALÓGICO 35MM ===== */
+.film-grain-rose {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 999;
-  opacity: 0.035;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+  z-index: 990;
+  opacity: 0.024;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0.9  0 1 0 0 0.6  0 0 1 0 0.7  0 0 0 1 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
 }
 
-/* Vinheta cinematográfica profunda */
-.cinematic-vignette {
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.75);
+/* ===== VIGNETTE CLARA & LENS FLARE ROSA ===== */
+.vignette-soft-light {
+  box-shadow: inset 0 0 120px rgba(255, 224, 232, 0.35);
+  pointer-events: none;
 }
 
-/* Vinheta de alta costura em fundo claro */
-.cinematic-vignette-light {
-  box-shadow: inset 0 0 90px rgba(200, 157, 124, 0.2), 0 30px 60px -15px rgba(44, 34, 30, 0.08);
+.lens-flare-pink {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 143, 171, 0.22) 0%, rgba(232, 160, 191, 0.1) 45%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Vinheta de alta costura em fundo rosa rosé */
-.cinematic-vignette-rose {
-  box-shadow: inset 0 0 90px rgba(238, 117, 143, 0.22), 0 30px 60px -15px rgba(163, 88, 67, 0.12);
+/* ===== SHINE SWEEP NO BOTÃO WHATSAPP / CTA ===== */
+.shine-sweep-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Vinheta cinematográfica aveludada na cor oficial terracota (#A35843) */
-.cinematic-vignette-terracotta {
-  box-shadow: inset 0 0 110px rgba(70, 25, 14, 0.78), 0 30px 60px -15px rgba(115, 55, 38, 0.5);
+.shine-sweep-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.0) 35%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.0) 65%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  animation: shineSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
 }
 
-/* Barra de Progresso de Rolagem (Padrão Marcya Imóveis) */
+@keyframes shineSweep {
+  0% {
+    left: -160%;
+  }
+  30%, 100% {
+    left: 160%;
+  }
+}
+
+/* ===== CINEMATIC MASK REVEAL (HERO TITLE GIGANTE) ===== */
+.mask-reveal-container {
+  overflow: hidden;
+  display: block;
+}
+
+.mask-reveal-line {
+  display: block;
+  transform: translateY(115%) scaleY(1.3);
+  filter: blur(10px);
+  opacity: 0;
+  transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1),
+              filter 0.9s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform, filter, opacity;
+}
+
+.mask-reveal-line.revealed {
+  transform: translateY(0%) scaleY(1);
+  filter: blur(0px);
+  opacity: 1;
+}
+
+/* ===== CLIP-PATH REVEAL ===== */
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
+}
+
+.clip-reveal.active {
+  clip-path: inset(0% 0 0 0);
+}
+
+/* ===== KEN BURNS SCALE ===== */
+.ken-burns-img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  will-change: transform;
+}
+
+.ken-burns-img:hover {
+  transform: scale(1.08);
+}
+
+/* ===== MARQUEE INFINITO 40S ===== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== LUXURY CARD HOVER & SHADOWS ===== */
+.card-luxury {
+  background: #FFFFFF;
+  border: 1px solid #FFE0E8;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-luxury:hover {
+  transform: translateY(-6px);
+  border-color: #E8A0BF;
+  box-shadow: 0 24px 45px -12px rgba(232, 160, 191, 0.28), 0 0 1px 1px rgba(255, 143, 171, 0.25);
+}
+
+/* Botões Terracota / Rosa Nobres */
+.btn-primary-luxury {
+  background: linear-gradient(135deg, #A35843 0%, #8C4733 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px -4px rgba(163, 88, 67, 0.32);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-luxury:hover {
+  background: linear-gradient(135deg, #8C4733 0%, #753826 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -4px rgba(163, 88, 67, 0.42);
+}
+
+.btn-pink-luxury {
+  background: linear-gradient(135deg, #FF8FAB 0%, #E8A0BF 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px -4px rgba(255, 143, 171, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-pink-luxury:hover {
+  background: linear-gradient(135deg, #FF7B9D 0%, #DF91B2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(255, 143, 171, 0.45);
+}
+
+/* Progress Bar no topo */
 #scrollProgress {
   transform-origin: 0% 50%;
   pointer-events: none;
 }
 
-/* Micro-interações de Luxo nos Cards (Padrão Marcya Imóveis sem mudar fontes nem layout) */
-.luxury-card-hover {
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.luxury-card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(163, 88, 67, 0.45) !important;
-  box-shadow: 0 20px 35px -10px rgba(163, 88, 67, 0.12), 0 0 1px 1px rgba(200, 157, 124, 0.2) !important;
-}
-
-/* Responsividade 100% Fluida sem Rolagem Horizontal */
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw;
-  width: 100%;
-}
-
+/* Imagens seguras */
 img, video {
   max-width: 100%;
-}
-
-/* Efeito Letras Subindo no Título Hero */
-.hero-char {
-  display: inline-block;
-  will-change: transform, opacity;
+  height: auto;
 }
