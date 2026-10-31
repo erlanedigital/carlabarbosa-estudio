@@ -1,0 +1,13 @@
+name = "carlabarbosa-estudio"
+compatibility_date = "2023-10-30"
+pages_build_output_dir = "public"
+
+[[kv_namespaces]]
+binding = "MARCYA_VAULT"
+id = "mock-id-will-be-replaced"
+preview_id = "mock-preview-id"
+
+[[r2_buckets]]
+binding = "MARCYA_MEDIA"
+bucket_name = "carlabarbosa-estudio-media"
+preview_bucket_name = "carlabarbosa-estudio-media-preview"

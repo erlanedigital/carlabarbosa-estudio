@@ -1,0 +1,78 @@
+﻿{
+  "name": "Carla Barbosa Estúdio | Alta Cosmética & Rituais",
+  "short_name": "Carla Barbosa",
+  "description": "Carla Barbosa Estúdio em Montes Claros - MG. Cosméticos de alta performance, mechas, tratamentos capilares e rituais de beleza.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/?v=1.0",
+  "display": "standalone",
+  "background_color": "#FBF9F6",
+  "theme_color": "#201B17",
+  "orientation": "any",
+  "lang": "pt-BR",
+  "categories": [
+    "beauty",
+    "lifestyle",
+    "shopping"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Catálogo de Cosméticos",
+      "short_name": "Catálogo",
+      "url": "/#catalogo",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Rituais de Cabine",
+      "short_name": "Serviços",
+      "url": "/#servicos",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Diagnóstico de Beleza",
+      "short_name": "Diagnóstico",
+      "url": "/#quiz",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Painel de Gestão",
+      "short_name": "Admin",
+      "url": "/#admin",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

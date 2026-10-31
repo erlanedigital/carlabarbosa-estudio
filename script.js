@@ -434,6 +434,8 @@ function updateCartUI() {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
   if (countBadge) countBadge.textContent = totalItems;
+  const floatingBadge = document.getElementById('floatingCartCount');
+  if (floatingBadge) floatingBadge.textContent = totalItems;
   
   // Cálculo de desconto e finalização
   const isPix = selectedPaymentMethod === 'pix';
@@ -814,6 +816,9 @@ function switchAdminTab(tab) {
     document.getElementById('cfgWhatsapp').value = settings.whatsapp;
     document.getElementById('cfgCity').value = settings.city || 'Montes Claros - MG';
     document.getElementById('cfgAnnouncement').value = settings.announcement;
+  }
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    lucide.createIcons();
   }
 }
 
@@ -1212,6 +1217,161 @@ function resetPostForm() {
   document.getElementById('postFormTitle').textContent = 'Publicar Novo Post / Dica';
 }
 
+// ===== UPLOAD E MÍDIA MULTI-FONTES PARA PRODUTOS (DISPOSITIVO, CLOUD E IA 8K) =====
+function handleProductMediaUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  const previewBox = document.getElementById('prodMediaPreviewBox');
+  const previewImg = document.getElementById('prodMediaPreviewImg');
+  const previewStatus = document.getElementById('prodMediaPreviewStatus');
+
+  if (previewBox) previewBox.classList.remove('hidden');
+
+  reader.onload = function(e) {
+    const mediaData = e.target.result;
+    const input = document.getElementById('prodImage');
+    if (input) input.value = mediaData;
+
+    if (previewImg) {
+      previewImg.src = mediaData;
+      previewImg.classList.remove('hidden');
+    }
+    if (previewStatus) previewStatus.textContent = `📸 Foto carregada da galeria (${file.name})`;
+    showToast('✓ Imagem do produto carregada!');
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function handleProductCloudUrl(url) {
+  const converted = convertCloudLink(url);
+  const input = document.getElementById('prodImage');
+  if (input && converted !== url) input.value = converted;
+
+  const previewBox = document.getElementById('prodMediaPreviewBox');
+  const previewImg = document.getElementById('prodMediaPreviewImg');
+
+  if (!converted) {
+    if (previewBox) previewBox.classList.add('hidden');
+    return;
+  }
+
+  if (previewBox) previewBox.classList.remove('hidden');
+  if (previewImg) {
+    previewImg.src = converted;
+    previewImg.classList.remove('hidden');
+  }
+}
+
+function generateProductAiImage() {
+  const promptInput = document.getElementById('prodAiPrompt');
+  const nameInput = document.getElementById('prodName');
+  const catInput = document.getElementById('prodCategory');
+
+  let concept = (promptInput && promptInput.value.trim()) || (nameInput && nameInput.value.trim()) || 'Cosmético capilar de luxo';
+  const category = catInput ? catInput.value : '';
+
+  let semanticPrompt = `Luxury cosmetic product photography, ${concept}, elegant packaging in glass bottle with gold dispenser, minimalist studio lighting on warm marble linen background, 8k commercial packshot, crisp sharp focus`;
+  
+  const previewBox = document.getElementById('prodMediaPreviewBox');
+  const previewImg = document.getElementById('prodMediaPreviewImg');
+  const spinner = document.getElementById('prodAiLoadingSpinner');
+  const btn = document.getElementById('btnGenerateProdAi');
+
+  if (previewBox) previewBox.classList.remove('hidden');
+  if (spinner) spinner.classList.remove('hidden');
+  if (btn) btn.disabled = true;
+
+  const seed = Math.floor(Math.random() * 9999999);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(semanticPrompt)}?width=800&height=800&nologo=true&seed=${seed}`;
+
+  const finish = (url) => {
+    const input = document.getElementById('prodImage');
+    if (input) input.value = url;
+    if (previewImg) {
+      previewImg.src = url;
+      previewImg.classList.remove('hidden');
+    }
+    if (spinner) spinner.classList.add('hidden');
+    if (btn) btn.disabled = false;
+    showToast('✨ Foto 8K do produto gerada pela IA!');
+  };
+
+  const timeoutId = setTimeout(() => finish(imageUrl), 15000);
+  const imgLoader = new Image();
+  imgLoader.onload = () => { clearTimeout(timeoutId); finish(imageUrl); };
+  imgLoader.onerror = () => { clearTimeout(timeoutId); finish(imageUrl); };
+  imgLoader.src = imageUrl;
+}
+
+function setProductAiPrompt(text) {
+  const input = document.getElementById('prodAiPrompt');
+  if (input) {
+    input.value = text;
+    generateProductAiImage();
+  }
+}
+
+function editProduct(id) {
+  const p = products.find(prod => prod.id === id);
+  if (!p) return;
+
+  document.getElementById('editProductId').value = p.id;
+  document.getElementById('prodName').value = p.name;
+  document.getElementById('prodPrice').value = p.price;
+  document.getElementById('prodCategory').value = p.category;
+  document.getElementById('prodImage').value = p.image;
+  document.getElementById('prodBadge').value = p.badge || '';
+  document.getElementById('prodShortDesc').value = p.shortDesc || '';
+  document.getElementById('prodUsage').value = p.usage || '';
+
+  const formTitle = document.getElementById('prodFormTitle');
+  if (formTitle) formTitle.textContent = 'Editar Produto';
+
+  const btnSave = document.getElementById('btnSaveProdText');
+  if (btnSave) btnSave.textContent = 'Atualizar Produto';
+
+  const previewBox = document.getElementById('prodMediaPreviewBox');
+  const previewImg = document.getElementById('prodMediaPreviewImg');
+  if (previewBox && previewImg) {
+    previewBox.classList.remove('hidden');
+    previewImg.src = p.image;
+    previewImg.classList.remove('hidden');
+  }
+
+  const cancelBtn = document.getElementById('btnCancelEditProd');
+  if (cancelBtn) cancelBtn.classList.remove('hidden');
+
+  // Rolar até o topo do formulário
+  const adminTab = document.getElementById('adminTabProducts');
+  if (adminTab) adminTab.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetProductForm() {
+  document.getElementById('editProductId').value = '';
+  document.getElementById('prodName').value = '';
+  document.getElementById('prodPrice').value = '';
+  document.getElementById('prodCategory').value = 'oleos';
+  document.getElementById('prodImage').value = '';
+  document.getElementById('prodBadge').value = '';
+  document.getElementById('prodShortDesc').value = '';
+  document.getElementById('prodUsage').value = '';
+
+  const formTitle = document.getElementById('prodFormTitle');
+  if (formTitle) formTitle.textContent = 'Adicionar Novo Produto';
+
+  const btnSave = document.getElementById('btnSaveProdText');
+  if (btnSave) btnSave.textContent = 'Salvar Produto no Catálogo';
+
+  const previewBox = document.getElementById('prodMediaPreviewBox');
+  if (previewBox) previewBox.classList.add('hidden');
+
+  const cancelBtn = document.getElementById('btnCancelEditProd');
+  if (cancelBtn) cancelBtn.classList.add('hidden');
+}
+
 // Admin: Products CRUD
 function handleSaveProduct(e) {
   e.preventDefault();
@@ -1219,7 +1379,7 @@ function handleSaveProduct(e) {
   const name = document.getElementById('prodName').value;
   const price = parseFloat(document.getElementById('prodPrice').value);
   const category = document.getElementById('prodCategory').value;
-  const image = document.getElementById('prodImage').value;
+  const image = document.getElementById('prodImage').value || 'https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=600&q=80';
   const badge = document.getElementById('prodBadge').value || 'Exclusivo';
   const shortDesc = document.getElementById('prodShortDesc').value;
   const usage = document.getElementById('prodUsage').value;
@@ -1248,7 +1408,8 @@ function handleSaveProduct(e) {
   localStorage.setItem('cb_products', JSON.stringify(products));
   renderProducts();
   renderAdminProductsList();
-  showToast('Produto salvo no catálogo!');
+  resetProductForm();
+  showToast(existingIndex >= 0 ? 'Produto atualizado com sucesso!' : 'Novo produto adicionado ao catálogo!');
 }
 
 function renderAdminProductsList() {
@@ -1265,10 +1426,19 @@ function renderAdminProductsList() {
         </div>
       </div>
       <div class="flex gap-2">
-        <button onclick="deleteProduct('${p.id}')" class="px-3 py-1 rounded bg-red-100 text-red-700 font-bold hover:bg-red-200">Excluir</button>
+        <button onclick="editProduct('${p.id}')" class="px-3 py-1 rounded bg-nude text-espresso font-bold hover:bg-gold/20 transition flex items-center gap-1">
+          <i data-lucide="edit" class="w-3.5 h-3.5"></i> Editar
+        </button>
+        <button onclick="deleteProduct('${p.id}')" class="px-3 py-1 rounded bg-red-100 text-red-700 font-bold hover:bg-red-200 transition flex items-center gap-1">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Excluir
+        </button>
       </div>
     </div>
   `).join('');
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function deleteProduct(id) {
@@ -1277,7 +1447,7 @@ function deleteProduct(id) {
     localStorage.setItem('cb_products', JSON.stringify(products));
     renderProducts();
     renderAdminProductsList();
-    showToast('Produto removido.');
+    showToast('Produto removido do catálogo.');
   }
 }
 
@@ -1298,6 +1468,8 @@ function applySettings() {
 
   if (annEl) annEl.textContent = settings.announcement;
   if (waCta) waCta.href = `https://wa.me/${settings.whatsapp}?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20informa%C3%A7%C3%B5es.`;
+  const subWa = document.getElementById('subBarWhatsappLink');
+  if (subWa) subWa.href = `https://wa.me/${settings.whatsapp}?text=Ol%C3%A1%20Carla%20Barbosa%20Est%C3%BAdio!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20e%20agendamento.`;
 }
 
 // Toast
@@ -1311,4 +1483,44 @@ function showToast(msg) {
   setTimeout(() => {
     toast.classList.add('translate-y-20', 'opacity-0');
   }, 3000);
+}
+
+
+// ===== PWA SERVICE WORKER REGISTRATION & INSTALL PROMPT =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => {
+        console.log('Carla Barbosa PWA - Service Worker ativo:', reg.scope);
+      })
+      .catch(err => {
+        console.warn('Falha ao registrar Service Worker:', err);
+      });
+  });
+}
+
+let deferredPwaPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPwaPrompt = e;
+  const pwaBanner = document.getElementById('pwaInstallBanner');
+  if (pwaBanner) pwaBanner.classList.remove('hidden');
+  const pwaMobileBtn = document.getElementById('pwaInstallMobileBtn');
+  if (pwaMobileBtn) pwaMobileBtn.classList.remove('hidden');
+});
+
+function installPwaApp() {
+  if (deferredPwaPrompt) {
+    deferredPwaPrompt.prompt();
+    deferredPwaPrompt.userChoice.then((choice) => {
+      if (choice.outcome === 'accepted') {
+        showToast('🎉 Carla Barbosa Estúdio instalado com sucesso!');
+      }
+      deferredPwaPrompt = null;
+      const pwaBanner = document.getElementById('pwaInstallBanner');
+      if (pwaBanner) pwaBanner.classList.add('hidden');
+    });
+  } else {
+    showToast('Para instalar: toque em Compartilhar e selecione "Adicionar à Tela de Início".');
+  }
 }

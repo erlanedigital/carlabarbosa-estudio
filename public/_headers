@@ -1,0 +1,50 @@
+/*
+  # ===== CABEÇALHOS DE SEGURANÇA MÁXIMA — CLOUDFLARE PAGES (ESTÚDIO CARLA BARBOSA) =====
+  # Proteção contra XSS, Clickjacking, Injeção de Código, Sniffing e Vazamento de Dados
+
+  # 1. Forçar HTTPS Estrito com HSTS (2 anos de validade e Preload)
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # 2. Proteção contra Clickjacking (Proíbe o site de ser embutido em iframes maliciosos)
+  X-Frame-Options: DENY
+
+  # 3. Proteção contra MIME-Sniffing
+  X-Content-Type-Options: nosniff
+
+  # 4. Política de Referrer Estrita (Protege a privacidade dos clientes)
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # 5. Bloqueio de Sensores e Recursos Sensíveis do Dispositivo
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), usb=(), display-capture=(), accelerometer=()
+
+  # 6. Proteção Ativa contra XSS no Navegador
+  X-XSS-Protection: 1; mode=block
+
+  # 7. Content Security Policy (CSP) Robusta e Auditada para APIs de IA e Imagens
+  Content-Security-Policy: default-src 'self' 'unsafe-inline' https: data: blob:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https:; font-src 'self' https://fonts.gstatic.com https: data:; img-src 'self' https: data: blob:; connect-src 'self' https: data: blob:; media-src 'self' https: data: blob:; frame-ancestors 'none'; form-action 'self' https://wa.me https:; base-uri 'self';
+
+# ===== CACHE DE BORDAS E ENTREGA ACELERADA CLOUDFLARE CDN =====
+/styles.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/script.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable

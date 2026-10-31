@@ -1,0 +1,89 @@
+/* ===== Custom Styles for Carla Barbosa Estúdio ===== */
+
+/* Scrollbar refinement */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FBF9F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #EFE9E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C89D7C;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Filter pills */
+.active-pill {
+  background-color: #201B17 !important;
+  color: #FFFFFF !important;
+  border-color: #201B17 !important;
+}
+
+/* Product Card Hover effects */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(32, 27, 23, 0.08);
+}
+
+/* Details summary remove arrow */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ===== BLINDAGEM ABSOLUTA DE MODAIS E OVERLAYS ===== */
+#quickModal.hidden,
+#postModal.hidden,
+#adminModal.hidden,
+#cartDrawer.hidden,
+#mobileDrawer.hidden,
+div[id$="Modal"].hidden,
+div[id$="Drawer"].hidden,
+.modal-backdrop.hidden {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  z-index: -9999 !important;
+  opacity: 0 !important;
+}
+
+#quickModal:not(.hidden),
+#postModal:not(.hidden),
+#adminModal:not(.hidden) {
+  display: flex !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 50 !important;
+}
+
+#cartDrawer:not(.hidden) {
+  display: flex !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 50 !important;
+}
+
+/* Header Sticky Safety */
+header#header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+}

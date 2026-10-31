@@ -39,5 +39,12 @@
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
 
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
 /*.png
   Cache-Control: public, max-age=31536000, immutable

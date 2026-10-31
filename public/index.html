@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carla Barbosa Estúdio | Alta Cosmética & Rituais de Autocuidado — Montes Claros MG</title>
+  <meta name="description" content="Carla Barbosa Estúdio em Montes Claros - MG. Cosméticos de alta performance, tratamentos capilares, mechas e rituais de beleza." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Preconnect para Carregamento Ultrarrápido de Imagens -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+  <!-- Google Fonts: Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            linen: '#FBF9F6',
+            'linen-dark': '#F4EFEA',
+            nude: '#EFE9E1',
+            espresso: '#201B17',
+            'espresso-light': '#3A332E',
+            gold: '#C89D7C',
+            'gold-light': '#E8D5C4',
+            terracotta: '#A35843',
+            'terracotta-hover': '#8C4733',
+            muted: '#7D7571',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- PWA & Mobile Web App Manifest (Padrão Ouro Marcya & Talya) -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#201B17" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Carla Barbosa" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+</head>
+<body class="bg-linen text-espresso font-sans antialiased selection:bg-gold selection:text-espresso">
+
+  <!-- ===== BARRA DE AVISOS SUPERIOR ===== -->
+  <div id="announcementBar" class="bg-espresso text-gold-light text-xs tracking-widest uppercase py-2.5 px-4 text-center border-b border-gold/20 flex items-center justify-center gap-3">
+    <span id="announcementText">✨ FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 249 | ESTÚDIO MONTES CLAROS - MG</span>
+  </div>
+
+  <!-- ===== CABEÇALHO / NAVEGAÇÃO PRINCIPAL ===== -->
+  <header id="header" class="sticky top-0 z-40 bg-linen/95 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
+    <div class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+      
+      <!-- Botão Menu Mobile -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-espresso hover:text-terracotta" aria-label="Menu de Navegação">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Links de Navegação Desktop -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-espresso/80">
+        <a href="#servicos" class="hover:text-terracotta transition-colors">Serviços</a>
+        <a href="#catalogo" class="hover:text-terracotta transition-colors">Catálogo</a>
+        <a href="#quiz" class="hover:text-terracotta transition-colors">Diagnóstico</a>
+        <a href="#posts" class="hover:text-terracotta transition-colors">Dicas & Blog</a>
+        <a href="#sobre" class="hover:text-terracotta transition-colors">O Estúdio</a>
+      </nav>
+
+      <!-- Logotipo Central -->
+      <a href="#" class="text-center group">
+        <span class="block font-serif text-2xl sm:text-3xl tracking-widest font-semibold uppercase text-espresso group-hover:text-terracotta transition-colors">
+          CARLA BARBOSA
+        </span>
+        <span class="block text-[10px] tracking-[0.3em] uppercase text-gold font-medium -mt-1">
+          Estúdio • Montes Claros MG
+        </span>
+      </a>
+
+      <!-- Ações da Direita -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <!-- Botão Admin Discreto no Topo -->
+        
+      <button id="pwaInstallMobileBtn" onclick="installPwaApp()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-gold py-2 flex items-center gap-2 border-b border-nude">
+        <i data-lucide="download" class="w-4 h-4 text-gold"></i> Instalar Aplicativo no Celular
+      </button>
+      <button onclick="openAdminModal()" class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-semibold text-espresso/40 hover:text-terracotta opacity-60 hover:opacity-100 transition-all" title="Área Administrativa">
+          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+          <span>Admin</span>
+        </button>
+
+        <!-- Botão da Sacola com Contador -->
+        <button id="cartBtn" class="relative p-2 text-espresso hover:text-terracotta transition-colors" title="Ver Sacola de Compras">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartCount" class="absolute top-0 right-0 w-4 h-4 bg-terracotta text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Botão de Agendamento -->
+        <a href="#servicos" class="hidden sm:inline-flex items-center gap-2 bg-espresso text-white text-xs font-semibold uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-terracotta transition-colors">
+          <span>Agendamento</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Menu Lateral Mobile -->
+    <div id="mobileDrawer" class="hidden lg:hidden bg-linen border-b border-gold/20 px-6 py-6 space-y-4">
+      <a href="#servicos" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Serviços do Estúdio</a>
+      <a href="#catalogo" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Catálogo de Produtos</a>
+      <a href="#quiz" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Diagnóstico de Beleza</a>
+      <a href="#posts" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Dicas & Novidades</a>
+      <a href="#sobre" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Sobre o Estúdio</a>
+      <a href="#contato" class="block text-sm font-semibold uppercase tracking-wider text-espresso py-2 border-b border-nude">Atendimento & WhatsApp</a>
+      <button onclick="openAdminModal()" class="w-full text-left text-sm font-bold uppercase tracking-wider text-terracotta py-2 flex items-center gap-2">
+        <i data-lucide="lock" class="w-4 h-4"></i> Acessar Painel Admin (Postar)
+      </button>
+    </div>
+  </header>
+  <!-- ===== SUB-BARRA DE NAVEGAÇÃO HORIZONTAL MOBILE (ROUTING TÁTIL EM 100% DOS DISPOSITIVOS) ===== -->
+  <nav class="lg:hidden sticky top-20 z-30 bg-linen/95 backdrop-blur-md border-b border-gold/20 py-2.5 px-4 overflow-x-auto whitespace-nowrap scrollbar-none flex items-center gap-2 shadow-sm">
+    <a href="#" class="px-3.5 py-1.5 rounded-full bg-espresso text-gold-light text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 shadow-sm">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+      <span>Início</span>
+    </a>
+    <a href="#servicos" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="scissors" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Serviços</span>
+    </a>
+    <a href="#catalogo" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Catálogo</span>
+    </a>
+    <a href="#quiz" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="help-circle" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Quiz Beleza</span>
+    </a>
+    <a href="#posts" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="book-open" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Dicas & Blog</span>
+    </a>
+    <a href="#sobre" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>O Estúdio</span>
+    </a>
+    <a href="#contato" class="px-3.5 py-1.5 rounded-full bg-white border border-gold/30 text-espresso text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 hover:border-terracotta">
+      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-terracotta"></i>
+      <span>Localização</span>
+    </a>
+    <a id="subBarWhatsappLink" href="https://wa.me/5538999999999" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-green-600 text-white text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0 shadow-sm">
+      <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
+
+  <!-- ===== SEÇÃO PRINCIPAL (HERO) ===== -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-linen-dark to-linen pt-12 pb-20 lg:py-28 border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Conteúdo Textual -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nude/80 border border-gold/30 text-xs font-medium tracking-widest uppercase text-terracotta">
+            <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+            Montes Claros - MG • Alta Cosmética
+          </div>
+          
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-espresso font-normal">
+            O cuidado que a sua beleza merece, <em class="italic font-light text-terracotta">todos os dias.</em>
+          </h1>
+          
+          <p class="text-base sm:text-lg text-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+            Fórmulas inteligentes, ativos botânicos de alta performance e rituais criados para realçar o que há de mais autêntico e refinado em você.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-terracotta/20 transition-all text-center">
+              Explorar Catálogo
+            </a>
+            <a href="#quiz" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-espresso/30 hover:border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-widest transition-all text-center">
+              Fazer Diagnóstico de Beleza →
+            </a>
+          </div>
+
+          <!-- Selos de Confiança -->
+          <div class="pt-8 border-t border-gold/20 grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">100%</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Vegano & Não Testado</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">Estúdio</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Fórmula de Cabine</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl sm:text-3xl text-espresso font-semibold">4.9★</span>
+              <span class="text-[11px] uppercase tracking-wider text-muted">Avaliação Média</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demonstração Visual do Produto -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md rounded-2xl bg-nude/60 p-6 border border-gold/30 shadow-2xl backdrop-blur-sm">
+            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-espresso/5 relative flex items-center justify-center">
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=480&q=70" alt="Cosméticos Carla Barbosa Estúdio" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent"></div>
+              
+              <!-- Cartão Flutuante -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-linen/95 backdrop-blur-md border border-gold/30 flex items-center justify-between">
+                <div>
+                  <span class="block text-[10px] tracking-widest uppercase text-terracotta font-bold">Mais Vendido</span>
+                  <span class="font-serif text-base font-semibold text-espresso">Elixir Nutritivo e Iluminador Facial</span>
+                </div>
+                <span class="font-serif text-lg font-bold text-espresso">R$ 189</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO DE SERVIÇOS & PROCEDIMENTOS DE CABINE (MONTES CLAROS) ===== -->
+  <section id="servicos" class="py-20 bg-linen border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento Presencial em Montes Claros - MG</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
+          Serviços & Procedimentos de <em class="italic font-light">Cabine</em>
+        </h2>
+        <p class="text-sm text-muted">
+          Especialização técnica, protocolos personalizados e produtos de alto padrão para transformar e valorizar a sua beleza com total segurança.
+        </p>
+      </div>
+
+      <!-- Grade de Serviços do Estúdio -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Serviço 1: Loiros & Mechas -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="sparkles" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Especialidade</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Mechas & Loiros Saudáveis</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Loiros platinados, dourados elegantes e Morenas Iluminadas com tecnologia de proteção dos fios durante todo o processo de descoloração.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Loiro Dourado, Bege e Platinado</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Morena Iluminada com Visagismo</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Proteção Plex Anti-Danos</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20Mechas/Loiros." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Avaliação
+          </a>
+        </div>
+
+        <!-- Serviço 2: Cronograma & Terapia Capilar -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="shield" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Recuperação</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Cronograma & Terapia Capilar</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Tratamentos intensivos para reconstrução de massa, nutrição lipídica e reposição hídrica para fios danificados ou ressecados.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Reconstrução com Aminoácidos</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Cauterização e Nutrição Lipídica</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Selamento de Cutículas e Brilho</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Tratamento/Cronograma%20Capilar." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Tratamento
+          </a>
+        </div>
+
+        <!-- Serviço 3: Alinhamento & Selagem Orgânica -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="feather" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Alinhamento</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Alinhamento Térmico Orgânico</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Fórmula sem formol para redução de volume, controle de frizz e brilho espelhado, mantendo o movimento natural e toque sedoso.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> 100% Livre de Formol</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Brilho Espelhado Duradouro</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Movimento Natural e Maciez</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20um%20Alinhamento%20Org%C3%A2nico." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Selagem
+          </a>
+        </div>
+
+        <!-- Serviço 4: Sobrancelhas & Olhar -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="eye" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Olhar Marcante</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Design de Sobrancelhas & Olhar</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Mapeamento facial personalizado para realçar suas linhas naturais com simetria e sofisticação.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Design Personalizado com Visagismo</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Brow Lamination & Alinhamento</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Nutrição e Aplicação de Henna</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20Design%20de%20Sobrancelhas." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Sobrancelhas
+          </a>
+        </div>
+
+        <!-- Serviço 5: Manicure & Nails -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="heart" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Nails & Spa</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Manicure, Pedicure & Nails</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Cuidados completos para mãos e pés com técnicas de alta durabilidade, esmaltação perfeita e biossegurança esterilizada.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Esmaltação em Gel de Longa Duração</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Blindagem Diamante Fortalecedora</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Spa dos Pés com Esfoliação Suave</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20hor%C3%A1rio%20para%20Unhas/Manicure." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Unhas
+          </a>
+        </div>
+
+        <!-- Serviço 6: Maquiagem & Produções -->
+        <div class="p-8 rounded-3xl bg-white border border-gold/30 shadow-sm hover:shadow-xl transition-all space-y-5 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center text-terracotta group-hover:scale-110 transition-transform">
+              <i data-lucide="smile" class="w-7 h-7"></i>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-nude text-terracotta text-[10px] font-bold uppercase tracking-wider">Produção Completa</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Maquiagem Social & Eventos</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Produções impecáveis para noivas, formandas, convidadas e ensaios fotográficos com produtos importados e fixação de alta resistência.
+            </p>
+            <ul class="text-xs text-espresso/80 space-y-2 pt-2 border-t border-nude">
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Maquiagem Social & Noivas</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Penteados Sofisticados e Modernos</li>
+              <li class="flex items-center gap-2"><span class="text-gold">✓</span> Preparação de Pele Blindada</li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5538999999999?text=Ol%C3%A1%20Carla%20Barbosa!%20Gostaria%20de%20agendar%20uma%20Produ%C3%A7%C3%A3o%20de%20Maquiagem/Penteado." target="_blank" class="w-full py-3 bg-espresso hover:bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4"></i> Agendar Produção
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== DIAGNÓSTICO INTERATIVO DE BELEZA ===== -->
+  <section id="quiz" class="py-16 bg-nude/40 border-b border-gold/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="rounded-3xl bg-linen border border-gold/30 p-8 sm:p-12 shadow-xl relative overflow-hidden">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-8">
+          <span class="text-xs font-semibold uppercase tracking-[0.25em] text-terracotta">Cuidado Personalizado & Exclusivo</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">
+            Descubra o seu <em class="italic font-light">Ritual Perfeito</em>
+          </h2>
+          <p class="text-sm text-muted">
+            Responda em 30 segundos e nossa inteligência estética prescreverá a combinação exata de ativos para a sua rotina.
+          </p>
+        </div>
+
+        <!-- Estrutura do Diagnóstico -->
+        <div id="quizBox" class="space-y-6">
+          <div class="space-y-3">
+            <label class="block text-xs font-bold uppercase tracking-wider text-espresso">1. Qual é o seu objetivo principal hoje?</label>
+            <div class="grid sm:grid-cols-3 gap-3">
+              <button onclick="selectQuiz(1, 'glow', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Luminosidade & Viço</span>
+                <span class="text-xs text-muted">Hidratação e viço imediato</span>
+              </button>
+              <button onclick="selectQuiz(1, 'olhar', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Sobrancelhas & Fios</span>
+                <span class="text-xs text-muted">Nutrição, densidade e alinhamento</span>
+              </button>
+              <button onclick="selectQuiz(1, 'zen', this)" class="quiz-btn p-4 rounded-xl border border-gold/30 text-left hover:border-terracotta transition-all bg-white/70">
+                <span class="block font-semibold text-sm">Relaxamento & Spa em Casa</span>
+                <span class="text-xs text-muted">Aromaterapia e bem-estar sensorial</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Área de Resultado do Diagnóstico -->
+          <div id="quizResult" class="hidden pt-6 border-t border-gold/20 text-center space-y-4">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-gold/20 text-espresso text-xs font-bold uppercase tracking-wider">
+              Recomendação Exclusiva do Estúdio
+            </div>
+            <h3 id="quizResultTitle" class="font-serif text-2xl text-espresso font-semibold"></h3>
+            <p id="quizResultDesc" class="text-sm text-muted max-w-lg mx-auto"></p>
+            <button id="quizAddBtn" class="px-8 py-3.5 bg-terracotta text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-md hover:bg-terracotta-hover transition-colors">
+              Adicionar Kit Recomendado à Sacola
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO DO CATÁLOGO DE PRODUTOS ===== -->
+  <section id="catalogo" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Cabeçalho da Seção -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="space-y-2">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Curadoria de Estúdio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
+          Catálogo <em class="italic font-light">Alta Cosmética</em>
+        </h2>
+        <p class="text-sm text-muted max-w-lg">
+          Produtos desenvolvidos em cabine, testados dermatologicamente e formulados para elevar o seu dia a dia.
+        </p>
+      </div>
+
+      <!-- Botões de Filtro por Categoria -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <button onclick="filterCategory('todos', this)" class="filter-pill active-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 transition-all">
+          Todos
+        </button>
+        <button onclick="filterCategory('skincare', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Cuidados com a Pele
+        </button>
+        <button onclick="filterCategory('olhar', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Olhar & Fios
+        </button>
+        <button onclick="filterCategory('aromaterapia', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Spa em Casa
+        </button>
+        <button onclick="filterCategory('kits', this)" class="filter-pill px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider border border-gold/40 text-muted hover:text-espresso transition-all">
+          Kits & Presentes
+        </button>
+      </div>
+    </div>
+
+    <!-- Grade Dinâmica de Produtos -->
+    <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Injetado dinamicamente via script.js -->
+    </div>
+
+  </section>
+
+  <!-- ===== BLOG / NOVIDADES & POSTS DA CARLA BARBOSA ===== -->
+  <section id="posts" class="py-20 bg-nude/30 border-y border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Publicações Diretas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">
+            Dicas & Novidades da <em class="italic font-light">Carla Barbosa</em>
+          </h2>
+          <p class="text-sm text-muted">Acompanhe tendências de beleza, segredos de cuidados capilares e novidades em Montes Claros - MG.</p>
+        </div>
+
+        <button onclick="openAdminModal('posts')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso hover:bg-terracotta text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm self-start sm:self-auto">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-gold"></i>
+          <span>Novo Post</span>
+        </button>
+      </div>
+
+      <!-- Grade de Posts -->
+      <div id="postsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Preenchido via script.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== HISTÓRIA & SOBRE O ESTÚDIO ===== -->
+  <section id="sobre" class="py-20 bg-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 relative">
+          <div class="rounded-2xl overflow-hidden border border-gold/30 shadow-2xl aspect-[4/5] bg-espresso/10">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Carla Barbosa fundadora" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 p-6 rounded-2xl bg-linen border border-gold/30 shadow-xl hidden sm:block">
+            <span class="font-serif text-3xl font-bold text-terracotta">10+ Anos</span>
+            <span class="block text-xs uppercase tracking-wider text-muted">De dedicação à beleza autêntica</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-6 lg:pl-8">
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Manifesto da Marca</span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-espresso font-normal">
+            A beleza não precisa de excessos. <em class="italic font-light">Ela precisa de intenção.</em>
+          </h2>
+          <p class="text-base text-muted font-light leading-relaxed">
+            O <strong>Carla Barbosa Estúdio</strong> em <strong>Montes Claros - MG</strong> nasceu no coração do atendimento personalizado. Ao longo de anos de consultoria estética, percebemos que as pessoas não buscavam transformações artificiais, mas sim rituais que respeitassem sua singularidade.
+          </p>
+          <p class="text-base text-muted font-light leading-relaxed">
+            Nossa linha de produtos e tratamentos foi concebida para transpor a experiência de excelência da nossa cabine diretamente para a sua rotina diária.
+          </p>
+
+          <div class="pt-4 grid grid-cols-2 gap-6">
+            <div class="p-4 rounded-xl bg-nude/40 border border-gold/20">
+              <h4 class="font-serif font-bold text-lg text-espresso mb-1">Fórmulas Limpas</h4>
+              <p class="text-xs text-muted">Livre de parabenos, sulfatos e sem crueldade animal.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-nude/40 border border-gold/20">
+              <h4 class="font-serif font-bold text-lg text-espresso mb-1">Toque de Estúdio</h4>
+              <p class="text-xs text-muted">Texturas sensoriais desenvolvidas por especialistas.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIFERENCIAIS & EXPERIÊNCIA ===== -->
+  <section id="experiencia" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Padrão de Excelência</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Por que escolher o nosso Estúdio?</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Ativos de Precisão</h3>
+        <p class="text-xs text-muted">Matérias-primas botânicas puras e alta concentração de ativos.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="package" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Embalagem de Luxo</h3>
+        <p class="text-xs text-muted">Caixa rígida, aroma exclusivo e fita de linho personalizada.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Consultoria Exclusiva</h3>
+        <p class="text-xs text-muted">Apoio direto via WhatsApp para orientar a sua aplicação diária.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-nude/40 border border-gold/20 space-y-3 text-center">
+        <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto text-terracotta">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-espresso">Compra 100% Segura</h3>
+        <p class="text-xs text-muted">Garantia de satisfação e troca facilitada em até 7 dias.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROVA SOCIAL & INSTAGRAM ===== -->
+  <section class="py-16 bg-espresso text-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center space-y-3 mb-12">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-gold">@carlabarbosa.estudio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal">Comunidade & Rituais Reais</h2>
+        <p class="text-xs text-muted text-gold-light/70">Acompanhe os bastidores diários e transformações no Instagram.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=480&q=70" alt="Instagram 1" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=480&q=70" alt="Instagram 2" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=480&q=70" alt="Instagram 3" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div class="aspect-square rounded-xl overflow-hidden relative group">
+          <img src="https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=480&q=70" alt="Instagram 4" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512290900672-1f02a0a0ff76?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="https://instagram.com/carlabarbosa.estudio" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-widest hover:bg-gold hover:text-espresso transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Seguir @CARLABARBOSA.ESTUDIO
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DÚVIDAS FREQUENTES & ATENDIMENTO ===== -->
+  <section id="contato" class="py-20 max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center space-y-3 mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-terracotta">Atendimento & Dúvidas</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-espresso font-normal">Como podemos ajudar você?</h2>
+      <p class="text-sm text-muted">Atendimento presencial em Montes Claros - MG e envios para todo o Brasil.</p>
+    </div>
+
+    <!-- Acordeão de Perguntas Frequentes -->
+    <div class="space-y-4 mb-16">
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Onde fica o estúdio presencial em Montes Claros - MG?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Nosso estúdio físico está localizado na <strong>Rua Deputado Antônio Pimenta, 72 — Bairro Jardim São Luiz, Montes Claros - MG</strong> (CEP 39401-057), em um ambiente climatizado, acolhedor e exclusivo para o seu atendimento.
+        </p>
+      </details>
+
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Como funciona a entrega dos cosméticos?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Para Montes Claros temos entrega expressa via motoboy. Para as demais cidades do Brasil enviamos via Correios e transportadoras com rastreamento seguro.
+        </p>
+      </details>
+
+      <details class="group p-6 rounded-2xl bg-nude/40 border border-gold/20 cursor-pointer">
+        <summary class="flex items-center justify-between font-serif text-lg font-semibold text-espresso">
+          <span>Como agendar procedimentos presenciais com a Carla Barbosa?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-gold group-open:rotate-180 transition-transform"></i>
+        </summary>
+        <p class="text-sm text-muted mt-3 font-light leading-relaxed">
+          Os atendimentos em cabine são realizados com hora marcada. Você pode solicitar um horário diretamente com nossa consultora através do WhatsApp oficial.
+        </p>
+      </details>
+    </div>
+
+    <!-- Banner WhatsApp -->
+    <div class="rounded-3xl bg-gradient-to-r from-espresso to-espresso-light text-white p-8 sm:p-10 text-center space-y-4">
+      <h3 class="font-serif text-2xl sm:text-3xl">Deseja um atendimento personalizado?</h3>
+      <p class="text-sm text-gold-light/80 max-w-md mx-auto">
+        Fale diretamente no nosso WhatsApp para tirar dúvidas sobre produtos, dicas de tratamentos ou agendamentos.
+      </p>
+      <a id="whatsappCtaLink" href="https://wa.me/5538999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest transition-colors shadow-lg">
+        <i data-lucide="message-circle" class="w-4 h-4"></i> Iniciar Conversa no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ (FOOTER) ===== -->
+  <footer class="bg-espresso-light text-gold-light py-12 border-t border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gold/20 text-center md:text-left">
+        <div>
+          <span class="font-serif text-2xl tracking-widest font-semibold uppercase text-white block">CARLA BARBOSA</span>
+          <span class="text-[10px] tracking-[0.3em] uppercase text-gold">Estúdio de Beleza • Montes Claros - MG</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider">
+          <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
+          <a href="#posts" class="hover:text-white transition">Blog & Dicas</a>
+          <a href="#sobre" class="hover:text-white transition">O Estúdio</a>
+          <a href="#contato" class="hover:text-white transition">Contato</a>
+          <button onclick="openAdminModal()" class="text-gold-light/40 hover:text-white transition flex items-center gap-1 opacity-60 hover:opacity-100">
+            <i data-lucide="lock" class="w-3 h-3"></i> Admin
+          </button>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gold-light/60 gap-4">
+        <p>© 2026 Carla Barbosa Estúdio — Montes Claros MG. Todos os direitos reservados.</p>
+        <p>Desenvolvido com excelência • Alta Performance & Estética</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SACOLA LATERAL (DRAWER) ===== -->
+  <div id="cartDrawerBackdrop" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden transition-opacity">
+    <div id="cartDrawer" class="absolute top-0 right-0 h-full w-full max-w-md bg-linen shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+      
+      <!-- Cabeçalho da Sacola -->
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-gold/20">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-terracotta"></i>
+            <h3 class="font-serif text-xl font-bold text-espresso">Sua Sacola de Rituais</h3>
+          </div>
+          <button id="closeCartBtn" class="p-2 text-muted hover:text-espresso" aria-label="Fechar Sacola">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Barra de Progresso de Frete Grátis -->
+        <div class="py-4 border-b border-gold/20">
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span id="shippingText">Faltam R$ 60 para Frete Grátis</span>
+            <span id="shippingPercent">75%</span>
+          </div>
+          <div class="w-full h-1.5 bg-nude rounded-full overflow-hidden">
+            <div id="shippingBar" class="h-full bg-terracotta rounded-full transition-all duration-500" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <!-- Lista de Itens da Sacola -->
+        <div id="cartItemsList" class="py-4 space-y-4">
+          <!-- Preenchido via script.js -->
+        </div>
+      </div>
+
+      <!-- Resumo Financeiro, Métodos Seguros e Finalização -->
+      <div class="pt-4 border-t border-gold/20 space-y-4">
+        <div class="flex justify-between text-sm">
+          <span class="text-muted">Subtotal:</span>
+          <span id="cartSubtotal" class="font-serif font-bold text-espresso text-lg">R$ 0,00</span>
+        </div>
+
+        <!-- Seleção de Método de Pagamento Seguro -->
+        <div class="space-y-2">
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-espresso flex items-center justify-between">
+            <span>Forma de Pagamento Segura</span>
+            <span class="text-[10px] text-terracotta font-semibold flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 100% Criptografado
+            </span>
+          </label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-gold/30 bg-white cursor-pointer hover:border-terracotta transition has-[:checked]:border-terracotta has-[:checked]:bg-gold/10">
+              <input type="radio" name="paymentMethod" value="pix" checked onchange="updatePaymentMethod()" class="text-terracotta focus:ring-terracotta" />
+              <div>
+                <span class="font-bold block text-espresso">PIX (5% OFF)</span>
+                <span class="text-[10px] text-muted">Aprovação Imediata</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-gold/30 bg-white cursor-pointer hover:border-terracotta transition has-[:checked]:border-terracotta has-[:checked]:bg-gold/10">
+              <input type="radio" name="paymentMethod" value="cartao" onchange="updatePaymentMethod()" class="text-terracotta focus:ring-terracotta" />
+              <div>
+                <span class="font-bold block text-espresso">Cartão até 6x</span>
+                <span class="text-[10px] text-muted">Link Oficial Seguro</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Box Informativo de Desconto no PIX -->
+        <div id="pixDiscountBox" class="p-3 rounded-xl bg-green-50 border border-green-200 text-xs text-green-900 flex items-center justify-between">
+          <span class="flex items-center gap-1.5 font-medium">
+            <i data-lucide="zap" class="w-4 h-4 text-green-600"></i> Desconto no PIX aplicado:
+          </span>
+          <span id="pixDiscountValue" class="font-bold text-green-700">- R$ 0,00</span>
+        </div>
+
+        <!-- Botão Principal de Checkout Seguro -->
+        <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg transition-colors flex items-center justify-center gap-2">
+          <i data-lucide="lock" class="w-4 h-4 text-gold-light"></i> 
+          <span id="checkoutBtnText">Finalizar Pagamento Seguro</span>
+        </button>
+
+        <!-- Selos de Confiança e Criptografia -->
+        <div class="pt-2 border-t border-nude space-y-2 text-center">
+          <div class="flex items-center justify-center gap-4 text-[10px] text-muted uppercase tracking-wider font-semibold">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-green-600"></i> SSL 256 Bits</span>
+            <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5 text-gold"></i> Garantia 7 Dias</span>
+            <span class="flex items-center gap-1"><i data-lucide="truck" class="w-3.5 h-3.5 text-espresso"></i> Envio Seguro</span>
+          </div>
+          <p class="text-[10px] text-muted font-light">
+            Seus dados financeiros não são armazenados. Pagamentos intermediados com segurança bancária.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL DE VISUALIZAÇÃO RÁPIDA DE PRODUTO ===== -->
+  <div id="quickModal" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-gold/30 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button onclick="closeQuickModal()" class="absolute top-4 right-4 p-2 text-muted hover:text-espresso" aria-label="Fechar Janela">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="modalContent" class="grid sm:grid-cols-2 gap-6 items-center">
+        <!-- Injetado via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL DE LEITURA COMPLETA DE POST ===== -->
+  <div id="postModal" class="fixed inset-0 bg-espresso/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative border border-gold/30 shadow-2xl max-h-[90vh] overflow-y-auto space-y-4">
+      <button onclick="closePostModal()" class="absolute top-4 right-4 p-2 text-muted hover:text-espresso" aria-label="Fechar Janela">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="postModalContent">
+        <!-- Injetado via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAINEL ADMINISTRATIVO (ADMIN CARLA BARBOSA) ===== -->
+  <div id="adminModal" class="fixed inset-0 bg-espresso/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-linen rounded-3xl max-w-4xl w-full p-6 sm:p-8 relative border border-gold/40 shadow-2xl max-h-[92vh] overflow-y-auto flex flex-col">
+      
+      <!-- Cabeçalho do Admin -->
+      <div class="flex items-center justify-between pb-4 border-b border-gold/30 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold/20 text-terracotta flex items-center justify-center">
+            <i data-lucide="shield" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Painel de Gerenciamento</h3>
+            <p class="text-xs text-muted">Área exclusiva da Carla Barbosa para publicar posts e produtos.</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="p-2 text-muted hover:text-espresso">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Login do Admin (caso não esteja logada) -->
+      <div id="adminLoginForm" class="py-6 max-w-sm mx-auto text-center space-y-4">
+        <i data-lucide="lock" class="w-12 h-12 text-gold mx-auto"></i>
+        <h4 class="font-serif text-xl font-bold">Acesso Restrito do Estúdio</h4>
+        <p class="text-xs text-muted">Digite sua senha administrativa para gerenciar o portal.</p>
+        <input type="password" id="adminPasswordInput" placeholder="Senha do painel" class="w-full px-4 py-3 rounded-xl border border-gold/40 bg-white text-sm outline-none focus:border-terracotta text-center font-bold" />
+        <button onclick="loginAdmin()" class="w-full py-3.5 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all text-center flex items-center justify-center">
+          <span>Acessar Painel</span>
+        </button>
+        <button type="button" onclick="showForgotPassword()" class="text-xs text-terracotta hover:underline font-semibold block mx-auto pt-1">
+          Esqueceu a senha? Recuperar acesso
+        </button>
+      </div>
+
+      <!-- Recuperação de Senha (Esqueci a Senha) -->
+      <div id="adminForgotForm" class="hidden py-6 max-w-sm mx-auto text-center space-y-4">
+        <i data-lucide="key-round" class="w-12 h-12 text-gold mx-auto"></i>
+        <h4 class="font-serif text-xl font-bold">Recuperação de Acesso</h4>
+        <p class="text-xs text-muted">Insira a Chave Mestra de Segurança ou os dígitos do telefone oficial cadastrado:</p>
+        
+        <form onsubmit="handleResetPassword(event)" class="space-y-3 text-xs text-left">
+          <div>
+            <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Chave de Recuperação ou Telefone Oficial *</label>
+            <input type="text" id="recoveryKeyInput" required placeholder="Ex: 38999999999 ou chave de segurança" class="w-full px-3 py-2.5 rounded-xl border border-gold/40 bg-white focus:border-terracotta outline-none font-bold text-center" />
+          </div>
+          <div>
+            <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Nova Senha (Mínimo 6 caracteres) *</label>
+            <input type="password" id="newPassRecoverInput" required minlength="6" placeholder="Nova senha segura" class="w-full px-3 py-2.5 rounded-xl border border-gold/40 bg-white focus:border-terracotta outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Confirmar Nova Senha *</label>
+            <input type="password" id="confirmPassRecoverInput" required minlength="6" placeholder="Repita a nova senha" class="w-full px-3 py-2.5 rounded-xl border border-gold/40 bg-white focus:border-terracotta outline-none" />
+          </div>
+          
+          <button type="submit" class="w-full py-3.5 bg-terracotta hover:bg-terracotta-hover text-white rounded-full text-xs font-bold uppercase tracking-wider transition-all text-center flex items-center justify-center">
+            <span>Redefinir e Salvar Senha</span>
+          </button>
+          
+          <button type="button" onclick="showLoginForm()" class="text-xs text-muted hover:text-terracotta text-center block w-full pt-1">
+            ← Voltar para o Login
+          </button>
+        </form>
+      </div>
+
+      <!-- Conteúdo do Painel Logado -->
+      <div id="adminDashboard" class="hidden space-y-6">
+        
+        <!-- Abas do Admin -->
+        <div class="flex gap-2 border-b border-gold/20 pb-3 overflow-x-auto">
+          <button onclick="switchAdminTab('posts')" id="tabPostsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-espresso text-white transition-all">
+            📝 Posts & Dicas
+          </button>
+          <button onclick="switchAdminTab('products')" id="tabProductsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-nude text-espresso hover:bg-gold/20 transition-all">
+            🛍️ Produtos
+          </button>
+          <button onclick="switchAdminTab('settings')" id="tabSettingsBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-nude text-espresso hover:bg-gold/20 transition-all">
+            ⚙️ Informações
+          </button>
+          <button onclick="switchAdminTab('security')" id="tabSecurityBtn" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-nude text-espresso hover:bg-gold/20 transition-all">
+            🔐 Alterar Senha
+          </button>
+          <button onclick="logoutAdmin()" class="ml-auto px-3.5 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 transition-all flex items-center gap-1">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Sair
+          </button>
+        </div>
+
+        <!-- ABA 1: GERENCIAR POSTS -->
+        <div id="adminTabPosts" class="space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-5">
+            <div class="flex items-center justify-between">
+              <h4 class="font-serif text-lg font-bold text-espresso flex items-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-terracotta"></i>
+                <span id="postFormTitle">Publicar Novo Post / Dica</span>
+              </h4>
+              <button type="button" onclick="suggestAiContent()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gold/20 hover:bg-gold/30 text-espresso text-[11px] font-bold transition">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta"></i>
+                <span>Sugestão de Pacote Pronto</span>
+              </button>
+            </div>
+
+            <!-- GERADOR INTELIGENTE POR QUALQUER ASSUNTO LIVRE -->
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-terracotta/10 via-gold/15 to-transparent border border-gold/40 space-y-2.5 shadow-sm">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <span class="text-xs font-bold text-espresso uppercase flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-terracotta"></i>
+                  <span>Criar Post com IA por Qualquer Tema Livre:</span>
+                </span>
+                <span class="text-[10px] text-muted font-medium">Escreva qualquer assunto que a IA redige o texto completo e gera a foto 8K</span>
+              </div>
+              <div class="flex gap-2">
+                <input type="text" id="aiCustomTopicInput" placeholder="Ex: Cuidados Pós-Mechas, Cronograma para Cabelos Secos, Brow Lamination..." class="flex-1 px-3 py-2.5 rounded-xl border border-gold/40 bg-white text-xs outline-none focus:border-terracotta shadow-inner" />
+                <button type="button" onclick="generateArticleByCustomTopic()" class="px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold text-xs uppercase tracking-wider transition flex items-center gap-1.5 shadow-md shadow-terracotta/20">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-gold-light"></i>
+                  <span>Gerar Post & Foto</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- COMPONENTE UNIVERSAL DE MÍDIA (DISPOSITIVO, DRIVE, NUVEM E IA) -->
+            <div class="p-4 rounded-2xl bg-gold/10 border border-gold/40 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-gold/20">
+                <div class="flex items-center gap-2 text-espresso font-bold text-xs">
+                  <i data-lucide="image" class="w-4 h-4 text-terracotta"></i>
+                  <span>Mídia do Post (Fotos & Vídeos do Dispositivo, Drive ou IA)</span>
+                </div>
+                <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-terracotta text-white font-bold uppercase tracking-wider">Multi-Fontes</span>
+              </div>
+
+              <!-- 3 Opções de Envio -->
+              <div class="grid sm:grid-cols-3 gap-2">
+                <!-- Opção A: Subir do Dispositivo -->
+                <label class="p-3 rounded-xl border border-dashed border-gold/50 hover:border-terracotta bg-white hover:bg-gold/10 cursor-pointer flex flex-col items-center justify-center text-center transition-all">
+                  <i data-lucide="upload-cloud" class="w-5 h-5 text-terracotta mb-1"></i>
+                  <span class="text-xs font-bold text-espresso block">Subir do Dispositivo</span>
+                  <span class="text-[10px] text-muted">Galeria, Fotos ou Vídeos MP4</span>
+                  <input type="file" id="postFileInput" accept="image/*,video/*" onchange="handleMediaUpload(event, 'postImage')" class="hidden" />
+                </label>
+
+                <!-- Opção B: Link do Google Drive / Nuvem -->
+                <div class="p-3 rounded-xl border border-gold/30 bg-white flex flex-col justify-between space-y-1 text-center sm:text-left">
+                  <div>
+                    <span class="text-xs font-bold text-espresso flex items-center justify-center sm:justify-start gap-1">
+                      <i data-lucide="cloud" class="w-3.5 h-3.5 text-terracotta"></i> Google Drive / Nuvem
+                    </span>
+                    <span class="text-[10px] text-muted block">Cole o link compartilhado</span>
+                  </div>
+                  <input type="text" id="postImage" oninput="handleCloudUrlInput(this.value, 'postImagePreview')" placeholder="Link do Drive, Dropbox ou URL..." class="w-full px-2.5 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none focus:border-terracotta" />
+                </div>
+
+                <!-- Opção C: Gerar Imagem com IA -->
+                <div class="p-3 rounded-xl border border-gold/30 bg-white flex flex-col justify-between space-y-1">
+                  <span class="text-xs font-bold text-espresso flex items-center justify-center sm:justify-start gap-1">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta"></i> Gerar Foto com IA
+                  </span>
+                  <div class="flex gap-1">
+                    <input type="text" id="aiImagePrompt" placeholder="Tema livre ou descrição..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
+                    <button type="button" onclick="generateAiImage()" id="btnGenerateAi" class="px-3 py-1.5 rounded-lg bg-espresso hover:bg-terracotta text-white font-bold text-[10px] uppercase tracking-wider transition">
+                      <span id="btnGenerateAiText">Gerar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sugestões Rápidas de Beleza para IA -->
+              <div class="flex flex-wrap gap-1 pt-1">
+                <span class="text-[10px] text-muted font-bold uppercase py-1">Temas Rápidos:</span>
+                <button type="button" onclick="setAiPrompt('Cabelo loiro iluminado impecável, ondas glamourosas, iluminação de estúdio luxuoso de alta beleza, 8k')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">💇‍♀️ Loiro & Mechas</button>
+                <button type="button" onclick="setAiPrompt('Design de sobrancelhas perfeitas, olhar marcante, pele feminina radiante com viço de estúdio, 8k')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">👁️ Sobrancelhas</button>
+                <button type="button" onclick="setAiPrompt('Tratamento capilar intensivo com óleos nobres dourados, hidratação profunda em salão')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">🌿 Terapia Capilar</button>
+                <button type="button" onclick="setAiPrompt('Unhas elegantes com esmaltação em gel nude brilhante e detalhes dourados sofisticados')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">💅 Nails em Gel</button>
+              </div>
+
+              <!-- Preview da Mídia Selecionada (Imagem ou Vídeo) + Botão de Regeneração -->
+              <div id="mediaPreviewBox" class="hidden pt-3 border-t border-gold/20 flex flex-col sm:flex-row items-center gap-4">
+                <div class="relative w-48 aspect-[16/10] rounded-xl overflow-hidden bg-white border border-gold/30 flex-shrink-0 flex items-center justify-center">
+                  <img id="mediaPreviewImg" src="" alt="Prévia da Mídia" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1608248597359-551101968846?auto=format&fit=crop&w=800&q=75';" class="w-full h-full object-cover hidden" />
+                  <video id="mediaPreviewVideo" src="" controls class="w-full h-full object-cover hidden"></video>
+                  <div id="aiLoadingSpinner" class="hidden absolute inset-0 bg-espresso/60 flex items-center justify-center text-white">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-gold"></i>
+                  </div>
+                </div>
+                <div class="flex-1 space-y-2 text-left">
+                  <span id="mediaPreviewStatus" class="text-xs font-bold text-espresso block">Mídia Pronta para Publicação!</span>
+                  <p id="mediaPreviewInfo" class="text-[10px] text-muted">A imagem/vídeo será exibida em alta resolução no post.</p>
+                  <div class="flex items-center gap-2 pt-1">
+                    <button type="button" onclick="generateAiImage(true)" class="px-3 py-1.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold text-[11px] uppercase tracking-wider transition flex items-center gap-1 shadow-sm">
+                      <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                      <span>Não gostou? Gerar Outra Opção</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form onsubmit="handleSavePost(event)" class="space-y-4 text-xs">
+              <input type="hidden" id="editPostId" value="" />
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Título do Post *</label>
+                  <input type="text" id="postTitle" oninput="syncPostTitleWithAi(this.value)" required placeholder="Ex: 5 Dicas para Cuidar do Cabelo Loiro" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Categoria *</label>
+                  <select id="postCategory" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none">
+                    <option value="Dicas de Cabelo">Dicas de Cabelo & Mechas</option>
+                    <option value="Cuidados com a Pele">Cuidados com a Pele</option>
+                    <option value="Sobrancelhas">Sobrancelhas & Olhar</option>
+                    <option value="Novidades do Estúdio">Novidades do Estúdio</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Resumo Curto (Aparece no card) *</label>
+                <input type="text" id="postExcerpt" required placeholder="Resumo de 1 ou 2 linhas..." class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Texto Completo do Post *</label>
+                <textarea id="postContent" required rows="5" placeholder="Escreva o conteúdo completo aqui..." class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none"></textarea>
+              </div>
+
+              <div class="flex gap-3">
+                <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition shadow-sm">
+                  Publicar Post no Site
+                </button>
+                <button type="button" onclick="resetPostForm()" class="px-6 py-3 rounded-full bg-nude text-espresso font-bold uppercase tracking-wider hover:bg-gold/20 transition">
+                  Limpar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Lista de Posts Cadastrados -->
+          <div class="space-y-3">
+            <h4 class="font-serif text-lg font-bold text-espresso">Posts Cadastrados no Site</h4>
+            <div id="adminPostsList" class="space-y-2">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA 2: GERENCIAR PRODUTOS -->
+        <!-- ABA 2: GERENCIAR PRODUTOS -->
+        <div id="adminTabProducts" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-5">
+            <div class="flex items-center justify-between pb-2 border-b border-gold/20">
+              <h4 class="font-serif text-lg font-bold text-espresso flex items-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-terracotta"></i>
+                <span id="prodFormTitle">Adicionar Novo Produto</span>
+              </h4>
+              <button type="button" id="btnCancelEditProd" onclick="resetProductForm()" class="hidden px-3 py-1 rounded-full bg-nude text-espresso text-[11px] font-bold hover:bg-gold/20 transition">
+                Cancelar Edição
+              </button>
+            </div>
+
+            <!-- COMPONENTE UNIVERSAL DE MÍDIA PARA PRODUTOS (DISPOSITIVO, DRIVE, NUVEM E IA 8K) -->
+            <div class="p-4 rounded-2xl bg-gold/10 border border-gold/40 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-gold/20">
+                <div class="flex items-center gap-2 text-espresso font-bold text-xs">
+                  <i data-lucide="image" class="w-4 h-4 text-terracotta"></i>
+                  <span>Fotografia do Produto (Galeria do Celular, Drive ou IA 8K)</span>
+                </div>
+                <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-terracotta text-white font-bold uppercase tracking-wider">Multi-Fontes</span>
+              </div>
+
+              <!-- 3 Opções de Envio -->
+              <div class="grid sm:grid-cols-3 gap-2">
+                <!-- Opção A: Subir do Dispositivo -->
+                <label class="p-3 rounded-xl border border-dashed border-gold/50 hover:border-terracotta bg-white hover:bg-gold/10 cursor-pointer flex flex-col items-center justify-center text-center transition-all">
+                  <i data-lucide="upload-cloud" class="w-5 h-5 text-terracotta mb-1"></i>
+                  <span class="text-xs font-bold text-espresso block">Subir da Galeria / PC</span>
+                  <span class="text-[10px] text-muted">Foto em Alta Resolução</span>
+                  <input type="file" id="prodFileInput" accept="image/*" onchange="handleProductMediaUpload(event)" class="hidden" />
+                </label>
+
+                <!-- Opção B: Link do Google Drive / Nuvem -->
+                <div class="p-3 rounded-xl border border-gold/30 bg-white flex flex-col justify-between space-y-1 text-center sm:text-left">
+                  <div>
+                    <span class="text-xs font-bold text-espresso flex items-center justify-center sm:justify-start gap-1">
+                      <i data-lucide="cloud" class="w-3.5 h-3.5 text-terracotta"></i> Google Drive / Nuvem
+                    </span>
+                    <span class="text-[10px] text-muted block">Cole o link da foto</span>
+                  </div>
+                  <input type="text" id="prodImage" oninput="handleProductCloudUrl(this.value)" placeholder="Link do Drive, Dropbox ou URL..." class="w-full px-2.5 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none focus:border-terracotta" />
+                </div>
+
+                <!-- Opção C: Gerar Imagem com IA -->
+                <div class="p-3 rounded-xl border border-gold/30 bg-white flex flex-col justify-between space-y-1">
+                  <span class="text-xs font-bold text-espresso flex items-center justify-center sm:justify-start gap-1">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-terracotta"></i> Gerar Foto com IA 8K
+                  </span>
+                  <div class="flex gap-1">
+                    <input type="text" id="prodAiPrompt" placeholder="Descreva o produto..." class="flex-1 px-2 py-1.5 rounded-lg border border-nude bg-linen text-[11px] outline-none" />
+                    <button type="button" onclick="generateProductAiImage()" id="btnGenerateProdAi" class="px-3 py-1.5 rounded-lg bg-espresso hover:bg-terracotta text-white font-bold text-[10px] uppercase tracking-wider transition">
+                      <span>Gerar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sugestões Rápidas de Cosméticos para IA -->
+              <div class="flex flex-wrap gap-1 pt-1">
+                <span class="text-[10px] text-muted font-bold uppercase py-1">Sugestões de Cosméticos:</span>
+                <button type="button" onclick="setProductAiPrompt('Óleo de argan e rosa mosqueta com conta-gotas dourado em frasco de vidro ambar luxuoso')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">✨ Elixir / Óleo Capilar</button>
+                <button type="button" onclick="setProductAiPrompt('Kit de máscaras de tratamento capilar de luxo em potes elegantes com tampa dourada')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">💆‍♀️ Kit Cronograma</button>
+                <button type="button" onclick="setProductAiPrompt('Máscara capilar matizadora perolada em pote premium com textura cremosa aveludada')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">🌟 Máscara Loiros</button>
+                <button type="button" onclick="setProductAiPrompt('Frasco de sérum fortalecedor de sobrancelhas e cílios com aplicador preciso e acabamento rose gold')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">👁️ Fortalecedor Cílios</button>
+                <button type="button" onclick="setProductAiPrompt('Vela aromática artesanal em copo de cerâmica nude minimalista com pavio aceso suave')" class="px-2 py-0.5 rounded-md bg-white border border-gold/30 text-[10px] hover:border-terracotta">🕯️ Vela Aromática</button>
+              </div>
+
+              <!-- Preview da Foto do Produto Selecionada -->
+              <div id="prodMediaPreviewBox" class="hidden pt-3 border-t border-gold/20 flex flex-col sm:flex-row items-center gap-4">
+                <div class="relative w-36 h-36 rounded-xl overflow-hidden bg-white border border-gold/30 flex-shrink-0 flex items-center justify-center">
+                  <img id="prodMediaPreviewImg" src="" alt="Prévia do Produto" loading="lazy" decoding="async" class="w-full h-full object-cover hidden" />
+                  <div id="prodAiLoadingSpinner" class="hidden absolute inset-0 bg-espresso/60 flex items-center justify-center text-white">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-gold"></i>
+                  </div>
+                </div>
+                <div class="flex-1 text-xs space-y-1 text-center sm:text-left">
+                  <span id="prodMediaPreviewStatus" class="font-bold text-espresso block">📸 Foto selecionada para o produto</span>
+                  <p class="text-muted text-[11px]">Essa fotografia será exibida nos cards do catálogo, visualização rápida e carrinho.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulário de Dados do Produto -->
+            <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
+              <input type="hidden" id="editProductId" value="" />
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase text-espresso">Nome do Produto *</label>
+                  <input type="text" id="prodName" required placeholder="Ex: Elixir Sublime de Argan" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase text-espresso">Preço (R$) *</label>
+                  <input type="number" step="0.01" id="prodPrice" required placeholder="149.00" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase text-espresso">Categoria *</label>
+                  <select id="prodCategory" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none">
+                    <option value="oleos">Óleos & Elixires</option>
+                    <option value="kits">Kits & Cronograma</option>
+                    <option value="skincare">Cuidados com a Pele & Loiros</option>
+                    <option value="olhar">Olhar & Sobrancelhas</option>
+                    <option value="aromaterapia">Spa em Casa & Velas</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase text-espresso">Selo / Destaque</label>
+                  <input type="text" id="prodBadge" placeholder="Ex: Mais Vendido, Exclusivo do Estúdio" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase text-espresso">Modo de Uso</label>
+                  <input type="text" id="prodUsage" placeholder="Ex: Aplique 2 a 3 gotas nas pontas" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase text-espresso">Descrição Curta *</label>
+                <input type="text" id="prodShortDesc" required placeholder="Descrição em 1 ou 2 linhas para o card" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div class="flex items-center gap-3 pt-2">
+                <button type="submit" class="px-8 py-3.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition shadow-md shadow-terracotta/20 flex items-center gap-2">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                  <span id="btnSaveProdText">Salvar Produto no Catálogo</span>
+                </button>
+                <button type="button" onclick="resetProductForm()" class="px-5 py-3 rounded-full bg-nude text-espresso font-bold uppercase tracking-wider hover:bg-gold/20 transition">
+                  Limpar
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Lista de Produtos Cadastrados -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-serif text-lg font-bold text-espresso">Produtos Ativos no Catálogo</h4>
+              <span class="text-xs text-muted">Clique em "Editar" para alterar fotos, preços ou descrições</span>
+            </div>
+            <div id="adminProductsList" class="space-y-2">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ABA 3: CONFIGURAÇÕES & CONTATO -->
+        <div id="adminTabSettings" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-4">
+            <h4 class="font-serif text-lg font-bold text-espresso">Dados do Estúdio (Montes Claros - MG)</h4>
+            <form onsubmit="handleSaveSettings(event)" class="space-y-4 text-xs">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Número do WhatsApp (com DDD) *</label>
+                  <input type="text" id="cfgWhatsapp" required placeholder="5538999999999" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+                <div>
+                  <label class="block font-bold mb-1 uppercase">Cidade / Localização *</label>
+                  <input type="text" id="cfgCity" required value="Montes Claros - MG" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase">Texto da Barra de Avisos Superior</label>
+                <input type="text" id="cfgAnnouncement" class="w-full px-3 py-2.5 rounded-xl border border-nude bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <button type="submit" class="px-6 py-3 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition">
+                Salvar Informações
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- ABA 4: SEGURANÇA & ALTERAÇÃO DE SENHA -->
+        <div id="adminTabSecurity" class="hidden space-y-6">
+          <div class="p-6 rounded-2xl bg-white border border-gold/30 shadow-sm space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-gold/20">
+              <div>
+                <h4 class="font-serif text-lg font-bold text-espresso flex items-center gap-2">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-terracotta"></i>
+                  <span>Alteração de Senha & Segurança</span>
+                </h4>
+                <p class="text-xs text-muted mt-0.5">Altere sua senha de acesso a qualquer momento para total segurança.</p>
+              </div>
+            </div>
+
+            <!-- Formulário de Alteração de Senha -->
+            <form onsubmit="handleChangePassword(event)" class="space-y-4 text-xs max-w-md">
+              <div>
+                <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Senha Atual *</label>
+                <input type="password" id="currentPassInput" required placeholder="Digite sua senha atual" class="w-full px-3 py-2.5 rounded-xl border border-gold/30 bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Nova Senha (Mínimo 6 dígitos) *</label>
+                <input type="password" id="newPassInput" required minlength="6" placeholder="Digite a nova senha segura" class="w-full px-3 py-2.5 rounded-xl border border-gold/30 bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div>
+                <label class="block font-bold mb-1 uppercase text-espresso text-[10px]">Confirmar Nova Senha *</label>
+                <input type="password" id="confirmPassInput" required minlength="6" placeholder="Repita a nova senha" class="w-full px-3 py-2.5 rounded-xl border border-gold/30 bg-linen focus:border-terracotta outline-none" />
+              </div>
+
+              <div class="p-3 rounded-xl bg-nude/40 border border-gold/20 text-[11px] text-muted space-y-1">
+                <span class="font-bold text-espresso block">Diretrizes de Segurança do Estúdio:</span>
+                <p>✓ Crie uma senha de no mínimo 6 a 8 caracteres.</p>
+                <p>✓ Combine letras e números para maior proteção.</p>
+                <p>✓ Guarde a Chave Mestra para recuperação de emergência.</p>
+              </div>
+
+              <button type="submit" class="px-6 py-3.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white font-bold uppercase tracking-wider transition flex items-center justify-center gap-2">
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span>Atualizar Minha Senha</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notificação Flutuante (Toast) -->
+  
+  <!-- Botão Flutuante Mobile da Sacola de Compras -->
+  <button id="floatingCartBtn" onclick="toggleCart()" class="fixed bottom-6 left-6 z-40 bg-espresso text-gold-light border border-gold/40 shadow-2xl px-4 py-3 rounded-full flex items-center gap-2.5 hover:scale-105 active:scale-95 transition-all md:hidden">
+    <div class="relative">
+      <i data-lucide="shopping-bag" class="w-5 h-5 text-gold"></i>
+      <span id="floatingCartCount" class="absolute -top-1.5 -right-2 bg-terracotta text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+    </div>
+    <span class="text-xs font-bold uppercase tracking-wider">Ver Sacola</span>
+  </button>
+
+  <!-- PWA Install Banner Discreto -->
+  <div id="pwaInstallBanner" class="hidden fixed bottom-6 right-6 z-40 max-w-sm w-full bg-espresso text-linen p-4 rounded-2xl border border-gold/40 shadow-2xl flex items-center justify-between gap-3 animate-fade">
+    <div class="flex items-center gap-3">
+      <img src="/icon-192.png" alt="Carla Barbosa App" class="w-10 h-10 rounded-xl object-cover border border-gold/30" />
+      <div>
+        <span class="block text-xs font-bold text-gold-light uppercase tracking-wider">Instalar Aplicativo</span>
+        <span class="block text-[11px] text-linen/70">Acesse o catálogo e agende com 1 clique</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <button onclick="installPwaApp()" class="px-3 py-1.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider transition">
+        Instalar
+      </button>
+      <button onclick="document.getElementById('pwaInstallBanner').classList.add('hidden')" class="p-1.5 text-linen/60 hover:text-white" title="Fechar">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-espresso text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-gold/30 text-xs font-semibold">
+    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+    <span id="toastMsg">Alterações salvas!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
