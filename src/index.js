@@ -1,9 +1,17 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 
-const container = document.getElementById('root');
-if (container) {
-  const root = createRoot(container);
-  root.render(React.createElement(App));
+function mountApp() {
+  const container = document.getElementById('root');
+  if (container && window.React && window.ReactDOM) {
+    const root = window.ReactDOM.createRoot(container);
+    root.render(window.React.createElement(App));
+  } else {
+    setTimeout(mountApp, 30);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountApp);
+} else {
+  mountApp();
 }

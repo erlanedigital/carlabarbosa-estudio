@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+const React = window.React;
+const { useState, useEffect, useRef } = window.React;
 
 // ============================================================
 // CARLA BARBOSA ESTÚDIO DE BELEZA — REACT 18 + TAILWIND CSS
